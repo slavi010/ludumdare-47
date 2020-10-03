@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playerGrey_up1.png-5e2876743c682a3f53f66136166f6b7c.stex"
+path="res://.import/dodo_tombe.png-07a12e690ceded09ab41ab59175623bf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/playerGrey_up1.png"
-dest_files=[ "res://.import/playerGrey_up1.png-5e2876743c682a3f53f66136166f6b7c.stex" ]
+source_file="res://Player/dodo_tombe.png"
+dest_files=[ "res://.import/dodo_tombe.png-07a12e690ceded09ab41ab59175623bf.stex" ]
 
 [params]
 

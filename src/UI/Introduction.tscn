@@ -1,6 +1,31 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UI/Introduction.gd" type="Script" id=1]
+[ext_resource path="res://image/cool_pasteque.png" type="Texture" id=2]
+[ext_resource path="res://image/Pastq.png" type="Texture" id=3]
+[ext_resource path="res://image/Pastq_noice.png" type="Texture" id=4]
+[ext_resource path="res://image/Pastq_blush.png" type="Texture" id=5]
+[ext_resource path="res://image/Pastq_surprised.png" type="Texture" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0629425, 0.671387, 0.20942, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.0156863, 0.94902, 0.211765, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Introduction" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -10,9 +35,32 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -20.0
-margin_top = -14.0
-margin_right = 20.0
+margin_left = -189.0
+margin_top = -204.0
+margin_right = 421.0
+margin_bottom = -130.0
+custom_styles/normal = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "I always told to myself... Do Universe has its nature because of repetition ? 
+I mean... If nature always live in cycles, why our world must have a beginning and an ending ? 
+What if it was only our knowledge, that just stop where our fear of the unknown starts ?"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Box" type="Timer" parent="PastqText"]
+wait_time = 0.5
+
+[node name="Pastq" type="KinematicBody2D" parent="."]
+z_index = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Pastq"]
+position = Vector2( 242.758, 391.61 )
+scale = Vector2( 0.3, 0.3 )
+frames = SubResource( 2 )
+[connection signal="focus_entered" from="PastqText" to="." method="_on_PastqText_focus_entered"]
+[connection signal="timeout" from="PastqText/Box" to="." method="anim_text"]
