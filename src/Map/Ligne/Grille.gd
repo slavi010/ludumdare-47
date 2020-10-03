@@ -5,6 +5,41 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+# le LEVEL
+# 0 = rien
+# 1 = platforme
+var level = \
+[   #lignes
+	#1  2  3  4  5
+	[0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0],
+	[0, 1, 0, 0, 0],
+	[0, 0, 0, 1, 0],
+	[1, 0, 0, 0, 0],
+	[1, 0, 0, 0, 1],
+	[0, 0, 0, 0, 1],
+	[0, 0, 0, 0, 1],
+	[0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0],
+	[0, 0, 1, 0, 0],
+	[0, 0, 1, 0, 0],
+	[0, 0, 1, 0, 0],
+	[0, 0, 1, 0, 0],
+	[1, 0, 1, 0, 0],
+	[1, 0, 1, 0, 0],
+	[0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0],
+	[0, 0, 0, 1, 0],
+	[0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0],
+]
+# l'index de la prochaine colone du level à afficher
+var level_index = 0
+
 var Platforme = load("res://Map/Obstacle/Platforme.tscn")
 # les platformes 
 var grille: Array = []
@@ -22,7 +57,7 @@ var LARGEUR_LIGNE = 1024
 # largeur d'une platforme en par rapport à celle de base
 var LARGEUR_PLATFORME_SCALE = 1
 # nombre de colone par ligne
-var NB_COLONE = 10
+var NB_COLONE = 20
 
 
 # Called when the node enters the scene tree for the first time.
@@ -31,7 +66,7 @@ func _ready():
 	# HAUTEUR_LIGNE = TODO
 	# LARGEUR_LIGNE = TODO
 	# NB_COLONE = TODO
-	LARGEUR_PLATFORME_SCALE = 10/NB_COLONE
+	LARGEUR_PLATFORME_SCALE = 10.0/NB_COLONE
 	
 	# init lignes
 	for i in range(1, 5 + 1):
@@ -44,12 +79,12 @@ func _ready():
 			grille[ligne].append(null)
 	
 	# test platforme
-	add_platforme(1, 0)
-	add_platforme(1, 1)
-	add_platforme(1, -1)
 	
 	# connect à chaque beat
-	$"../Grille".connect("beat", self, "_on_Main_beat")
+	$"../".connect("beat", self, "_on_Main_beat")
+	
+	# init level
+	init_level(level)
 	
 
 # Ajoute une nouvelle platforme 
@@ -60,10 +95,11 @@ func add_platforme(ligne: int, colone: int = -1):
 		colone = NB_COLONE + colone
 	
 	var platforme = Platforme.instance()
+	grille[ligne][colone] = platforme
 	lignes[ligne].add_child(platforme)
 	platforme.scale.x = LARGEUR_PLATFORME_SCALE
 	platforme.set_patrol_path(lignes[ligne])
-	platforme.move(colone, NB_COLONE, LARGEUR_LIGNE)
+	platforme.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 	
 
 func get_position_case_grille(ligne: int, colone: int):
@@ -77,6 +113,8 @@ func _process(delta):
 
 # A chaque resception d'un beat
 func _on_Main_beat():
+	
+	
 	# pour chaque platforme, on les bouge à droite
 	for colone in range(NB_COLONE):
 		for ligne in range(5):
@@ -84,8 +122,36 @@ func _on_Main_beat():
 			if platforme != null:
 				if colone == 0:
 					# on supprime la platforme (hort écran) TODO
+					platforme.hide()
+					lignes[ligne].remove_child(platforme)
 					pass
 				else:
 					grille[ligne][colone - 1] = platforme
-					grille[ligne][colone] = null
-					platforme.move(colone - 1, NB_COLONE, LARGEUR_LIGNE)
+					platforme.move(colone - 1, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
+				grille[ligne][colone] = null
+	# si dernière colone
+	set_colone(NB_COLONE-1)
+
+
+func get_next_colone(lvl: Array) -> Array:
+	var col = lvl[level_index]
+	level_index += 1
+	if level_index >= len(lvl):
+		level_index = 0
+	return col
+
+func set_colone(colone: int):
+	var col: Array = get_next_colone(level)
+	for ligne in range(5):
+		match col[ligne]:
+			0: # vide
+				grille[ligne][colone] = null
+			1: # platforme
+				add_platforme(ligne, colone)
+		
+func init_level(lvl: Array):
+	for colone in range(NB_COLONE):
+		set_colone(colone)
+		
+		
+		
