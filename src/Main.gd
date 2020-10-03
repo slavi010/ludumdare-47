@@ -1,9 +1,10 @@
 extends Node
 
+signal beat
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+func _on_Rythme_timeout(): #A chaque beat envoi un signal
+	emit_signal("beat")
+
 
 
 # Called when the node enters the scene tree for the first time.
