@@ -1,5 +1,6 @@
 shader_type canvas_item;
-const float angle = 3.0*3.14159/2.0;
+uniform float angle;
+uniform float radius;
 
 varying vec2 numero_ligne; //Variable 
 
@@ -23,5 +24,5 @@ void vertex(){
 	//rotation du sprite sur lui même
 	VERTEX = vec2(VERTEX.x*cos(angle+(TIME)) + VERTEX.y*sin(angle+(TIME)), -VERTEX.x*sin(angle+(TIME)) + VERTEX.y*cos(angle+(TIME)));
 	//Rotation autour du centre (avec rayon = 100 ici)
-	VERTEX += vec2(cos(TIME)*100.0,-sin(TIME)*100.0);
+	VERTEX += vec2(cos(TIME)*radius,-sin(TIME)*radius);
 }
