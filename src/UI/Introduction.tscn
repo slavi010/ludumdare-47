@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://UI/Introduction.gd" type="Script" id=1]
 [ext_resource path="res://image/cool_pasteque.png" type="Texture" id=2]
@@ -16,32 +16,15 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="Theme" id=2]
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 7 )
+
+[sub_resource type="GDScript" id=4]
+
 [node name="Introduction" type="CanvasLayer"]
 script = ExtResource( 1 )
-
-[node name="PastqText" type="Label" parent="."]
-margin_left = 131.951
-margin_top = 82.0703
-margin_right = 741.951
-margin_bottom = 143.07
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "I always told to myself... Do Universe has its nature because of repetition ? 
-I mean... If nature always live in cycles, why our world must have a beginning and an ending ? 
-What if it was only our knowledge, that just stop where our fear of the unknown starts ?"
-align = 1
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Box" type="Timer" parent="PastqText"]
-wait_time = 0.5
-
-[node name="textboxmelon" type="Sprite" parent="PastqText"]
-position = Vector2( 303.006, 26.4866 )
-scale = Vector2( 0.61234, 0.318081 )
-z_index = -1
-texture = ExtResource( 7 )
 
 [node name="Pastq" type="KinematicBody2D" parent="."]
 z_index = 2
@@ -50,5 +33,63 @@ z_index = 2
 position = Vector2( 29.4169, 70.4648 )
 scale = Vector2( 0.3, 0.3 )
 frames = SubResource( 1 )
-[connection signal="focus_entered" from="PastqText" to="." method="_on_PastqText_focus_entered"]
-[connection signal="timeout" from="PastqText/Box" to="." method="anim_text"]
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 132.0
+margin_top = 69.0
+margin_right = 735.0
+margin_bottom = 167.0
+theme = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PastqText" type="Label" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1205.0
+margin_top = -196.5
+margin_right = 1205.0
+margin_bottom = 196.5
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "I always told to myself... Do Universe has its nature because of repetition ?
+I mean... If nature always live in cycles, why our world must have a beginning and an ending ?
+What if it was only our knowledge, that just stop where our fear of the unknown starts ?
+Hey ? Ermmm Hello ? Ahh you're finally hearing me !
+I was wondering if I would be able to reach one of your kind at least !
+It's been like THREE WHOLE MINUTES that I am experiencing pure loneliness !
+My name ? Meehh who cares having a name nowadays ? But if you want,
+ you can call me Johann. Nah don't tell me yours, you are only numbers to me.
+So i'll call you player 1. What have you just said ?
+HOW IN THE WORLD PLAYER 1 ISN'T AN ORIGINAL NAME ?
+Look, you are like, the first one that I know who have this name !
+Why was I talking to you already ?
+Ah I remember, I have far greater objectives -than having a true marvelous name- for you.
+I would like to show you my view of your universe. With music ! And games !
+Why we should not get started with a little warm up ?
+Okay so, do you see these strips all over your screen ?
+They will help you moving up and down and avoiding obstacles BUT
+you can only move in rythm with the beautiful music that I will play now ! 
+Ohhh yeeeaah baby do you feel those funky beats ? 
+Okay move your body and try to jump over this 
+platform by pressing \", strkey4,\" with the right time!"
+align = 1
+valign = 1
+percent_visible = 0.0
+script = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Char" type="Timer" parent="Panel/PastqText"]
+wait_time = 0.005
+autostart = true
+
+[node name="Box" type="Timer" parent="Panel"]
+wait_time = 0.5
+[connection signal="focus_entered" from="Panel/PastqText" to="." method="_on_PastqText_focus_entered"]
+[connection signal="timeout" from="Panel/PastqText/Char" to="." method="montre_dialogue"]
+[connection signal="timeout" from="Panel/Box" to="." method="anim_text"]

@@ -1,14 +1,8 @@
 shader_type canvas_item;
+uniform float angle;
+uniform float radius;
 
-varying vec2 numero_ligne; //Variable
-uniform float centre_planet_x;
-uniform float centre_planet_y;
-uniform float centre_sprite_x;
-uniform float centre_sprite_y;
-
-varying float diff_x;
-varying float diff_y;
-varying float angle;
+varying vec2 numero_ligne; //Variable 
 
 void vertex(){
 	//A supprimer a la fin du projet => fonctions qui peuvent être utiles a des trucs mais pas pour l'instant
@@ -26,12 +20,9 @@ void vertex(){
 		VERTEX = vec2(-VERTEX.x*cos(angle*(TIME-end_time)) - VERTEX.y*sin(angle*(TIME-end_time)), -VERTEX.x*sin(angle*(TIME-end_time)) + VERTEX.y*cos(angle*(TIME-end_time)));
 		VERTEX.y += 50.0*(TIME-end_time);
 	}*/
-	diff_x = centre_planet_x - centre_sprite_x;
-	diff_y = centre_planet_y - centre_sprite_y;
-	angle = atan(diff_x/diff_y);
 	
 	//rotation du sprite sur lui même
-	VERTEX = vec2(VERTEX.x*cos(angle) + VERTEX.y*sin(angle), -VERTEX.x*sin(angle) + VERTEX.y*cos(angle));
+	VERTEX = vec2(VERTEX.x*cos(angle+(TIME)) + VERTEX.y*sin(angle+(TIME)), -VERTEX.x*sin(angle+(TIME)) + VERTEX.y*cos(angle+(TIME)));
 	//Rotation autour du centre (avec rayon = 100 ici)
-//	VERTEX += vec2(cos(TIME)*1.0,-sin(TIME)*1.0);
+	VERTEX += vec2(cos(TIME)*radius,-sin(TIME)*radius);
 }

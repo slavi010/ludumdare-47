@@ -1,0 +1,42 @@
+Je me suis toujours demandé... L'Univers doit il sa nature à la répétition ? Je veux dire... Si la nature a tendance à toujours vivre en cycles, pourquoi doit il y avoir une fin et un début au monde que l'on connaît ? Et si c'était
+seulement nos connaissances qui s'arrête là où notre peur de l'inconnu commence ? ...
+
+I always told to myself... Do Universe has its nature because of repetition ? I mean... If nature always live in cycles, why our world must have a beginning and an ending ? What if it was only our knowledge, that just stop where our 
+fear of the unknown starts ? 
+
+
+**MÖBIUS**
+
+Hey ? Ermmm Hello ? Ahh you're finally hearing me ! I was wondering if I would be able to reach one of your kind at least ! It's been like THREE WHOLE MINUTES that I am experiencing pure loneliness ! My name ? Meehh who cares having 
+a name nowadays ? But if you want, you can call me Johann. Nah don't tell me yours, you are only numbers to me. So i'll call you player 1. What have you just said ? HOW IN THE WORLD PLAYER 1 ISN'T AN ORIGINAL NAME ? Look, you are like, 
+the first one that I know who have this name ! Why was I talking toh you already ? Ah I remember, I have far greater objectives -than having a true marvelous name- for you. I would like to show you my view of your universe. With music ! And games !
+Why we should not get started with a little warm up ? Okay so, do you see these strips all over your screen ? They will help you moving up and down and avoiding obstacles BUT you can only move in rythm with the beautiful music that I 
+will play now ! Ohhh yeeeaah baby do you feel those funky beats ? Okay move your body and try to jump over this platform by pressing ", strkey4," with the right time! 
+
+/*If failed
+Oof that one was a hurt, but do not stop here ! let's try again ! Move your body and try to jump over this platform by pressing ", strkey2," with the right time!
+/*If succeed :
+Whoaa ! Nice jiggling belly for a player 1 ! Ok so now, let's try even higher ! Press ", strkey1," to reach new heights ! 
+
+/*If failed 
+Whoaa, This sure was painful, well let's try again, Press ", strkey1," to reach new heights !
+/*If succeed
+What a jump ! I didn't know dodos can almost fly ! 
+
+So I see you begin to be pretty well accomodated with the rules of my challenge, why not starting an easy level ?
+Ready, and go !
+
+*RUMBLE RUMBlE RUMBLE... CRASH*...
+Um... Player 1 ? Are you okay ? I mean you've done quite the crash ! It remembered the last kiwi extinction... Ah nevermind. I have to apologize, I have been a bit too quick with you. But you know, it's not that bad when you fail ! 
+Failure and success is only two parts of this world. Oh you look confused  ? Are you wondering what is this place ? Ah yes let me explain to you. I said that failure was a part of this world ? It was literal ! Welcome in the chill
+night world ! Here failure is much appreciated and you are authorized to learn at your own pace ! Pretty cool isn't it ? Now let's try to pass the next obstacle !
+
+/*If many failure :
+Don't worry ! Keep it up you can do it !
+
+/*If success
+Yeah now we talk ! let's try doing it in this bright world of success !
+
+
+
+

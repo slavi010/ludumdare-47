@@ -1,34 +1,44 @@
 extends CanvasLayer
 
 var anim = 0
+var n = true 
+var l = 3 #Nombre de lignes à présenter
+
+var textSpeed = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var _v = $PastqText.get_line_count()
-	$PastqText.show() #Lors de l'apparition du texte, faire une animation
-	$PastqText/Box.start()
+	var _v = $Panel/PastqText.get_line_count()
+	$Panel/Box.start()
 
 func show_message(text):
-	$PastqText.text = text
-	$PastqText.show()
+	$Panel/PastqText.text = text
+	$Panel/PastqText.show()
 
-func text_box_melon(): #Fond PAST7QUE
-	$PastqText/textboxmelon.transform_position.x = $PastqText.rect_position.x
-	$PastqText/textboxmelon.transform_position.y = $PastqText.rect_position.y
 
 func anim_text():
-	if true :
+	if n :
 		if anim == 0:
-			$PastqText.rect_position.y -= 10
+			$Panel.rect_position.y -= 10
 			anim=1
 		else:
-			$PastqText.rect_position.y += 10
+			$Panel.rect_position.y += 10
 			anim=0
 	else:
-		$PastqText/Box.stop()
-	
-	
-	#$PastqText.max_lines_visible(1) #Montre les lignes lorsque 
+		$Box.stop()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+#Montre petit à petit le dialogue
+func montre_dialogue():
+	var chatLimit = $Panel/PastqText.get_total_character_count()
+	if textSpeed < chatLimit:
+		textSpeed += 1
+		$Panel/PastqText.visible_characters = textSpeed
+
+func _process(_delta): #Montre les lignes une par une
+	$Panel/PastqText.set_max_lines_visible(3)
+	if Input.is_action_just_pressed("ui_select"):
+		$Panel/PastqText.hide()
+		$Panel/PastqText.set_lines_skipped(l)
+		textSpeed = 0
+		$Panel/PastqText.show()
+		l += 3
