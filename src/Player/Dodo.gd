@@ -9,7 +9,7 @@ var nbsp = 3 #Le nombre de sp va de 0 à 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AnimatedSprite.animation = "1walk"
+	$AnimatedSprite.animation = "walk"
 	position = TAILLE_ECRANT2
 	pass # Replace with function body.
 
