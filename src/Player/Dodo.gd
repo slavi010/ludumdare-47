@@ -22,6 +22,7 @@ var pressed_action = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite.animation = "1walk"
+	$AnimatedSprite.animation = "1walk"
 	
 	
 	# connect à chaque beat
@@ -34,8 +35,7 @@ func sp_bar(): #Gère la barre de SPc
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var velocity = Vector2.ZERO #Mouvement du joueur en 2D
-	
+	pass	
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_UP: # aller vers le haut
@@ -49,6 +49,8 @@ func _unhandled_input(event):
 func _on_Main_beat():
 	var actu_col = $"../Grille".get_colone_grille(COLONE_JOUEUR)
 	var next_col = $"../Grille".get_colone_grille(COLONE_JOUEUR + 1)
+
+#func jump():
 	
 	var is_action_done = false
 	match pressed_action:
