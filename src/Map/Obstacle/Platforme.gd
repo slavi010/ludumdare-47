@@ -52,3 +52,4 @@ func move(colone: int, nb_colone: int, largeur_ligne_pixel: int, hauteur_ligne_p
 func _process(delta):
 	scale.x = clamp(scale.x*DECROISSANCE_SCALE, SCALE_X, MAX_SCALE_X)
 	scale.y = clamp(scale.y*DECROISSANCE_SCALE, 1, MAX_SCALE_Y)
+
