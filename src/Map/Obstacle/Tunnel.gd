@@ -1,6 +1,7 @@
 extends Node2D
 
 
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -16,8 +17,6 @@ export var MAX_SCALE_X = 1.5
 export var MAX_SCALE_Y = 2
 
 var SCALE_X = 1
-
-var biome = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -50,20 +49,12 @@ func move(colone: int, nb_colone: int, largeur_ligne_pixel: int, hauteur_ligne_p
 	
 	courbure()
 
-func set_biome(id: int):
-	biome = id
-	$AnimatedSprite.animation = str(id)
-	print($AnimatedSprite.frames.get_frame_count(str(id)))
-	$AnimatedSprite.frame = randi() % $AnimatedSprite.frames.get_frame_count(str(id))
-
 #func _input(event):
 #	print(event.as_text())
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	scale.x = clamp(scale.x*DECROISSANCE_SCALE, SCALE_X, MAX_SCALE_X)
 	scale.y = clamp(scale.y*DECROISSANCE_SCALE, 1, MAX_SCALE_Y)
-	
-	
 
 func courbure():
 	var diff = position - patrol_node.get_parent().centre_planet

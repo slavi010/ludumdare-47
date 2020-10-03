@@ -3,6 +3,7 @@ extends Area2D
 var Platforme = load("res://Map/Obstacle/Platforme.tscn")
 
 signal energyChange(nb_energy_left)
+signal traversTunnel
 
 var TAILLE_ECRANT2 = get_viewport_rect().size
 var MAX_ENERGY = 5
@@ -68,8 +69,6 @@ func too_much_input():
 func _on_Main_beat():
 	var actu_col = $"../Grille".get_colone_grille(COLONE_JOUEUR)
 	var next_col = $"../Grille".get_colone_grille(COLONE_JOUEUR + 1)
-
-#func jump():
 	
 	var is_action_done = false
 	
@@ -92,6 +91,10 @@ func _on_Main_beat():
 	faild_input = false		
 	pressed_action = 0
 	nb_input_pressed = 0
+	
+	next_col = $"../Grille".get_colone_grille(COLONE_JOUEUR + 1)
+	if is_tunnel(next_col[position_ligne]):
+		emit_signal("traversTunnel")
 			
 #	if Input.is_action_pressed("ui_down"):
 
@@ -130,6 +133,12 @@ func is_no_platforme(obj):
 			return true
 		return false
 	return true
+	
+func is_tunnel(obj):
+	if obj != null:
+		if obj.get_script().get_path().get_file() == "Tunnel.gd":
+			return true
+	return false
 
 
 func get_vecteur_position_ligne(ligne: int):
