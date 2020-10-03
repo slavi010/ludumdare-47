@@ -10,8 +10,9 @@ var nbsp = 3 #Le nombre de sp va de 0 à 3
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite.animation = "walk"
-	position = TAILLE_ECRANT2
-	pass # Replace with function body.
+	
+	position.x = 1000
+	print(position)
 
 func sp_bar(): #Gère la barre de SP
 	if nbsp != 3 :
@@ -19,7 +20,7 @@ func sp_bar(): #Gère la barre de SP
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var velocity = Vector2.ZERO #Mouvement du joueur en 2D 
+	var velocity = Vector2() #Mouvement du joueur en 2D 
 	
 	#velocity.y = grav
 	#velocity = velocity * speed_player
