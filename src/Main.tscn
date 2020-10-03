@@ -11,7 +11,7 @@ script = ExtResource( 1 )
 position = Vector2( 505.65, 153.715 )
 
 [node name="Rythme" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.4
 autostart = true
 
 [node name="Grille" parent="." instance=ExtResource( 3 )]

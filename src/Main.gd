@@ -5,8 +5,14 @@ signal beat
 export var largeur = 5 #nombre de block en largeur
 export var decalage = 1 #décalage du joueur 
 
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$Rythme.connect("timeout", self, "_on_Rythme_timeout")
+
+
 func _on_Rythme_timeout(): #A chaque beat envoi un signal
 	emit_signal("beat")
+	print("new beat !")
 
 func new_place():
 	 #if (): #Condition correspondant au lieu où se trouve le joueur
@@ -22,9 +28,7 @@ func sp_charge(): #Signal présent quand sp non rempli
 		#nbsp += 1
 		pass
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
