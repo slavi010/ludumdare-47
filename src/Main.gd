@@ -13,6 +13,8 @@ func new_place():
 		#$Rythme.wait_time(n) Changement du temps entre chaque beat
 	#else:
 		#Rythme.wait_time(n/2)
+	
+	
 	pass
 
 func sp_charge(): #Signal présent quand sp non rempli

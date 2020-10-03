@@ -42,11 +42,14 @@ func _ready():
 		grille.append([])
 		for colone in range(NB_COLONE): # CHANGE 5
 			grille[ligne].append(null)
-			
+	
+	# test platforme
 	add_platforme(1, 0)
 	add_platforme(1, 1)
 	add_platforme(1, -1)
 	
+	# connect à chaque beat
+	$"../Grille".connect("beat", self, "_on_Main_beat")
 	
 
 # Ajoute une nouvelle platforme 
@@ -72,6 +75,17 @@ func _process(delta):
 #	var speed = 1 
 #	position = position.move_toward(Vector2(0,0), delta * speed)
 
-# A chaque resception d'un bit
-func _resception():
-	pass
+# A chaque resception d'un beat
+func _on_Main_beat():
+	# pour chaque platforme, on les bouge à droite
+	for colone in range(NB_COLONE):
+		for ligne in range(5):
+			var platforme = grille[ligne][colone]
+			if platforme != null:
+				if colone == 0:
+					# on supprime la platforme (hort écran) TODO
+					pass
+				else:
+					grille[ligne][colone - 1] = platforme
+					grille[ligne][colone] = null
+					platforme.move(colone - 1, NB_COLONE, LARGEUR_LIGNE)
