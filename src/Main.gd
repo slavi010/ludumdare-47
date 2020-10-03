@@ -19,7 +19,7 @@ func new_place():
 
 func sp_charge(): #Signal présent quand sp non rempli
 	if emit_signal("beat"): #and vertical_speed == 0
-		#sp += 1
+		#nbsp += 1
 		pass
 
 # Called when the node enters the scene tree for the first time.
