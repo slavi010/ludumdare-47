@@ -11,39 +11,6 @@ extends Node2D
 var level = \
 [   #lignes
 	#1  2  3  4  5
-	[1, 0, 0, 0, 1],
-	[1, 0, 0, 0, 1],
-	[1, 0, 0, 0, 1],
-	[1, 0, 0, 0, 1],
-	[1, 0, 0, 0, 1],
-	[1, 0, 0, 0, 1],
-	[1, 0, 0, 0, 1],
-	[1, 0, 0, 0, 1],
-	[1, 0, 0, 0, 1],
-	[1, 0, 0, 0, 1],
-	[1, 0, 1, 0, 1],
-	[1, 0, 0, 0, 0],
-	[1, 0, 0, 0, 0],
-	[1, 0, 0, 0, 0],
-	[1, 1, 0, 0, 0],
-	[1, 0, 0, 1, 0],
-	[1, 0, 0, 0, 0],
-	[1, 0, 0, 0, 1],
-	[1, 0, 0, 0, 1],
-	[0, 0, 0, 0, 1],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 1, 0, 0],
-	[0, 0, 1, 0, 0],
-	[0, 0, 1, 0, 0],
-	[0, 0, 1, 0, 0],
-	[0, 0, 1, 0, 0],
-	[1, 0, 1, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 1, 0],
-	[0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0],
 ]
 # l'index de la prochaine colone du level à afficher
@@ -96,9 +63,6 @@ func _ready():
 	# connect à chaque beat
 	$"../".connect("beat", self, "_on_Main_beat")
 	
-	# init level
-	init_level(level)
-	
 
 # Ajoute une nouvelle platforme 
 # la ligne de la platforme et sa colone (-1 pour tout à droite)
@@ -129,20 +93,23 @@ func _on_Main_beat():
 	# pour chaque platforme, on les bouge à droite
 	for colone in range(NB_COLONE):
 		for ligne in range(5):
-			var platforme = grille[ligne][colone]
-			if platforme != null:
+			var item = grille[ligne][colone]
+			if item != null:
 				if colone == 0:
-					# on supprime la platforme (hort écran) TODO
-					platforme.hide()
-					lignes[ligne].remove_child(platforme)
+					remove_item_grille(ligne, colone)
 					pass
 				else:
-					grille[ligne][colone - 1] = platforme
-					platforme.move(colone - 1, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
+					grille[ligne][colone - 1] = item
+					item.move(colone - 1, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 				grille[ligne][colone] = null
 	# si dernière colone
 	set_colone(NB_COLONE-1)
 
+func remove_item_grille(ligne: int, colone: int):
+	var item = grille[ligne][colone]
+	if item != null:
+		item.hide()
+		lignes[ligne].remove_child(item)
 
 func get_next_colone(lvl: Array) -> Array:
 	var col = lvl[level_index]
@@ -160,8 +127,10 @@ func set_colone(colone: int):
 			1: # platforme
 				add_platforme(ligne, colone)
 		
-func init_level(lvl: Array):
+func init_level():
 	for colone in range(NB_COLONE):
+		for ligne in range(5):
+			remove_item_grille(ligne, colone)
 		set_colone(colone)
 
 # retourne les objets d'une colone de la grille
@@ -170,3 +139,66 @@ func get_colone_grille(colone: int):
 	for ligne in range(5):
 		col.append(grille[ligne][colone])
 	return col
+
+func set_ext_level():
+	$"../Rythme".wait_time = 0.35
+	level = \
+	[   #lignes
+		#1  2  3  4  5
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 1, 0, 1],
+		[1, 0, 0, 0, 0],
+		[1, 0, 0, 0, 0],
+		[1, 0, 0, 0, 0],
+		[1, 1, 0, 0, 0],
+		[1, 0, 0, 1, 0],
+		[1, 0, 0, 0, 0],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 1, 0, 0],
+		[0, 0, 1, 0, 0],
+		[0, 0, 1, 0, 0],
+		[0, 0, 1, 0, 0],
+		[0, 0, 1, 0, 0],
+		[1, 0, 1, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+	]
+	init_level()
+
+func set_level_tuto():
+	$"../Rythme".wait_time = 1
+	level = \
+	[   #lignes
+		#1  2  3  4  5
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 1, 1],
+		[0, 0, 0, 1, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+	]
+	init_level()
