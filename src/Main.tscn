@@ -15,5 +15,5 @@ wait_time = 0.4
 autostart = true
 
 [node name="Grille" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, 258.166 )
+position = Vector2( 3.5636, 137.004 )
 [connection signal="sp" from="Dodo" to="." method="sp_charge"]

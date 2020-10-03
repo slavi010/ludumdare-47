@@ -11,17 +11,26 @@ extends Node2D
 var level = \
 [   #lignes
 	#1  2  3  4  5
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 1, 0, 0, 0],
-	[0, 0, 0, 1, 0],
+	[1, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1],
+	[1, 0, 1, 0, 1],
+	[1, 0, 0, 0, 0],
+	[1, 0, 0, 0, 0],
+	[1, 0, 0, 0, 0],
+	[1, 1, 0, 0, 0],
+	[1, 0, 0, 1, 0],
 	[1, 0, 0, 0, 0],
 	[1, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1],
 	[0, 0, 0, 0, 1],
-	[0, 0, 0, 0, 1],
 	[0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0],
@@ -29,7 +38,7 @@ var level = \
 	[0, 0, 1, 0, 0],
 	[0, 0, 1, 0, 0],
 	[0, 0, 1, 0, 0],
-	[1, 0, 1, 0, 0],
+	[0, 0, 1, 0, 0],
 	[1, 0, 1, 0, 0],
 	[0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0],
@@ -51,7 +60,7 @@ var lignes: Array = []
 var TAILLE_ECRANT = get_viewport_rect().size
 
 # hauteur entre deux ligne en pixel
-var HAUTEUR_LIGNE = 50
+var HAUTEUR_LIGNE = 100
 # largeur ligne en pixel
 var LARGEUR_LIGNE = 1024
 # largeur d'une platforme en par rapport à celle de base
@@ -68,9 +77,13 @@ func _ready():
 	# NB_COLONE = TODO
 	LARGEUR_PLATFORME_SCALE = 10.0/NB_COLONE
 	
+	
 	# init lignes
 	for i in range(1, 5 + 1):
 		lignes.append(get_node("Ligne_" + str(i)))
+	
+	for ligne in range(5):
+		lignes[ligne].position.y = HAUTEUR_LIGNE*ligne
 	
 	# init case grille à none
 	for ligne in range(5):
@@ -97,8 +110,8 @@ func add_platforme(ligne: int, colone: int = -1):
 	var platforme = Platforme.instance()
 	grille[ligne][colone] = platforme
 	lignes[ligne].add_child(platforme)
-	platforme.scale.x = LARGEUR_PLATFORME_SCALE
-	platforme.set_patrol_path(lignes[ligne])
+	platforme.SCALE_X = LARGEUR_PLATFORME_SCALE
+	platforme.set_patrol_node(lignes[ligne])
 	platforme.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 	
 
@@ -113,8 +126,6 @@ func _process(delta):
 
 # A chaque resception d'un beat
 func _on_Main_beat():
-	
-	
 	# pour chaque platforme, on les bouge à droite
 	for colone in range(NB_COLONE):
 		for ligne in range(5):
@@ -152,6 +163,10 @@ func set_colone(colone: int):
 func init_level(lvl: Array):
 	for colone in range(NB_COLONE):
 		set_colone(colone)
-		
-		
-		
+
+# retourne les objets d'une colone de la grille
+func get_colone_grille(colone: int):
+	var col = []
+	for ligne in range(5):
+		col.append(grille[ligne][colone])
+	return col
