@@ -4,7 +4,7 @@ signal sp
 
 
 
-var nbsp = clamp(nbsp, 0, 3) #Le nombre de sp va de 0 à 3
+var nbsp = 3 #Le nombre de sp va de 0 à 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
