@@ -23,9 +23,11 @@ func move(colone: int, nb_colone: int, largeur_ligne_pixel: int):
 	# calcule de la position de l'index sur le path
 	var patrol_index = largeur_patrole_index * (0.5 + colone)
 	
+	# on détermine le prochain point
 	var target = patrol_points[patrol_index]
 	if position.distance_to(target) < 1:
 		patrol_index = wrapi(patrol_index + 1, 0, patrol_points.size())
+	# on va à la position
 	position = patrol_points[patrol_index]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
