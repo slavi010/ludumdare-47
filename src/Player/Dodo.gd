@@ -2,10 +2,11 @@ extends Area2D
 
 var Platforme = load("res://Map/Obstacle/Platforme.tscn")
 
-signal sp
+signal energyChange(nb_energy_left)
 
 var TAILLE_ECRANT2 = get_viewport_rect().size
-var nbsp = 3 #Le nombre de sp va de 0 à 3
+var MAX_ENERGY = 5
+var energy: int = MAX_ENERGY #Le nombre de sp va de 0 à 3
 
 var position_ligne = 4
 
@@ -31,10 +32,6 @@ func _ready():
 	$"../".connect("beat", self, "_on_Main_beat")
 	$TimerChangeAnimation.connect("timeout", self, "_on_TimerChangeAnimation_timeout")
 	position = $"../Grille".position
-
-func sp_bar(): #Gère la barre de SPc
-	if nbsp != 3 :
-		emit_signal("sp")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -72,7 +69,7 @@ func _on_Main_beat():
 	if not faild_input:
 		match pressed_action:
 			1:
-				if (position_ligne > 0) and \
+				if (position_ligne > 0) and energy > 0 and \
 				is_no_platforme(actu_col[position_ligne - 1]) and \
 				is_no_platforme(next_col[position_ligne - 1]):
 					move_player(1)
@@ -100,6 +97,8 @@ func move_player(action: int):
 			if len($"../Grille".lignes):
 				position_ligne -= 1
 				target_position = get_vecteur_position_ligne(position_ligne)
+				energy -= 1
+				emit_signal("energyChange", energy)
 				set_sprite_up(true)
 		0:
 			if (position_ligne <  4) and \
@@ -109,6 +108,8 @@ func move_player(action: int):
 				target_position = get_vecteur_position_ligne(position_ligne)
 				set_sprite_drop(true)
 			else:
+				energy = min(MAX_ENERGY, energy + 1)
+				emit_signal("energyChange", energy)
 				set_sprite_walk(true)
 		3:
 			set_sprite_plane(true)

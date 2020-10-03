@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Dodo.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Map/Ligne/Grille.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Music/beat_ext.wav" type="AudioStream" id=4]
 [ext_resource path="res://Music/BeatExt.gd" type="Script" id=5]
+[ext_resource path="res://UI/GUI.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -22,4 +23,5 @@ position = Vector2( 3.5636, 137.004 )
 [node name="BeatExt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 script = ExtResource( 5 )
-[connection signal="sp" from="Dodo" to="." method="sp_charge"]
+
+[node name="GUI" parent="." instance=ExtResource( 6 )]
