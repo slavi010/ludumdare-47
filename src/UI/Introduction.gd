@@ -11,6 +11,9 @@ func show_message(text):
 	$PastqText.text = text
 	$PastqText.show()
 
+func text_box_melon(): #Fond PAST7QUE
+	$PastqText/textboxmelon.transform_position.x = $PastqText.rect_position.x
+	$PastqText/textboxmelon.transform_position.y = $PastqText.rect_position.y
 
 func anim_text():
 	if true :
