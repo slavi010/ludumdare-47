@@ -12,30 +12,6 @@ var level = \
 [   #lignes
 	#1  2  3  4  5
 	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 1, 0, 0, 0],
-	[0, 0, 0, 1, 0],
-	[1, 0, 0, 0, 0],
-	[1, 0, 0, 0, 1],
-	[0, 0, 0, 0, 1],
-	[0, 0, 0, 0, 1],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 1, 0, 0],
-	[0, 0, 1, 0, 0],
-	[0, 0, 1, 0, 0],
-	[0, 0, 1, 0, 0],
-	[1, 0, 1, 0, 0],
-	[1, 0, 1, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 1, 0],
-	[0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0],
 ]
 # l'index de la prochaine colone du level à afficher
 var level_index = 0
@@ -46,12 +22,12 @@ var grille: Array = []
 
 # ligne
 var lignes: Array = []
-
+	
 # taille de l'écrant
 var TAILLE_ECRANT = get_viewport_rect().size
 
 # hauteur entre deux ligne en pixel
-var HAUTEUR_LIGNE = 50
+var HAUTEUR_LIGNE = 75
 # largeur ligne en pixel
 var LARGEUR_LIGNE = 1024
 # largeur d'une platforme en par rapport à celle de base
@@ -68,9 +44,13 @@ func _ready():
 	# NB_COLONE = TODO
 	LARGEUR_PLATFORME_SCALE = 10.0/NB_COLONE
 	
+	
 	# init lignes
 	for i in range(1, 5 + 1):
 		lignes.append(get_node("Ligne_" + str(i)))
+	
+	for ligne in range(5):
+		lignes[ligne].position.y = HAUTEUR_LIGNE*ligne
 	
 	# init case grille à none
 	for ligne in range(5):
@@ -83,9 +63,6 @@ func _ready():
 	# connect à chaque beat
 	$"../".connect("beat", self, "_on_Main_beat")
 	
-	# init level
-	init_level(level)
-	
 
 # Ajoute une nouvelle platforme 
 # la ligne de la platforme et sa colone (-1 pour tout à droite)
@@ -97,8 +74,8 @@ func add_platforme(ligne: int, colone: int = -1):
 	var platforme = Platforme.instance()
 	grille[ligne][colone] = platforme
 	lignes[ligne].add_child(platforme)
-	platforme.scale.x = LARGEUR_PLATFORME_SCALE
-	platforme.set_patrol_path(lignes[ligne])
+	platforme.SCALE_X = LARGEUR_PLATFORME_SCALE
+	platforme.set_patrol_node(lignes[ligne])
 	platforme.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 	
 
@@ -113,25 +90,26 @@ func _process(delta):
 
 # A chaque resception d'un beat
 func _on_Main_beat():
-	
-	
 	# pour chaque platforme, on les bouge à droite
 	for colone in range(NB_COLONE):
 		for ligne in range(5):
-			var platforme = grille[ligne][colone]
-			if platforme != null:
+			var item = grille[ligne][colone]
+			if item != null:
 				if colone == 0:
-					# on supprime la platforme (hort écran) TODO
-					platforme.hide()
-					lignes[ligne].remove_child(platforme)
+					remove_item_grille(ligne, colone)
 					pass
 				else:
-					grille[ligne][colone - 1] = platforme
-					platforme.move(colone - 1, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
+					grille[ligne][colone - 1] = item
+					item.move(colone - 1, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 				grille[ligne][colone] = null
 	# si dernière colone
 	set_colone(NB_COLONE-1)
 
+func remove_item_grille(ligne: int, colone: int):
+	var item = grille[ligne][colone]
+	if item != null:
+		item.hide()
+		lignes[ligne].remove_child(item)
 
 func get_next_colone(lvl: Array) -> Array:
 	var col = lvl[level_index]
@@ -149,9 +127,78 @@ func set_colone(colone: int):
 			1: # platforme
 				add_platforme(ligne, colone)
 		
-func init_level(lvl: Array):
+func init_level():
 	for colone in range(NB_COLONE):
+		for ligne in range(5):
+			remove_item_grille(ligne, colone)
 		set_colone(colone)
-		
-		
-		
+
+# retourne les objets d'une colone de la grille
+func get_colone_grille(colone: int):
+	var col = []
+	for ligne in range(5):
+		col.append(grille[ligne][colone])
+	return col
+
+func set_ext_level():
+	$"../Rythme".wait_time = 0.35
+	level = \
+	[   #lignes
+		#1  2  3  4  5
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[1, 0, 1, 0, 1],
+		[1, 0, 0, 0, 0],
+		[1, 0, 0, 0, 0],
+		[1, 0, 0, 0, 0],
+		[1, 1, 0, 0, 0],
+		[1, 0, 0, 1, 0],
+		[1, 0, 0, 0, 0],
+		[1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 1, 0, 0],
+		[0, 0, 1, 0, 0],
+		[0, 0, 1, 0, 0],
+		[0, 0, 1, 0, 0],
+		[0, 0, 1, 0, 0],
+		[1, 0, 1, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+	]
+	init_level()
+
+func set_level_tuto():
+	$"../Rythme".wait_time = 1
+	level = \
+	[   #lignes
+		#1  2  3  4  5
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 1, 1],
+		[0, 0, 0, 1, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+	]
+	init_level()

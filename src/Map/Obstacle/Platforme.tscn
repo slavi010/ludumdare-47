@@ -13,5 +13,5 @@ gradient = SubResource( 1 )
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( -0.0494427, 16.8534 )
+scale = Vector2( -0.0495579, 9.1215 )
 texture = SubResource( 2 )
