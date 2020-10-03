@@ -45,18 +45,24 @@ func _physics_process(delta):
 	
 	
 func _unhandled_input(event):
-	nb_input_pressed += 1
-	print(pressed_action)
-	if nb_input_pressed > 3:
-		faild_input = true
+	
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_UP: # aller vers le haut
 			pressed_action = 1
+			too_much_input()
 		if event.pressed and event.scancode == KEY_DOWN: # aller vers le bas
 			pressed_action = 2
+			too_much_input()
 		if event.pressed and event.scancode == KEY_RIGHT: # planer
 			pressed_action = 3
+			too_much_input()
 			
+
+func too_much_input():
+	nb_input_pressed += 1
+	print(pressed_action)
+	if nb_input_pressed > 1:
+		faild_input = true
 
 # A chaque resception d'un beat
 func _on_Main_beat():

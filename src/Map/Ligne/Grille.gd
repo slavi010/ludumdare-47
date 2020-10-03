@@ -27,17 +27,20 @@ var lignes: Array = []
 var TAILLE_ECRANT = get_viewport_rect().size
 
 # hauteur entre deux ligne en pixel
-var HAUTEUR_LIGNE = 75
+var HAUTEUR_LIGNE = 65
 # largeur ligne en pixel
 var LARGEUR_LIGNE = 1024
 # largeur d'une platforme en par rapport à celle de base
 var LARGEUR_PLATFORME_SCALE = 1
 # nombre de colone par ligne
-var NB_COLONE = 20
+var NB_COLONE = 10
 
+var centre_planet
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	centre_planet = Vector2(get_viewport_rect().size.x/2, get_viewport_rect().size.y*10)
+	print(centre_planet)
 	# NB_BLOCK_PAR_LIGNE = TODO
 	# HAUTEUR_LIGNE = TODO
 	# LARGEUR_LIGNE = TODO
@@ -67,7 +70,7 @@ func _ready():
 # Ajoute une nouvelle platforme 
 # la ligne de la platforme et sa colone (-1 pour tout à droite)
 # si déjà objet, ne fait rien
-func add_platforme(ligne: int, colone: int = -1):
+func add_platforme(ligne: int, colone: int = -1, biom: int = 0):
 	if colone < 0:
 		colone = NB_COLONE + colone
 	
@@ -103,7 +106,7 @@ func _on_Main_beat():
 					item.move(colone - 1, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 				grille[ligne][colone] = null
 	# si dernière colone
-	set_colone(NB_COLONE-1)
+	load_colone_chunk(NB_COLONE-1)
 
 func remove_item_grille(ligne: int, colone: int):
 	var item = grille[ligne][colone]
@@ -111,27 +114,27 @@ func remove_item_grille(ligne: int, colone: int):
 		item.hide()
 		lignes[ligne].remove_child(item)
 
-func get_next_colone(lvl: Array) -> Array:
-	var col = lvl[level_index]
-	level_index += 1
-	if level_index >= len(lvl):
-		level_index = 0
-	return col
-
-func set_colone(colone: int):
-	var col: Array = get_next_colone(level)
-	for ligne in range(5):
-		match col[ligne]:
-			0: # vide
-				grille[ligne][colone] = null
-			1: # platforme
-				add_platforme(ligne, colone)
-		
-func init_level():
-	for colone in range(NB_COLONE):
-		for ligne in range(5):
-			remove_item_grille(ligne, colone)
-		set_colone(colone)
+#func get_next_colone(lvl: Array) -> Array:
+#	var col = lvl[level_index]
+#	level_index += 1
+#	if level_index >= len(lvl):
+#		level_index = 0
+#	return col
+#
+#func set_colone(colone: int):
+#	var col: Array = get_next_colone(level)
+#	for ligne in range(5):
+#		match col[ligne]:
+#			0: # vide
+#				grille[ligne][colone] = null
+#			1: # platforme
+#				add_platforme(ligne, colone)
+#
+#func init_level():
+#	for colone in range(NB_COLONE):
+#		for ligne in range(5):
+#			remove_item_grille(ligne, colone)
+#		set_colone(colone)
 
 # retourne les objets d'une colone de la grille
 func get_colone_grille(colone: int):
@@ -140,65 +143,117 @@ func get_colone_grille(colone: int):
 		col.append(grille[ligne][colone])
 	return col
 
-func set_ext_level():
-	$"../Rythme".wait_time = 0.35
-	level = \
-	[   #lignes
-		#1  2  3  4  5
-		[1, 0, 0, 0, 1],
-		[1, 0, 0, 0, 1],
-		[1, 0, 0, 0, 1],
-		[1, 0, 0, 0, 1],
-		[1, 0, 0, 0, 1],
-		[1, 0, 0, 0, 1],
-		[1, 0, 0, 0, 1],
-		[1, 0, 0, 0, 1],
-		[1, 0, 0, 0, 1],
-		[1, 0, 0, 0, 1],
-		[1, 0, 1, 0, 1],
-		[1, 0, 0, 0, 0],
-		[1, 0, 0, 0, 0],
-		[1, 0, 0, 0, 0],
-		[1, 1, 0, 0, 0],
-		[1, 0, 0, 1, 0],
-		[1, 0, 0, 0, 0],
-		[1, 0, 0, 0, 1],
-		[1, 0, 0, 0, 1],
+#func set_ext_level():
+#	$"../Rythme".wait_time = 0.45
+#	level = \
+#	[   #lignes
+#		#1  2  3  4  5
+#		[1, 0, 0, 0, 1],
+#		[1, 0, 0, 0, 1],
+#		[1, 0, 0, 0, 1],
+#		[1, 0, 0, 0, 1],
+#		[1, 0, 0, 0, 1],
+#		[1, 0, 0, 0, 1],
+#		[1, 0, 0, 0, 1],
+#		[1, 0, 0, 0, 1],
+#		[1, 0, 0, 0, 1],
+#		[1, 0, 0, 0, 1],
+#		[1, 0, 1, 0, 1],
+#		[1, 0, 0, 0, 0],
+#		[1, 0, 0, 0, 0],
+#		[1, 0, 0, 0, 0],
+#		[1, 1, 0, 0, 0],
+#		[1, 0, 0, 1, 0],
+#		[1, 0, 0, 0, 0],
+#		[1, 0, 0, 0, 1],
+#		[1, 0, 0, 0, 1],
+#		[0, 0, 0, 0, 1],
+#		[0, 0, 0, 0, 0],
+#		[0, 0, 0, 0, 0],
+#		[0, 0, 0, 0, 0],
+#		[0, 0, 1, 0, 0],
+#		[0, 0, 1, 0, 0],
+#		[0, 0, 1, 0, 0],
+#		[0, 0, 1, 0, 0],
+#		[0, 0, 1, 0, 0],
+#		[1, 0, 1, 0, 0],
+#		[0, 0, 0, 0, 0],
+#		[0, 0, 0, 0, 0],
+#		[0, 0, 0, 1, 0],
+#		[0, 0, 0, 0, 0],
+#		[0, 0, 0, 0, 0],
+#	]
+#	init_level()
+#
+#func set_level_tuto():
+#	$"../Rythme".wait_time = 1
+#	level = \
+#	[   #lignes
+#		#1  2  3  4  5
+#		[0, 0, 0, 0, 1],
+#		[0, 0, 0, 0, 1],
+#		[0, 0, 0, 0, 1],
+#		[0, 0, 0, 0, 1],
+#		[0, 0, 0, 0, 1],
+#		[0, 0, 0, 0, 1],
+#		[0, 0, 0, 0, 1],
+#		[0, 0, 0, 0, 1],
+#		[0, 0, 0, 1, 1],
+#		[0, 0, 0, 1, 1],
+#		[0, 0, 0, 0, 1],
+#		[0, 0, 0, 0, 1],
+#		[0, 0, 0, 0, 1],
+#	]
+#	init_level()
+	
+var actu_chunk = 0
+var chunk_position_colone = 0
+var all_chunk = [
+	[ # un chunk 
+		# options {biome, speed}
+		[0, 0.45],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 1, 0, 0],
-		[0, 0, 1, 0, 0],
-		[0, 0, 1, 0, 0],
-		[0, 0, 1, 0, 0],
-		[0, 0, 1, 0, 0],
-		[1, 0, 1, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 1, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-	]
-	init_level()
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 1, 0, 1],
+		[0, 0, 1, 0, 1],
+		[0, 0, 0, 0, 1],
+	],
+]
 
-func set_level_tuto():
-	$"../Rythme".wait_time = 1
-	level = \
-	[   #lignes
-		#1  2  3  4  5
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 1, 1],
-		[0, 0, 0, 1, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-	]
-	init_level()
+
+func load_chunk(index_chunk: int):
+	actu_chunk = index_chunk
+	var chunk = all_chunk[index_chunk]
+	var options_chunk = chunk[0]
+	
+	# options
+	$"../Rythme".wait_time = options_chunk[1]
+	
+	chunk_position_colone = 1
+	for colone in range(NB_COLONE):
+		load_colone_chunk(colone)
+	
+func load_colone_chunk(colone: int):
+	if (chunk_position_colone < len(all_chunk[actu_chunk]) - 1):
+		var col = all_chunk[actu_chunk][chunk_position_colone]
+		chunk_position_colone += 1
+		if chunk_position_colone < len(all_chunk[actu_chunk]):
+			for ligne in range(5):
+				remove_item_grille(ligne, colone)
+				match col[ligne]:
+					0: # vide
+						grille[ligne][colone] = null
+					1: # platforme
+						add_platforme(ligne, colone, all_chunk[actu_chunk][0][0])

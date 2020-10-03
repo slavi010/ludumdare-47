@@ -19,6 +19,7 @@ curve = SubResource( 1 )
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 512, -0.25 )
 scale = Vector2( 0.492188, 3.54 )
 texture = SubResource( 3 )
