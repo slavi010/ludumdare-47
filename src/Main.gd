@@ -15,6 +15,10 @@ func new_place():
 		#Rythme.wait_time(n/2)
 	pass
 
+func sp_charge(): #Signal présent quand sp non rempli
+	if emit_signal("beat"): #and vertical_speed == 0
+		#sp += 1
+		pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
