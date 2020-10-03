@@ -55,7 +55,7 @@ var grille: Array = []
 
 # ligne
 var lignes: Array = []
-
+	
 # taille de l'écrant
 var TAILLE_ECRANT = get_viewport_rect().size
 

@@ -10,7 +10,7 @@ var nbsp = 3 #Le nombre de sp va de 0 à 3
 var position_ligne = 4
 
 # la colone du joueur (0 pour tou à cauche)
-export var COLONE_JOUEUR = 0
+export var COLONE_JOUEUR = 2
 
 # action :
 #  0 = rien
@@ -18,15 +18,18 @@ export var COLONE_JOUEUR = 0
 #  2 = down
 #  3 = planer
 var pressed_action = 0
+
+var target_position: Vector2 = Vector2(0, 0)
+export var SPEED_ANIMATION = 2
+
+var nb_input_pressed = 0
+var faild_input : bool = false
  
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AnimatedSprite.animation = "1walk"
-	$AnimatedSprite.animation = "1walk"
-	
-	
 	# connect à chaque beat
 	$"../".connect("beat", self, "_on_Main_beat")
+	$TimerChangeAnimation.connect("timeout", self, "_on_TimerChangeAnimation_timeout")
 	position = $"../Grille".position
 
 func sp_bar(): #Gère la barre de SPc
@@ -35,8 +38,18 @@ func sp_bar(): #Gère la barre de SPc
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass	
+	pass
+
+func _physics_process(delta):
+	var velocite = target_position - position
+	position += velocite*delta*SPEED_ANIMATION/($"../Rythme".wait_time/2)
+	
+	
 func _unhandled_input(event):
+	nb_input_pressed += 1
+	print(pressed_action)
+	if nb_input_pressed > 3:
+		faild_input = true
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_UP: # aller vers le haut
 			pressed_action = 1
@@ -44,6 +57,7 @@ func _unhandled_input(event):
 			pressed_action = 2
 		if event.pressed and event.scancode == KEY_RIGHT: # planer
 			pressed_action = 3
+			
 
 # A chaque resception d'un beat
 func _on_Main_beat():
@@ -53,21 +67,26 @@ func _on_Main_beat():
 #func jump():
 	
 	var is_action_done = false
-	match pressed_action:
-		1:
-			if (position_ligne > 0) and \
-			is_no_platforme(actu_col[position_ligne - 1]) and \
-			is_no_platforme(next_col[position_ligne - 1]):
-				move_player(1)
-				is_action_done = true
-		3: 
-			if is_no_platforme(actu_col[position_ligne]):
-				move_player(3)
-				is_action_done = true
+	
+	# si le joueur n'a pas spam ses touches
+	if not faild_input:
+		match pressed_action:
+			1:
+				if (position_ligne > 0) and \
+				is_no_platforme(actu_col[position_ligne - 1]) and \
+				is_no_platforme(next_col[position_ligne - 1]):
+					move_player(1)
+					is_action_done = true
+			3: 
+				if is_no_platforme(actu_col[position_ligne]):
+					move_player(3)
+					is_action_done = true
 	if not is_action_done:
 		move_player(0)
-		
+	
+	faild_input = false		
 	pressed_action = 0
+	nb_input_pressed = 0
 			
 #	if Input.is_action_pressed("ui_down"):
 
@@ -80,22 +99,29 @@ func move_player(action: int):
 		1:
 			if len($"../Grille".lignes):
 				position_ligne -= 1
-				position = get_vecteur_position_ligne(position_ligne)
+				target_position = get_vecteur_position_ligne(position_ligne)
+				set_sprite_up(true)
 		0:
 			if (position_ligne <  4) and \
 			is_no_platforme(actu_col[position_ligne]) and \
 			is_no_platforme(next_col[position_ligne]):
 				position_ligne += 1
-				position = get_vecteur_position_ligne(position_ligne)
-			pass
+				target_position = get_vecteur_position_ligne(position_ligne)
+				set_sprite_drop(true)
+			else:
+				set_sprite_walk(true)
 		3:
-			pass
+			set_sprite_plane(true)
+			
+
+
 func is_no_platforme(obj):
 	if obj != null:
 		if obj.get_script().get_path().get_file() != "Platforme.gd":
 			return true
 		return false
 	return true
+
 
 func get_vecteur_position_ligne(ligne: int):
 	var actu_ligne = $"../Grille".lignes[position_ligne]
@@ -109,3 +135,30 @@ func get_vecteur_position_ligne(ligne: int):
 	# on va à la position
 	return actu_ligne.patrol_points[patrol_index] + \
 		$"../Grille".position + Vector2(0, $"../Grille".HAUTEUR_LIGNE*position_ligne)
+
+func _on_TimerChangeAnimation_timeout():
+	var actu_col = $"../Grille".get_colone_grille(COLONE_JOUEUR)
+	if not is_no_platforme(actu_col[position_ligne]):
+		set_sprite_walk(false)
+	else:
+		set_sprite_plane(false)
+
+
+func set_sprite_up(active_timer: bool):
+	change_animation("jump", active_timer)
+	
+func set_sprite_plane(active_timer: bool):
+	change_animation("planer", active_timer)
+
+func set_sprite_drop(active_timer: bool):
+	change_animation("drop", active_timer)
+	print("drop")
+
+func set_sprite_walk(active_timer: bool):
+	change_animation("walk", active_timer)
+	
+func change_animation(name_animation, active_timer: bool):
+	$AnimatedSprite.animation = name_animation
+	if active_timer:
+		$TimerChangeAnimation.wait_time = $"../Rythme".wait_time/2
+		$TimerChangeAnimation.start()

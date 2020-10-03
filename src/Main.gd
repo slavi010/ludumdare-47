@@ -5,6 +5,8 @@ signal beat
 export var largeur = 5 #nombre de block en largeur
 export var decalage = 1 #décalage du joueur 
 
+export var PITCH_SCALE_AMPLIFICATION = 1.5
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Rythme.connect("timeout", self, "_on_Rythme_timeout")
@@ -12,7 +14,8 @@ func _ready():
 
 func _on_Rythme_timeout(): #A chaque beat envoi un signal
 	emit_signal("beat")
-	print("new beat !")
+	$BeatExt.pitch_scale = max(0.4, 0.4*PITCH_SCALE_AMPLIFICATION/$Rythme.wait_time)
+	$BeatExt.play()
 
 func new_place():
 	 #if (): #Condition correspondant au lieu où se trouve le joueur
