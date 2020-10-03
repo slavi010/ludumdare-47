@@ -19,7 +19,7 @@ wait_time = 0.355
 autostart = true
 
 [node name="Grille" parent="." instance=ExtResource( 3 )]
-position = Vector2( 3.5636, 137.004 )
+position = Vector2( -1.7818, 261.73 )
 
 [node name="BeatExt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )

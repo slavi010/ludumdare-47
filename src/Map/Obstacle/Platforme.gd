@@ -40,7 +40,7 @@ func move(colone: int, nb_colone: int, largeur_ligne_pixel: int, hauteur_ligne_p
 		patrol_index = wrapi(patrol_index + 1, 0, patrol_node.patrol_points.size())
 	# on va à la position
 	position = patrol_node.patrol_points[patrol_index]
-	position.y += hauteur_ligne_pixel * 0.3
+	position.y += hauteur_ligne_pixel * 0.4
 	
 	# augmentation de la taille de la platforme
 	scale.x = MAX_SCALE_X

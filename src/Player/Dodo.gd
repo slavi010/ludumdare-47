@@ -32,6 +32,8 @@ func _ready():
 	$"../".connect("beat", self, "_on_Main_beat")
 	$TimerChangeAnimation.connect("timeout", self, "_on_TimerChangeAnimation_timeout")
 	position = $"../Grille".position
+	scale.x = $"../Grille".HAUTEUR_LIGNE/90.0
+	scale.y = $"../Grille".HAUTEUR_LIGNE/90.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

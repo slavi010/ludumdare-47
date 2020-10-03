@@ -27,7 +27,7 @@ var lignes: Array = []
 var TAILLE_ECRANT = get_viewport_rect().size
 
 # hauteur entre deux ligne en pixel
-var HAUTEUR_LIGNE = 100
+var HAUTEUR_LIGNE = 75
 # largeur ligne en pixel
 var LARGEUR_LIGNE = 1024
 # largeur d'une platforme en par rapport à celle de base
