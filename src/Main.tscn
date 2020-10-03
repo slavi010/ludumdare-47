@@ -2,6 +2,7 @@
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Dodo.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Map/Ligne/Grille.tscn" type="PackedScene" id=2]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -12,3 +13,6 @@ script = ExtResource( 1 )
 wait_time = 0.1
 autostart = true
 [connection signal="sp" from="Dodo" to="." method="sp_charge"]
+[node name="Grille" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 258.166 )
+
