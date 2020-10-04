@@ -94,6 +94,8 @@ func add_platforme(ligne: int, colone: int = -1, biome: int = 0):
 	
 	if monde_interieur :
 		platforme.get_node("AnimatedSprite").material.shader = SHADERS[biome]
+	else:
+		platforme.get_node("AnimatedSprite").material.shader = null
 	
 # Ajoute un nouveau mur 
 # la ligne de la mur et sa colone (-1 pour tout à droite)
@@ -113,6 +115,8 @@ func add_mur(ligne: int, colone: int = -1, biome: int = 0):
 	
 	if monde_interieur :
 		mur.get_node("AnimatedSprite").material.shader = SHADERS[biome]
+	else:
+		mur.get_node("AnimatedSprite").material.shader = null
 
 # Ajoute un nouveau tunnel
 # la ligne de la tunnel et sa colone (-1 pour tout à droite)
