@@ -33,14 +33,10 @@ size_flags_horizontal = 3
 custom_constants/separation = 20
 
 [node name="Feux" type="TextureRect" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -61.9999
-margin_top = -110.0
-margin_right = -19.9999
-margin_bottom = -9.99994
+margin_left = 5.0
+margin_top = 95.0
+margin_right = 47.0
+margin_bottom = 195.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource( 1 )
