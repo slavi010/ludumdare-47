@@ -7,7 +7,6 @@ var texture_half_pasteque = preload("res://UI/Assets/half_energy.png")
 
 var time = 0
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Instanciation du nombre d'energie par défaut

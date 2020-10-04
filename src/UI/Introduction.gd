@@ -1,4 +1,7 @@
 extends CanvasLayer
+signal intro
+
+var test = false
 
 var anim = 0
 var n = true 
@@ -9,9 +12,6 @@ var textSpeed = 0
 #Tableau où se trouve les dialogues
 var dialogue : Array = []
 
-func centrer():
-	pass
-	
 #Ouverture d'un fichier
 func load_text(file):
 	var f = File.new()
@@ -66,7 +66,7 @@ func anim_text():
 			$Panel.rect_position.y += 10
 			anim=0
 	else:
-		$Box.stop()
+		$Panel/Box.stop()
 
 #Montre petit à petit le dialogue
 func montre_dialogue():
@@ -84,6 +84,9 @@ func  sprite_intro():
 			$Pastq/AnimatedSprite.set_frame(1)
 		4: #Sprite Cool
 			$Pastq/AnimatedSprite.set_frame(2)
+			$"../Rythme".set_wait_time(1)
+			$"../Rythme".start()
+			$"../..".actu_musique = -1
 		5: #Sprite Surprised
 			$Pastq/AnimatedSprite.set_frame(3)
 		3: #Sprite Noice
@@ -94,6 +97,10 @@ func  sprite_intro():
 	sprite += 1
 
 func _physics_process(_delta): #Montre les lignes une par une
+	
+	if Input.is_action_just_pressed("ui_down"):
+		emit_signal("intro")
+	$Panel/PastqText.rect_size = $Panel.rect_size
 	$Panel/PastqText.set_max_lines_visible(3)
 	if Input.is_action_just_pressed("ui_select"):
 		sprite_intro()

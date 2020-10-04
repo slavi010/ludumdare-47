@@ -28,14 +28,14 @@ animations = [ {
 "name": "2_nuit",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "1_nuit",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "0",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ) ],
@@ -43,14 +43,14 @@ animations = [ {
 "name": "1",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "0_nuit",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "1_nuit",
 "speed": 5.0
 } ]
 
@@ -118,3 +118,4 @@ stream = ExtResource( 18 )
 [node name="OceanExt" type="AudioStreamPlayer" parent="All"]
 
 [node name="OceanInt" type="AudioStreamPlayer" parent="All"]
+[connection signal="intro" from="All/Introduction" to="." method="_on_Introduction_intro"]

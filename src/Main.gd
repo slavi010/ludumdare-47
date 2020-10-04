@@ -72,3 +72,6 @@ func _on_Musique_change(biome: int, is_monde_interieur: bool):
 		if actu_musique >= 0 and actu_musique < len(musiquePlayers):
 			musiquePlayers[actu_musique][0].stop()
 		actu_musique = index_musique
+
+func _on_Introduction_intro():
+	$All/Rythme.stop()
