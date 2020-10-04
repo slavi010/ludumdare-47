@@ -88,6 +88,7 @@ func  sprite_intro():
 			$Pastq/AnimatedSprite.set_frame(4)
 		1: #Sprite Mad
 			$Pastq/AnimatedSprite.set_frame(5)
+		
 	sprite += 1
 
 func _physics_process(_delta): #Montre les lignes une par une
