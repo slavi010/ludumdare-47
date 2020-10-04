@@ -17,6 +17,9 @@ export var MAX_SCALE_Y = 2
 
 var SCALE_X = 1
 
+var biome = 0
+
+var monde_interieur: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,7 +50,12 @@ func move(colone: int, nb_colone: int, largeur_ligne_pixel: int, hauteur_ligne_p
 	scale.y = MAX_SCALE_Y
 	
 	courbure()
-var cpt = 0
+
+func set_biome(id: int):
+	biome = id
+	$AnimatedSprite.animation = str(id)
+	print($AnimatedSprite.frames.get_frame_count(str(id)))
+	$AnimatedSprite.frame = randi() % $AnimatedSprite.frames.get_frame_count(str(id))
 
 #func _input(event):
 #	print(event.as_text())
@@ -62,6 +70,11 @@ func courbure():
 	var diff = position - patrol_node.get_parent().centre_planet
 	rotation = -atan(diff.x/diff.y)
 	var offset_y = patrol_node.get_parent().centre_planet.y - patrol_node.position.y - cos(rotation) *(patrol_node.get_parent().centre_planet.y - patrol_node.position.y)
+	
+	if monde_interieur:
+		rotation *= -1
+		offset_y *= -1
+	
 	position.y += offset_y
 	var hyp = patrol_node.get_parent().HAUTEUR_LIGNE*4 - patrol_node.position.y
 	position.x += sin(rotation)*hyp
