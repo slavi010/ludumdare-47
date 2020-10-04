@@ -10,7 +10,7 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -20,6 +20,7 @@ animations = [ {
 
 [sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 1002, 282 )
 
 [sub_resource type="GDScript" id=4]
 
@@ -30,17 +31,35 @@ script = ExtResource( 1 )
 z_index = 2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Pastq"]
-position = Vector2( 29.4169, 70.4648 )
+position = Vector2( 27.2543, 69.136 )
 scale = Vector2( 0.3, 0.3 )
 frames = SubResource( 1 )
 
 [node name="Panel" type="Panel" parent="."]
-margin_left = 132.0
-margin_top = 69.0
-margin_right = 735.0
-margin_bottom = 167.0
+margin_left = 131.783
+margin_top = 23.7776
+margin_right = 734.783
+margin_bottom = 121.778
 theme = SubResource( 2 )
 custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Panel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -50.0
+margin_top = -20.0
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "Next"
+flat = true
+align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -50,10 +69,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -1205.0
-margin_top = -196.5
-margin_right = 1205.0
-margin_bottom = 196.5
+margin_left = -1207.24
+margin_top = -193.694
+margin_right = 1202.76
+margin_bottom = 199.306
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "I always told to myself... Do Universe has its nature because of repetition ?
 I mean... If nature always live in cycles, why our world must have a beginning and an ending ?
