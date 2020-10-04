@@ -138,7 +138,6 @@ animations = [ {
 "frames": [ ExtResource( 15 ) ],
 "loop": true,
 "name": "2_nuit",
-"speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,

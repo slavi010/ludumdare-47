@@ -12,7 +12,6 @@ extends Node2D
 signal halo
 signal musique_charge(biome, is_monde_interieur)
 
-
 # l'index de la prochaine colone du level à afficher
 var level_index = 0
 
@@ -210,12 +209,17 @@ func get_colone_grille(colone: int):
 	
 
 func _on_Dodo_traversTunnel():
-	if not monde_interieur:
+	if not $"../Introduction".intro:
+		if not monde_interieur:
+			actu_chunk += 1
+			if actu_chunk >= len(all_chunk):
+				actu_chunk = 2
+		load_chunk(actu_chunk, false)
+		$"../Rythme".start()
+	else:
 		actu_chunk += 1
-		if actu_chunk >= len(all_chunk):
-			actu_chunk = 0
-	load_chunk(actu_chunk, false)
-	$"../Rythme".start()
+		load_chunk(actu_chunk, false)
+		$"../Rythme".start()
 
 func _on_Dodo_murHit():
 	$"../Rythme".start()
@@ -226,10 +230,50 @@ func _on_Dodo_murHit():
 	
 
 
-var actu_chunk = 0
+var actu_chunk = 2
 var chunk_position_colone = 0
 var monde_interieur: bool = false
 var all_chunk = [
+	[ # un chunk tutoriel
+		#Saut
+		[0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+	],
+	[ # un chunk tutoriel
+		#Planer
+		[0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+	],
 	[ # un chunk 
 		# options {biome}
 		[0],
@@ -302,7 +346,11 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	var options_chunk = chunk[0]
 	monde_interieur = is_monde_interieur
 	
-	emit_signal("musique_charge", options_chunk[0], monde_interieur)
+	if not $"../Introduction".intro:
+		emit_signal("musique_charge", options_chunk[0], monde_interieur)
+	else:
+		if index_chunk == 2:
+			$"../Introduction".intro = false
 	
 	# options
 	if is_monde_interieur:
@@ -386,6 +434,12 @@ func _on_Dodo_halo():
 	show_halo = false
 	$"../Halo".hide()
 	
-	load_chunk(actu_chunk, false)
-	$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
-	$"../Rythme".start()
+	if not $"../Introduction".intro:
+		load_chunk(actu_chunk, false)
+		$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
+		$"../Rythme".start()
+	else: #en cas de tutoriel
+		load_chunk(0, false)
+		$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
+		$"../Rythme".set_wait_time(1)
+		$"../Rythme".start()

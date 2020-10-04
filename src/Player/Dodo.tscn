@@ -19,19 +19,19 @@ animations = [ {
 "name": "walk",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 11 ) ],
 "loop": true,
-"name": "planer",
-"speed": 15.0
+"name": "dash_feuille",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "jump",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "mal",
+"frames": [ ExtResource( 10 ) ],
+"loop": false,
+"name": "dash",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -39,15 +39,15 @@ animations = [ {
 "name": "drop",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
-"loop": false,
-"name": "dash",
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "mal",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "dash_feuille",
-"speed": 5.0
+"name": "planer",
+"speed": 15.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -64,7 +64,8 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 1 )
-animation = "dash_feuille"
+animation = "walk"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
