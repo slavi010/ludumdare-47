@@ -67,6 +67,12 @@ func _physics_process(delta):
 	
 	
 func _unhandled_input(event):
+	if $"../../".is_feux_on and $"../../".feux == 0:
+		too_much_input(2)
+		if faild_input:
+			$"../../TimerFeuxRouge".stop()
+			$"../../".feux = 2
+			mort()
 	
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_UP: # aller vers le haut
@@ -83,9 +89,9 @@ func _unhandled_input(event):
 			too_much_input()
 			
 
-func too_much_input():
+func too_much_input(max_input: int = 1):
 	nb_input_pressed += 1
-	if nb_input_pressed > 1:
+	if nb_input_pressed > max_input:
 		faild_input = true
 
 # A chaque resception d'un beat

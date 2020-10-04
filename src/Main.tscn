@@ -28,6 +28,11 @@ animations = [ {
 "name": "2",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "2_nuit",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "1",
@@ -36,11 +41,6 @@ animations = [ {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "0_nuit",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ) ],
-"loop": true,
-"name": "2_nuit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ) ],
@@ -114,4 +114,8 @@ stream = ExtResource( 18 )
 stream = ExtResource( 21 )
 
 [node name="OceanInt" type="AudioStreamPlayer" parent="All"]
+
+[node name="TimerFeuxRouge" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 [connection signal="intro" from="All/Introduction" to="." method="_on_Introduction_intro"]

@@ -7,6 +7,8 @@ func _ready():
 	hide_all()
 	feux[1].show()
 	cacher()
+	
+	$"../../../".connect("feuxChange", self, "on_color_change")
 
 func hide_all():
 	for feu in feux:

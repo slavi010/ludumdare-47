@@ -297,6 +297,7 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	# biome ville
 	if options_chunk[0] == 1:
 		$"../GUI/Feux".afficher()
+		$"../GUI/Feux".on_color_change(2)
 		$"../../".is_feux_on = true
 		$"../../".feux = 2
 	else:

@@ -1,6 +1,7 @@
 extends Node
 
 signal beat
+signal feuxChange(couleur)
 
 export var largeur = 5 #nombre de block en largeur
 export var decalage = 1 #décalage du joueur 
@@ -17,6 +18,7 @@ var is_feux_on: bool = false
 func _ready():
 	$"All/Rythme".connect("timeout", self, "_on_Rythme_timeout")
 	$"All/Grille".connect("musique_charge", self, "_on_Musique_change")
+	$TimerFeuxRouge.connect("timeout", self, "_on_TimerFeuxRouge_timeout")
 	
 	$"All/Grille".load_chunk(0, false)
 
@@ -35,6 +37,19 @@ func _on_Rythme_timeout(): #A chaque beat envoi un signal
 		[$All/OceanExt, 0.35],
 		[$All/OceanInt, 0.35],
 	]
+	
+	
+	if is_feux_on:
+		match feux:
+			1:
+				feux = 0
+				$All/Rythme.stop()
+				emit_signal("feuxChange", 0)
+			2:
+				if (randi() % 30) == 1:
+					feux = 1
+					emit_signal("feuxChange", 1)
+					$TimerFeuxRouge.start()
 
 func new_place():
 	 #if (): #Condition correspondant au lieu où se trouve le joueur
@@ -78,3 +93,8 @@ func _on_Musique_change(biome: int, is_monde_interieur: bool):
 
 func _on_Introduction_intro():
 	$All/Rythme.stop()
+
+func _on_TimerFeuxRouge_timeout():
+	$All/Rythme.start()
+	emit_signal("feuxChange", 2)
+	feux = 2
