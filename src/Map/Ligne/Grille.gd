@@ -6,6 +6,8 @@ extends Node2D
 # 1 = platforme
 # 2 = mur
 # 3 = tunnel
+# 4 = break wall
+# 5 = vent
 
 signal halo
 signal musique_charge(biome, is_monde_interieur)
@@ -17,6 +19,10 @@ var Platforme = load("res://Map/Obstacle/Platforme.tscn")
 var Mur = load("res://Map/Obstacle/Mur.tscn")
 var Tunnel = load("res://Map/Obstacle/Tunnel.tscn")
 var BreakWall = load("res://Map/Obstacle/BreakWall.tscn")
+var Wind = load("res://Map/Obstacle/Wind.tscn")
+
+var SHADERS = [preload("res://Nuit.shader"), preload("res://Ville_nuit.shader"), preload("res://Ocean_nuit.shader")]
+
 # LA GRILLE 
 var grille: Array = []
 
@@ -88,6 +94,9 @@ func add_platforme(ligne: int, colone: int = -1, biome: int = 0):
 	platforme.monde_interieur = monde_interieur
 	platforme.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 	
+	if monde_interieur :
+		platforme.get_node("AnimatedSprite").material.shader = SHADERS[biome]
+	
 # Ajoute un nouveau mur 
 # la ligne de la mur et sa colone (-1 pour tout à droite)
 # si déjà objet, ne fait rien
@@ -103,9 +112,12 @@ func add_mur(ligne: int, colone: int = -1, biome: int = 0):
 	mur.set_biome(biome)
 	mur.monde_interieur = monde_interieur
 	mur.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)	
+	
+	if monde_interieur :
+		mur.get_node("AnimatedSprite").material.shader = SHADERS[biome]
 
 # Ajoute un nouveau tunnel
-# la ligne de la tunnel et sa colone (-1 pour tout à droite)
+# la ligne du  tunnel et sa colone (-1 pour tout à droite)
 # si déjà objet, ne fait rien
 func add_tunnel(ligne: int, colone: int = -1):
 	if colone < 0:
@@ -120,7 +132,7 @@ func add_tunnel(ligne: int, colone: int = -1):
 	tunnel.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 	
 # Ajoute un nouveau break wall
-# la ligne de la tunnel et sa colone (-1 pour tout à droite)
+# la ligne du break wall et sa colone (-1 pour tout à droite)
 # si déjà objet, ne fait rien
 func add_break_wall(ligne: int, colone: int = -1):
 	if colone < 0:
@@ -134,6 +146,20 @@ func add_break_wall(ligne: int, colone: int = -1):
 	brealWall.monde_interieur = monde_interieur
 	brealWall.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 	
+# Ajoute un nouveau wind
+# la ligne du wind et sa colone (-1 pour tout à droite)
+# si déjà objet, ne fait rien
+func add_break_wind(ligne: int, colone: int = -1):
+	if colone < 0:
+		colone = NB_COLONE + colone
+	
+	var wind = Wind.instance()
+	grille[ligne][colone] = wind
+	lignes[ligne].add_child(wind)
+	wind.SCALE_X = LARGEUR_PLATFORME_SCALE
+	wind.set_patrol_node(lignes[ligne])
+	wind.monde_interieur = monde_interieur
+	wind.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 
 func get_position_case_grille(ligne: int, colone: int):
 	return ((colone + 0.5)) #TODO
@@ -256,7 +282,7 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 1, 0, 4],
 		[0, 0, 0, 0, 1],
@@ -334,6 +360,16 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 		# set background
 		$"../../ParallaxBackground/Background/Sprite".animation = str(options_chunk[0])
 	
+	# biome ville
+	if options_chunk[0] == 1:
+		$"../GUI/Feux".afficher()
+		$"../GUI/Feux".on_color_change(2)
+		$"../../".is_feux_on = true
+		$"../../".feux = 2
+	else:
+		$"../GUI/Feux".cacher()
+		$"../../".is_feux_on = false
+	
 	chunk_position_colone = 1
 	# précédant tunnel
 	for colone in range(0, $"../Dodo".COLONE_JOUEUR):
@@ -366,6 +402,8 @@ func load_colone_chunk(colone: int):
 						add_tunnel(ligne, colone)
 					4: # breakWall
 						add_break_wall(ligne, colone)
+					5: # wind
+						add_break_wind(ligne, colone)
 	else:
 		# fin chunk
 		if not monde_interieur:
@@ -378,7 +416,7 @@ func load_colone_chunk(colone: int):
 			for ligne in range(4):
 				remove_item_grille(ligne, colone)
 			remove_item_grille(5-1, colone)
-			add_platforme(5-1, colone)
+			add_platforme(5-1, colone, all_chunk[actu_chunk][0][0])
 			
 			if not show_halo:
 				$"../Halo".position.x = 1500

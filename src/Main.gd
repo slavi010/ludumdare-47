@@ -1,6 +1,7 @@
 extends Node
 
 signal beat
+signal feuxChange(couleur)
 
 export var largeur = 5 #nombre de block en largeur
 export var decalage = 1 #décalage du joueur 
@@ -10,10 +11,15 @@ export var PITCH_SCALE_AMPLIFICATION = 1.5
 var musiquePlayers: Array = []
 var actu_musique: int = -1
 
+var feux = 2
+var is_feux_on: bool = false
+var play_back_position: float
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"All/Rythme".connect("timeout", self, "_on_Rythme_timeout")
 	$"All/Grille".connect("musique_charge", self, "_on_Musique_change")
+	$TimerFeuxRouge.connect("timeout", self, "_on_TimerFeuxRouge_timeout")
 	
 	$"All/Grille".load_chunk(0, false)
 
@@ -29,9 +35,24 @@ func _on_Rythme_timeout(): #A chaque beat envoi un signal
 		[$All/ForetInt, 0.5263],
 		[$All/VilleExt, 0.3590],
 		[$All/VilleInt, 0.4560],
-		[$All/OceanExt, 0.35],
-		[$All/OceanInt, 0.35],
+		[$All/OceanExt, 0.3921],
+		[$All/OceanInt, 0.5263],
 	]
+	
+	
+	if is_feux_on:
+		match feux:
+			1:
+				feux = 0
+				$All/Rythme.stop()
+				emit_signal("feuxChange", 0)
+				play_back_position = musiquePlayers[actu_musique][0].get_playback_position()
+				musiquePlayers[actu_musique][0].stop()
+			2:
+				if (randi() % 30) == 1:
+					feux = 1
+					emit_signal("feuxChange", 1)
+					$TimerFeuxRouge.start()
 
 func new_place():
 	 #if (): #Condition correspondant au lieu où se trouve le joueur
@@ -57,7 +78,7 @@ func _process(delta):
 		
 	if len(musiquePlayers) > 0 and actu_musique >= 0 \
 		and actu_musique < len(musiquePlayers) \
-		and  not musiquePlayers[actu_musique][0].playing:
+		and  not musiquePlayers[actu_musique][0].playing and (not(is_feux_on) or not(feux == 0)):
 		musiquePlayers[actu_musique][0].play()
 		$All/Rythme.wait_time = musiquePlayers[actu_musique][1]
 		
@@ -80,3 +101,11 @@ func _on_Introduction_intro():
 	$All/Rythme.stop()
 	musiquePlayers[actu_musique][0].stop()
 	actu_musique = -1
+
+
+func _on_TimerFeuxRouge_timeout():
+	$All/Rythme.start()
+	emit_signal("feuxChange", 2)
+	feux = 2
+	musiquePlayers[actu_musique][0].play(play_back_position)
+
