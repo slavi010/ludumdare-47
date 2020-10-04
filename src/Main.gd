@@ -13,6 +13,7 @@ var actu_musique: int = -1
 
 var feux = 2
 var is_feux_on: bool = false
+var play_back_position: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,8 +35,8 @@ func _on_Rythme_timeout(): #A chaque beat envoi un signal
 		[$All/ForetInt, 0.5263],
 		[$All/VilleExt, 0.3590],
 		[$All/VilleInt, 0.4560],
-		[$All/OceanExt, 0.35],
-		[$All/OceanInt, 0.35],
+		[$All/OceanExt, 0.3921],
+		[$All/OceanInt, 0.5263],
 	]
 	
 	
@@ -45,6 +46,8 @@ func _on_Rythme_timeout(): #A chaque beat envoi un signal
 				feux = 0
 				$All/Rythme.stop()
 				emit_signal("feuxChange", 0)
+				play_back_position = musiquePlayers[actu_musique][0].get_playback_position()
+				musiquePlayers[actu_musique][0].stop()
 			2:
 				if (randi() % 30) == 1:
 					feux = 1
@@ -75,7 +78,7 @@ func _process(delta):
 		
 	if len(musiquePlayers) > 0 and actu_musique >= 0 \
 		and actu_musique < len(musiquePlayers) \
-		and  not musiquePlayers[actu_musique][0].playing:
+		and  not musiquePlayers[actu_musique][0].playing and (not(is_feux_on) or not(feux == 0)):
 		musiquePlayers[actu_musique][0].play()
 		$All/Rythme.wait_time = musiquePlayers[actu_musique][1]
 		
@@ -98,3 +101,4 @@ func _on_TimerFeuxRouge_timeout():
 	$All/Rythme.start()
 	emit_signal("feuxChange", 2)
 	feux = 2
+	musiquePlayers[actu_musique][0].play(play_back_position)

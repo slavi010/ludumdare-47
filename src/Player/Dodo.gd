@@ -148,6 +148,12 @@ func move_player(action: int):
 			if len($"../Grille".lignes):
 				position_ligne -= 1
 				set_target_position(get_vecteur_position_ligne(position_ligne))
+				
+				if position_ligne > 0 and \
+				not is_no_wind(next_col[position_ligne]):
+					position_ligne -= 1
+					set_target_position(get_vecteur_position_ligne(position_ligne))
+				
 				energy -= 1
 				emit_signal("energyChange", energy)
 				set_sprite_up(true)
@@ -163,13 +169,13 @@ func move_player(action: int):
 				
 				if not is_no_break_wall(next_col[position_ligne]):
 					mort()
+					
+				if not is_no_wind(next_col[position_ligne]):
+					position_ligne -= 1
+					set_target_position(get_vecteur_position_ligne(position_ligne))
 			else:
 				if is_no_platforme(next_col[position_ligne]) and \
 				not is_tunnel(next_col[position_ligne]) and position_ligne == 5-1 :
-					for li in range(5):
-						for co in range($"../Grille".NB_COLONE):
-							if $"../Grille".grille[li][co] != null:
-								print($"../Grille".grille[li][co].get_script().get_path().get_file())
 					mort()
 				else:
 					if is_no_mur(next_col[position_ligne]) and \
@@ -183,6 +189,12 @@ func move_player(action: int):
 			energy -= 0.5
 			emit_signal("energyChange", energy)
 			set_sprite_plane(true)
+			
+							
+			if position_ligne > 0 and \
+			not is_no_wind(next_col[position_ligne]):
+				position_ligne -= 1
+				set_target_position(get_vecteur_position_ligne(position_ligne))
 		4:
 			if not(is_no_mur(next_col[position_ligne])):
 				mort()
@@ -219,6 +231,13 @@ func is_no_mur(obj):
 func is_no_break_wall(obj):
 	if obj != null:
 		if obj.get_script().get_path().get_file() != "BreakWall.gd":
+			return true
+		return false
+	return true
+
+func is_no_wind(obj):
+	if obj != null:
+		if obj.get_script().get_path().get_file() != "Wind.gd":
 			return true
 		return false
 	return true

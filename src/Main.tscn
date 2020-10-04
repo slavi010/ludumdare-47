@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Dodo.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://image/LD_BG_foretnuit2.png" type="Texture" id=11]
 [ext_resource path="res://image/LD_BG_ocean2.png" type="Texture" id=12]
 [ext_resource path="res://image/City_jour.png" type="Texture" id=13]
+[ext_resource path="res://Music/OCEAN_easy.ogg" type="AudioStream" id=14]
 [ext_resource path="res://image/LD_BG_oceannuit2.png" type="Texture" id=15]
 [ext_resource path="res://Map/Obstacle/Halo.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Music/FOREST_easy.ogg" type="AudioStream" id=17]
@@ -28,6 +29,11 @@ animations = [ {
 "name": "2",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "0_nuit",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 15 ) ],
 "loop": true,
 "name": "2_nuit",
@@ -36,11 +42,6 @@ animations = [ {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "1",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ) ],
-"loop": true,
-"name": "0_nuit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ) ],
@@ -107,13 +108,11 @@ stream = ExtResource( 20 )
 [node name="VilleInt" type="AudioStreamPlayer" parent="All"]
 stream = ExtResource( 18 )
 
-[node name="VilleInt2" type="AudioStreamPlayer" parent="All"]
-stream = ExtResource( 18 )
-
 [node name="OceanExt" type="AudioStreamPlayer" parent="All"]
 stream = ExtResource( 21 )
 
 [node name="OceanInt" type="AudioStreamPlayer" parent="All"]
+stream = ExtResource( 14 )
 
 [node name="TimerFeuxRouge" type="Timer" parent="."]
 wait_time = 2.0
