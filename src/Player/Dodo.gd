@@ -5,6 +5,7 @@ var Platforme = load("res://Map/Obstacle/Platforme.tscn")
 signal energyChange(nb_energy_left)
 signal traversTunnel
 signal dodoTombe
+signal dodoHalo
 
 var TAILLE_ECRANT2 = get_viewport_rect().size
 var MAX_ENERGY = 5
@@ -29,15 +30,19 @@ var nb_input_pressed = 0
 var faild_input : bool = false
 
 export var TOMBE_SPEED = 150
+export var HALO_SPEED = 200
 var is_tombe: bool = false
+var is_halo: bool = false
  
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# connect à chaque beat
-	$"../".connect("beat", self, "_on_Main_beat")
+	$"../../".connect("beat", self, "_on_Main_beat")
 	$TimerChangeAnimation.connect("timeout", self, "_on_TimerChangeAnimation_timeout")
 	$TimerMal.connect("timeout", self, "_on_TimerMal_timeout")
 	$TimerTombe.connect("timeout", self, "_on_TimerTombe_timeout")
+	$"../Grille".connect("halo", self, "_on_Grille_halo")
+	$TimerHalo.connect("timeout", self, "_on_TimerHalo_timeout")
 	
 	position = $"../Grille".position
 	scale.x = $"../Grille".HAUTEUR_LIGNE/90.0
@@ -55,7 +60,8 @@ func _physics_process(delta):
 	# animation player tombe
 	if is_tombe:
 		 target_position.y += delta*TOMBE_SPEED
-		
+	if is_halo:
+		 target_position += Vector2(delta*HALO_SPEED, -delta*HALO_SPEED)
 	
 	
 	
@@ -217,9 +223,18 @@ func _on_TimerMal_timeout():
 	$TimerTombe.start()
 	set_sprite_drop(false)
 	is_tombe = true
-
+	
+func _on_Grille_halo():
+	$TimerHalo.start()
+	set_sprite_up(false)	
+	is_halo = true
+	
 func _on_TimerTombe_timeout():
 	emit_signal("dodoTombe")
+	
+func _on_TimerHalo_timeout():
+	print("_on_TimerHalo_timeout")
+	emit_signal("dodoHalo")
 
 func set_sprite_up(active_timer: bool):
 	change_animation("jump", active_timer)

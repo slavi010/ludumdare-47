@@ -12,16 +12,6 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "jump",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "drop",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "planer",
@@ -36,6 +26,16 @@ animations = [ {
 "loop": true,
 "name": "mal",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "drop",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "jump",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -67,4 +67,8 @@ one_shot = true
 
 [node name="TimerTombe" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
+
+[node name="TimerHalo" type="Timer" parent="."]
+wait_time = 2.5
 one_shot = true
