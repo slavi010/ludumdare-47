@@ -47,8 +47,6 @@ func sp_charge(): #Signal présent quand sp non rempli
 		#nbsp += 1
 		pass
 
-
-
 var scroll_x = 0
 
 func _process(delta):	

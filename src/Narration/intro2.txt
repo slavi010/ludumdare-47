@@ -1,23 +1,2 @@
-/*If failed
-Oof that one was a hurt, but do not stop here ! let's try again ! Move your body and try to jump over this platform by pressing ", strkey2," with the right time!
-/*If succeed :
-Whoaa ! Nice jiggling belly for a player 1 ! Ok so now, let's try even higher ! Press ", strkey1," to reach new heights ! 
-
-/*If failed 
-Whoaa, This sure was painful, well let's try again, Press ", strkey1," to reach new heights !
-/*If succeed
-What a jump ! I didn't know dodos can almost fly ! 
-
-So I see you begin to be pretty well accomodated with the rules of my challenge, why not starting an easy level ?
-Ready, and go !
-
-*RUMBLE RUMBlE RUMBLE... CRASH*...
-Um... Player 1 ? Are you okay ? I mean you've done quite the crash ! It made me remember the last kiwi extinction... oh nevermind. I have to apologize, I have been a bit too quick with you. But you know, it's not that bad when you fail ! 
-Failure and success is only two parts of this world. Oh you look confused  ? Are you wondering what is this place ? Ah yes let me explain to you. I said that failure was a part of this world ? It was literal ! Welcome in the chill
-night world ! Here failure is much appreciated and you are authorized to learn at your own pace ! Pretty cool isn't it ? Now let's try to pass the next obstacle !
-
-/*If many failure :
-Don't worry ! Keep it up you can do it !
-
-/*If success
-Yeah now we talk ! let's try doing it in this bright world of success !
+Oof that one was a hurt, but do not stop here ! Let's try again !
+Move your body and try to jump over this platform by pressing UpKey with the right time!

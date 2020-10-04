@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cool_pasteque.png-853b3ba871d1f9f8932f0a1ef49c3f58.stex"
+path="res://.import/bg_nuit.png-6599b80bd94d10f02bfcd3f7ad162ad2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://image/cool_pasteque.png"
-dest_files=[ "res://.import/cool_pasteque.png-853b3ba871d1f9f8932f0a1ef49c3f58.stex" ]
+source_file="res://UI/Assets/bg_nuit.png"
+dest_files=[ "res://.import/bg_nuit.png-6599b80bd94d10f02bfcd3f7ad162ad2.stex" ]
 
 [params]
 

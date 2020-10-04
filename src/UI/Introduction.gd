@@ -4,6 +4,8 @@ var anim = 0
 var n = true 
 var l = 3 #Nombre de lignes à présenter
 
+var sprite = 0 #Sprite accompagnant le texte
+
 var textSpeed = 0
 #Tableau où se trouve les dialogues
 var dialogue : Array = []
@@ -50,6 +52,7 @@ func _ready():
 	remplir_dialogue()
 	var _v = $Panel/PastqText.get_line_count()
 	$Panel/Box.start()
+	$Panel/PastqText.text = dialogue[1]
 
 
 func anim_text():
@@ -70,9 +73,28 @@ func montre_dialogue():
 		textSpeed += 1
 		$Panel/PastqText.visible_characters = textSpeed
 
+#S'occupe des sprites de la Pastq
+func  sprite_intro():
+	match sprite:
+		2: #Sprite Normal
+			$Pastq/AnimatedSprite.set_frame(0)
+		6: #Sprite Blush
+			$Pastq/AnimatedSprite.set_frame(1)
+		4: #Sprite Cool
+			$Pastq/AnimatedSprite.set_frame(2)
+		5: #Sprite Surprised
+			$Pastq/AnimatedSprite.set_frame(3)
+		3: #Sprite Noice
+			$Pastq/AnimatedSprite.set_frame(4)
+		1: #Sprite Mad
+			$Pastq/AnimatedSprite.set_frame(5)
+		
+	sprite += 1
+
 func _physics_process(_delta): #Montre les lignes une par une
 	$Panel/PastqText.set_max_lines_visible(3)
 	if Input.is_action_just_pressed("ui_select"):
+		sprite_intro()
 		$Panel/PastqText.hide()
 		$Panel/PastqText.set_lines_skipped(l)
 		textSpeed = 0

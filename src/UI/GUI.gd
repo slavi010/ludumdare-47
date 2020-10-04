@@ -13,7 +13,10 @@ func _ready():
 	#Instanciation du nombre d'energie par défaut
 	for i in range(nb_pasteque_total):
 		add_pasteque()
-	$"../Dodo".connect("energyChange", self, "on_energy_change")
+	#$"../Dodo".connect("energyChange", self, "on_energy_change")
+	on_energy_change(0.5)
+	on_energy_change(1.5)
+	on_energy_change(2.5)
 
 #Création et ajout de la node energie dans l'arborescence
 func add_pasteque():
@@ -37,6 +40,8 @@ func add_half_pasteque():
 func on_energy_change(energy):
 	if energy != floor(energy):
 		energy += 0.5
+		if energy > 1:
+			$"HBoxContainer/Energy".get_children()[energy-2].texture = texture_pasteque
 		$"HBoxContainer/Energy".get_children()[energy-1].texture = texture_half_pasteque
 	else:
 		$"HBoxContainer/Energy".get_children()[energy-1].texture = texture_pasteque
