@@ -7,7 +7,8 @@ extends Node2D
 # 2 = mure
 # 3 = tunnel
 
-
+signal halo
+signal musique_charge(biome, is_monde_interieur)
 
 
 # l'index de la prochaine colone du level à afficher
@@ -36,6 +37,9 @@ var NB_COLONE = 10
 
 var centre_planet
 
+var show_halo: bool = false
+var index_deplacement_halo = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	centre_planet = Vector2(get_viewport_rect().size.x/2, get_viewport_rect().size.y*10)
@@ -63,9 +67,10 @@ func _ready():
 	# test platforme
 	
 	# connect à chaque beat
-	$"../".connect("beat", self, "_on_Main_beat")
+	$"../../".connect("beat", self, "_on_Main_beat")
 	$"../Dodo".connect("traversTunnel", self, "_on_Dodo_traversTunnel")
 	$"../Dodo".connect("dodoTombe", self, "_on_Dodo_murHit")
+	$"../Dodo".connect("dodoHalo", self, "_on_Dodo_halo")
 	
 
 # Ajoute une nouvelle platforme 
@@ -141,6 +146,14 @@ func _on_Main_beat():
 				grille[ligne][colone] = null
 	# si dernière colone
 	load_colone_chunk(NB_COLONE-1)
+	
+	if show_halo:
+		$"../Halo".position.x -= 1024/NB_COLONE
+		print($"../Halo".position.x)
+		index_deplacement_halo += 1
+		
+		if index_deplacement_halo > NB_COLONE - $"../Dodo".COLONE_JOUEUR:
+			on_halo()
 
 func remove_item_grille(ligne: int, colone: int):
 	var item = grille[ligne][colone]
@@ -157,14 +170,13 @@ func get_colone_grille(colone: int):
 	
 
 func _on_Dodo_traversTunnel():
-	actu_chunk += 1
-	if actu_chunk >= len(all_chunk):
-		actu_chunk = 0
+	if not monde_interieur:
+		actu_chunk += 1
+		if actu_chunk >= len(all_chunk):
+			actu_chunk = 0
 	load_chunk(actu_chunk, false)
 
 func _on_Dodo_murHit():
-	# TODO animation drop
-	$"../Rythme".wait_time = 2
 	$"../Rythme".start()
 	$"../Dodo".is_tombe = false
 	
@@ -177,8 +189,8 @@ var chunk_position_colone = 0
 var monde_interieur: bool = false
 var all_chunk = [
 	[ # un chunk 
-		# options {biome, speed}
-		[0, 0.45],
+		# options {biome}
+		[0],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
@@ -248,11 +260,16 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	var options_chunk = chunk[0]
 	monde_interieur = is_monde_interieur
 	
+	emit_signal("musique_charge", options_chunk[0], monde_interieur)
+	
 	# options
 	if is_monde_interieur:
-		$"../Rythme".wait_time = options_chunk[1]*2
+		# set background
+		$"../../ParallaxBackground/Background/Sprite".animation = str(options_chunk[0]) + "_nuit"
 	else:
-		$"../Rythme".wait_time = options_chunk[1]
+		# set background
+		$"../../ParallaxBackground/Background/Sprite".animation = str(options_chunk[0])
+	
 	
 	chunk_position_colone = 1
 	# précédant tunnel
@@ -285,6 +302,36 @@ func load_colone_chunk(colone: int):
 					3: # tunnel
 						add_tunnel(ligne, colone)
 	else:
-		for ligne in range(5):
-			remove_item_grille(ligne, colone)
-			add_tunnel(ligne, colone)
+		# fin chunk
+		if not monde_interieur:
+			# si monde extèrieur : 
+			for ligne in range(5):
+				remove_item_grille(ligne, colone)
+				add_tunnel(ligne, colone)
+		else:
+			# monde intèrieur
+			for ligne in range(4):
+				remove_item_grille(ligne, colone)
+			remove_item_grille(5-1, colone)
+			add_platforme(5-1, colone)
+			
+			if not show_halo:
+				$"../Halo".position.x = 1500
+				$"../Halo".position.y = 300
+				$"../Halo".show()
+				show_halo = true
+				index_deplacement_halo = 0
+				
+func on_halo():
+	$"../Rythme".stop()
+	emit_signal("halo")
+
+func _on_Dodo_halo():
+	print("_on_Dodo_halo")
+	$"../Dodo".is_halo = false
+	show_halo = false
+	$"../Halo".hide()
+	
+	load_chunk(actu_chunk, false)
+	$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
+	$"../Rythme".start()

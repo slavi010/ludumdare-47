@@ -13,7 +13,7 @@ var scale_platforme = 1
 export var DECROISSANCE_SCALE = 0.9
 # max scale
 export var MAX_SCALE_X = 1.5
-export var MAX_SCALE_Y = 2
+export var MAX_SCALE_Y = 1.5
 
 var SCALE_X = 1
 
