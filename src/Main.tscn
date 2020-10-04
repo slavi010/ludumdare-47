@@ -28,14 +28,14 @@ animations = [ {
 "name": "0_nuit",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 15 ) ],
 "loop": true,
 "name": "2_nuit",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ) ],
@@ -43,9 +43,9 @@ animations = [ {
 "name": "0",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "1",
+"name": "2",
 "speed": 5.0
 } ]
 

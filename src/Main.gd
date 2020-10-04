@@ -64,14 +64,19 @@ func _process(delta):
 		
 
 func _on_Musique_change(biome: int, is_monde_interieur: bool):
-	var index_musique = biome*2
-	if is_monde_interieur:
-		index_musique += 1
-	
-	if actu_musique != index_musique:
-		if actu_musique >= 0 and actu_musique < len(musiquePlayers):
-			musiquePlayers[actu_musique][0].stop()
-		actu_musique = index_musique
+	if $All/Introduction.intro:
+		pass
+	else:
+		var index_musique = biome*2
+		if is_monde_interieur:
+			index_musique += 1
+		
+		if actu_musique != index_musique:
+			if actu_musique >= 0 and actu_musique < len(musiquePlayers):
+				musiquePlayers[actu_musique][0].stop()
+			actu_musique = index_musique
 
 func _on_Introduction_intro():
 	$All/Rythme.stop()
+	musiquePlayers[actu_musique][0].stop()
+	actu_musique = -1
