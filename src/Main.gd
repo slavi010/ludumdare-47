@@ -11,7 +11,7 @@ export var PITCH_SCALE_AMPLIFICATION = 1.5
 func _ready():
 	$Rythme.connect("timeout", self, "_on_Rythme_timeout")
 	
-	$Grille.load_chunk(0)
+	$Grille.load_chunk(0, false)
 
 
 func _on_Rythme_timeout(): #A chaque beat envoi un signal

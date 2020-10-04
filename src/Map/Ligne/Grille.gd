@@ -14,8 +14,9 @@ extends Node2D
 var level_index = 0
 
 var Platforme = load("res://Map/Obstacle/Platforme.tscn")
+var Mur = load("res://Map/Obstacle/Mur.tscn")
 var Tunnel = load("res://Map/Obstacle/Tunnel.tscn")
-# les platformes 
+# LA GRILLE 
 var grille: Array = []
 
 # ligne
@@ -64,6 +65,7 @@ func _ready():
 	# connect à chaque beat
 	$"../".connect("beat", self, "_on_Main_beat")
 	$"../Dodo".connect("traversTunnel", self, "_on_Dodo_traversTunnel")
+	$"../Dodo".connect("dodoTombe", self, "_on_Dodo_murHit")
 	
 
 # Ajoute une nouvelle platforme 
@@ -79,7 +81,24 @@ func add_platforme(ligne: int, colone: int = -1, biome: int = 0):
 	platforme.SCALE_X = LARGEUR_PLATFORME_SCALE
 	platforme.set_patrol_node(lignes[ligne])
 	platforme.set_biome(biome)
-	platforme.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)	
+	platforme.monde_interieur = monde_interieur
+	platforme.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
+	
+# Ajoute un nouveau mur 
+# la ligne de la mur et sa colone (-1 pour tout à droite)
+# si déjà objet, ne fait rien
+func add_mur(ligne: int, colone: int = -1, biome: int = 0):
+	if colone < 0:
+		colone = NB_COLONE + colone
+	
+	var mur = Mur.instance()
+	grille[ligne][colone] = mur
+	lignes[ligne].add_child(mur)
+	mur.SCALE_X = LARGEUR_PLATFORME_SCALE
+	mur.set_patrol_node(lignes[ligne])
+	mur.set_biome(biome)
+	mur.monde_interieur = monde_interieur
+	mur.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)	
 
 # Ajoute un nouveau tunnel
 # la ligne de la tunnel et sa colone (-1 pour tout à droite)
@@ -93,6 +112,7 @@ func add_tunnel(ligne: int, colone: int = -1):
 	lignes[ligne].add_child(tunnel)
 	tunnel.SCALE_X = LARGEUR_PLATFORME_SCALE
 	tunnel.set_patrol_node(lignes[ligne])
+	tunnel.monde_interieur = monde_interieur
 	tunnel.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 	
 
@@ -140,11 +160,21 @@ func _on_Dodo_traversTunnel():
 	actu_chunk += 1
 	if actu_chunk >= len(all_chunk):
 		actu_chunk = 0
-	load_chunk(actu_chunk)
+	load_chunk(actu_chunk, false)
 
+func _on_Dodo_murHit():
+	# TODO animation drop
+	$"../Rythme".wait_time = 2
+	$"../Rythme".start()
+	$"../Dodo".is_tombe = false
+	
+	load_chunk(actu_chunk, true)
+	$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
+	
 
 var actu_chunk = 0
 var chunk_position_colone = 0
+var monde_interieur: bool = false
 var all_chunk = [
 	[ # un chunk 
 		# options {biome, speed}
@@ -156,7 +186,7 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 1, 0, 0, 1],
+		[0, 1, 0, 1, 2],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
@@ -212,13 +242,17 @@ var all_chunk = [
 ]
 
 
-func load_chunk(index_chunk: int):
+func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	actu_chunk = index_chunk
 	var chunk = all_chunk[index_chunk]
 	var options_chunk = chunk[0]
+	monde_interieur = is_monde_interieur
 	
 	# options
-	$"../Rythme".wait_time = options_chunk[1]
+	if is_monde_interieur:
+		$"../Rythme".wait_time = options_chunk[1]*2
+	else:
+		$"../Rythme".wait_time = options_chunk[1]
 	
 	chunk_position_colone = 1
 	# précédant tunnel
@@ -229,6 +263,10 @@ func load_chunk(index_chunk: int):
 	
 	for colone in range($"../Dodo".COLONE_JOUEUR + 1, NB_COLONE):
 		load_colone_chunk(colone)
+		
+	$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
+	$"../Dodo".target_position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
+	
 	
 func load_colone_chunk(colone: int):
 	if (chunk_position_colone < len(all_chunk[actu_chunk]) - 1):
@@ -242,6 +280,8 @@ func load_colone_chunk(colone: int):
 						grille[ligne][colone] = null
 					1: # platforme
 						add_platforme(ligne, colone, all_chunk[actu_chunk][0][0])
+					2: # platforme
+						add_mur(ligne, colone, all_chunk[actu_chunk][0][0])
 					3: # tunnel
 						add_tunnel(ligne, colone)
 	else:
