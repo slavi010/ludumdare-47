@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://UI/Assets/Sun.png" type="Texture" id=1]
 [ext_resource path="res://Player/dodoD.png" type="Texture" id=2]
@@ -39,6 +39,8 @@
 [ext_resource path="res://image/plateformes/city/boxAlt.png" type="Texture" id=37]
 [ext_resource path="res://image/plateformes/city/metalPlatformWireAlt.png" type="Texture" id=38]
 [ext_resource path="res://image/plateformes/city/beamBolts.png" type="Texture" id=39]
+[ext_resource path="res://UI/Menu/Options_menu.tscn" type="PackedScene" id=40]
+[ext_resource path="res://Music/City_easy.ogg" type="AudioStream" id=41]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 15 )
@@ -2194,6 +2196,12 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Options" parent="." instance=ExtResource( 40 )]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 41 )
+autoplay = true
 [connection signal="mouse_entered" from="Control/NewGameButton" to="Control/NewGameButton" method="_on_NewGameButton_mouse_entered"]
 [connection signal="mouse_exited" from="Control/NewGameButton" to="Control/NewGameButton" method="_on_NewGameButton_mouse_exited"]
 [connection signal="mouse_entered" from="Control/OptionsButton" to="Control/OptionsButton" method="_on_OptionsButton_mouse_entered"]
