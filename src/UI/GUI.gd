@@ -14,7 +14,7 @@ func _ready():
 	for i in range(nb_pasteque_total):
 		add_pasteque()
 	print(get_script().get_path().get_file())
-	$"../Dodo".connect("energyChange", self, "on_energy_change")
+	$"../../Dodo".connect("energyChange", self, "on_energy_change")
 
 #Création et ajout de la node energie dans l'arborescence
 func add_pasteque():

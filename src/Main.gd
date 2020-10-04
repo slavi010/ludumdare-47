@@ -10,6 +10,9 @@ export var PITCH_SCALE_AMPLIFICATION = 1.5
 var musiquePlayers: Array = []
 var actu_musique: int = -1
 
+var feux = 2
+var is_feux_on: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"All/Rythme".connect("timeout", self, "_on_Rythme_timeout")
