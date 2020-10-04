@@ -24,14 +24,30 @@ func show_message(text):
 	$Panel/PastqText.text = text
 	$Panel/PastqText.show()
 
-#insérer tout les textes dan le tableau Dialogue
-func fill_dialogue():
-	pass
+#On parcours le dossier pour connaître le nb de fichiers
+func dir_number():
+	var d: int = 0
+	var dir = Directory.new()
+	dir.open("res://Narration")
+	dir.list_dir_begin(true)
+	while true:
+		if  "" == dir.get_next():
+			break
+		else:
+			d += 1
+	dir.list_dir_end()
+	return d
+
+#insérer tout les textes dans le tableau Dialogue
+func remplir_dialogue():
+	var d: int = dir_number()
+	for i in range(d):
+		var text = "res://Narration/intro" + str(i) + ".txt" 
+		load_text(text)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_text("res://intro1.txt")
-	show_message(dialogue[0])
+	remplir_dialogue()
 	var _v = $Panel/PastqText.get_line_count()
 	$Panel/Box.start()
 
