@@ -6,6 +6,9 @@ var l = 3 #Nombre de lignes à présenter
 
 var textSpeed = 0
 
+
+var dialogue = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var _v = $Panel/PastqText.get_line_count()
@@ -42,3 +45,6 @@ func _process(_delta): #Montre les lignes une par une
 		textSpeed = 0
 		$Panel/PastqText.show()
 		l += 3
+	if l > $Panel/PastqText.get_line_count():
+		$Panel.hide()
+		$Pastq.hide()
