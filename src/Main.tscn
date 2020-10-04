@@ -23,14 +23,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 13 ) ],
 "loop": true,
-"name": "0_nuit",
+"name": "1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ) ],
+"frames": [ ExtResource( 15 ) ],
 "loop": true,
-"name": "2",
+"name": "2_nuit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ) ],
@@ -38,9 +38,9 @@ animations = [ {
 "name": "1_nuit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "1",
+"name": "2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ) ],
@@ -48,9 +48,9 @@ animations = [ {
 "name": "0",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 15 ) ],
+"frames": [ ExtResource( 11 ) ],
 "loop": true,
-"name": "2_nuit",
+"name": "0_nuit",
 "speed": 5.0
 } ]
 

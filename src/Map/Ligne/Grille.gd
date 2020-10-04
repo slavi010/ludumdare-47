@@ -18,6 +18,9 @@ var Platforme = load("res://Map/Obstacle/Platforme.tscn")
 var Mur = load("res://Map/Obstacle/Mur.tscn")
 var Tunnel = load("res://Map/Obstacle/Tunnel.tscn")
 var BreakWall = load("res://Map/Obstacle/BreakWall.tscn")
+
+var SHADERS = [preload("res://Nuit.shader"), preload("res://Ville_nuit.shader"), preload("res://Ocean_nuit.shader")]
+
 # LA GRILLE 
 var grille: Array = []
 
@@ -90,6 +93,9 @@ func add_platforme(ligne: int, colone: int = -1, biome: int = 0):
 	platforme.monde_interieur = monde_interieur
 	platforme.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 	
+	if monde_interieur :
+		platforme.get_node("AnimatedSprite").material.shader = SHADERS[biome]
+	
 # Ajoute un nouveau mur 
 # la ligne de la mur et sa colone (-1 pour tout à droite)
 # si déjà objet, ne fait rien
@@ -105,6 +111,9 @@ func add_mur(ligne: int, colone: int = -1, biome: int = 0):
 	mur.set_biome(biome)
 	mur.monde_interieur = monde_interieur
 	mur.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)	
+	
+	if monde_interieur :
+		mur.get_node("AnimatedSprite").material.shader = SHADERS[biome]
 
 # Ajoute un nouveau tunnel
 # la ligne de la tunnel et sa colone (-1 pour tout à droite)
@@ -135,7 +144,6 @@ func add_break_wall(ligne: int, colone: int = -1):
 	brealWall.set_patrol_node(lignes[ligne])
 	brealWall.monde_interieur = monde_interieur
 	brealWall.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
-	
 
 func get_position_case_grille(ligne: int, colone: int):
 	return ((colone + 0.5)) #TODO
