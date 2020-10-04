@@ -17,6 +17,7 @@ var level_index = 0
 var Platforme = load("res://Map/Obstacle/Platforme.tscn")
 var Mur = load("res://Map/Obstacle/Mur.tscn")
 var Tunnel = load("res://Map/Obstacle/Tunnel.tscn")
+var BreakWall = load("res://Map/Obstacle/BreakWall.tscn")
 # LA GRILLE 
 var grille: Array = []
 
@@ -120,6 +121,21 @@ func add_tunnel(ligne: int, colone: int = -1):
 	tunnel.monde_interieur = monde_interieur
 	tunnel.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 	
+# Ajoute un nouveau break wall
+# la ligne de la tunnel et sa colone (-1 pour tout à droite)
+# si déjà objet, ne fait rien
+func add_break_wall(ligne: int, colone: int = -1):
+	if colone < 0:
+		colone = NB_COLONE + colone
+	
+	var brealWall = BreakWall.instance()
+	grille[ligne][colone] = brealWall
+	lignes[ligne].add_child(brealWall)
+	brealWall.SCALE_X = LARGEUR_PLATFORME_SCALE
+	brealWall.set_patrol_node(lignes[ligne])
+	brealWall.monde_interieur = monde_interieur
+	brealWall.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
+	
 
 func get_position_case_grille(ligne: int, colone: int):
 	return ((colone + 0.5)) #TODO
@@ -198,12 +214,12 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
+		[0, 0, 1, 0, 4],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
 		[0, 1, 0, 1, 2],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 1, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 1, 0, 1],
 		[0, 0, 1, 0, 1],
@@ -218,7 +234,7 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 2],
 		[0, 1, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
@@ -237,7 +253,7 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 2],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 1, 0, 0, 1],
@@ -301,6 +317,8 @@ func load_colone_chunk(colone: int):
 						add_mur(ligne, colone, all_chunk[actu_chunk][0][0])
 					3: # tunnel
 						add_tunnel(ligne, colone)
+					4: # breakWall
+						add_break_wall(ligne, colone)
 	else:
 		# fin chunk
 		if not monde_interieur:

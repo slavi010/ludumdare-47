@@ -9,7 +9,7 @@ signal dodoHalo
 
 var TAILLE_ECRANT2 = get_viewport_rect().size
 var MAX_ENERGY = 5
-var energy: int = MAX_ENERGY #Le nombre de sp va de 0 à 3
+var energy: float = MAX_ENERGY #Le nombre de sp va de 0 à 3
 
 var position_ligne = 4
 
@@ -21,6 +21,7 @@ export var COLONE_JOUEUR = 2
 #  1 = up
 #  2 = down
 #  3 = planer
+#  4 = dash
 var pressed_action = 0
 
 var target_position: Vector2 = Vector2(0, 0)
@@ -77,6 +78,9 @@ func _unhandled_input(event):
 		if event.pressed and event.scancode == KEY_RIGHT: # planer
 			pressed_action = 3
 			too_much_input()
+		if event.pressed and event.scancode == KEY_LEFT: # dash
+			pressed_action = 4
+			too_much_input()
 			
 
 func too_much_input():
@@ -103,9 +107,16 @@ func _on_Main_beat():
 					move_player(1)
 					is_action_done = true
 			3: 
-				if is_no_platforme(actu_col[position_ligne]) and \
+				if energy >= 0.5 and \
+				is_no_platforme(actu_col[position_ligne]) and \
 				is_no_mur(next_col[position_ligne]):
 					move_player(3)
+					is_action_done = true
+			4:
+				if energy >= 1 and \
+				is_no_platforme(next_col[position_ligne]) and \
+				is_no_mur(next_col[position_ligne]):
+					move_player(4)
 					is_action_done = true
 	if not is_action_done:
 		move_player(0)
@@ -142,18 +153,40 @@ func move_player(action: int):
 				position_ligne += 1
 				set_target_position(get_vecteur_position_ligne(position_ligne))
 				set_sprite_drop(true)
+				
+				if not is_no_break_wall(next_col[position_ligne]):
+					mort()
 			else:
-				if is_no_mur(next_col[position_ligne]):
+				if is_no_mur(next_col[position_ligne]) and \
+				is_no_break_wall(next_col[position_ligne]):
 					energy = min(MAX_ENERGY, energy + 1)
 					emit_signal("energyChange", energy)
 					set_sprite_walk(true)
 				else:
-					# mort
-					$"../Rythme".stop()
-					$TimerMal.start()
-					set_sprite_mal()
+					mort()
 		3:
+			energy -= 0.5
+			emit_signal("energyChange", energy)
 			set_sprite_plane(true)
+		4:
+			if not(is_no_mur(next_col[position_ligne])):
+				mort()
+			else:
+				if is_no_break_wall(next_col[position_ligne]):
+					set_sprite_dash(true)
+				else:
+					set_sprite_dash(true)
+
+				energy -= 1
+				emit_signal("energyChange", energy)
+
+
+			set_sprite_plane(true)
+
+func mort():
+	$"../Rythme".stop()
+	$TimerMal.start()
+	set_sprite_mal()
 
 func is_no_platforme(obj):
 	if obj != null:
@@ -165,6 +198,13 @@ func is_no_platforme(obj):
 func is_no_mur(obj):
 	if obj != null:
 		if obj.get_script().get_path().get_file() != "Mur.gd":
+			return true
+		return false
+	return true
+
+func is_no_break_wall(obj):
+	if obj != null:
+		if obj.get_script().get_path().get_file() != "BreakWall.gd":
 			return true
 		return false
 	return true
@@ -240,6 +280,9 @@ func set_sprite_up(active_timer: bool):
 	change_animation("jump", active_timer)
 	
 func set_sprite_plane(active_timer: bool):
+	change_animation("planer", active_timer)
+
+func set_sprite_dash(active_timer: bool):
 	change_animation("planer", active_timer)
 
 func set_sprite_drop(active_timer: bool):
