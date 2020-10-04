@@ -13,10 +13,7 @@ func _ready():
 	#Instanciation du nombre d'energie par défaut
 	for i in range(nb_pasteque_total):
 		add_pasteque()
-	#$"../Dodo".connect("energyChange", self, "on_energy_change")
-	on_energy_change(0.5)
-	on_energy_change(1.5)
-	on_energy_change(2.5)
+	$"../Dodo".connect("energyChange", self, "on_energy_change")
 
 #Création et ajout de la node energie dans l'arborescence
 func add_pasteque():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Dodo.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Music/City_easy.ogg" type="AudioStream" id=18]
 [ext_resource path="res://Music/FOREST_hard.ogg" type="AudioStream" id=19]
 [ext_resource path="res://Music/City_Hard.ogg" type="AudioStream" id=20]
+[ext_resource path="res://Music/OCEAN_hard.ogg" type="AudioStream" id=21]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -33,14 +34,14 @@ animations = [ {
 "name": "0",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ) ],
@@ -70,9 +71,9 @@ motion_scale = Vector2( 0.95, 1 )
 motion_mirroring = Vector2( 2685, 0 )
 
 [node name="Sprite" type="AnimatedSprite" parent="ParallaxBackground/Background"]
-scale = Vector2( 0.55, 0.55 )
+scale = Vector2( 0.55, 0.556229 )
 frames = SubResource( 1 )
-animation = "1_nuit"
+animation = "0"
 centered = false
 
 [node name="All" type="CanvasLayer" parent="."]
@@ -116,5 +117,6 @@ stream = ExtResource( 18 )
 stream = ExtResource( 18 )
 
 [node name="OceanExt" type="AudioStreamPlayer" parent="All"]
+stream = ExtResource( 21 )
 
 [node name="OceanInt" type="AudioStreamPlayer" parent="All"]

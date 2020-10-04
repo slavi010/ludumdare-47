@@ -44,7 +44,6 @@ var index_deplacement_halo = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	centre_planet = Vector2(get_viewport_rect().size.x/2, get_viewport_rect().size.y*10)
-	print(centre_planet)
 	# NB_BLOCK_PAR_LIGNE = TODO
 	# HAUTEUR_LIGNE = TODO
 	# LARGEUR_LIGNE = TODO
@@ -165,7 +164,6 @@ func _on_Main_beat():
 	
 	if show_halo:
 		$"../Halo".position.x -= 1024/NB_COLONE
-		print($"../Halo".position.x)
 		index_deplacement_halo += 1
 		
 		if index_deplacement_halo > NB_COLONE - $"../Dodo".COLONE_JOUEUR:
@@ -191,6 +189,7 @@ func _on_Dodo_traversTunnel():
 		if actu_chunk >= len(all_chunk):
 			actu_chunk = 0
 	load_chunk(actu_chunk, false)
+	$"../Rythme".start()
 
 func _on_Dodo_murHit():
 	$"../Rythme".start()
@@ -212,7 +211,7 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 1],
 		[0, 0, 1, 0, 4],
 		[0, 0, 0, 0, 1],
@@ -289,12 +288,12 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	
 	chunk_position_colone = 1
 	# précédant tunnel
-	for colone in range(0, $"../Dodo".COLONE_JOUEUR + 1):
+	for colone in range(0, $"../Dodo".COLONE_JOUEUR):
 		for ligne in range(5):
 			remove_item_grille(ligne, colone)
 			add_tunnel(ligne, colone)
 	
-	for colone in range($"../Dodo".COLONE_JOUEUR + 1, NB_COLONE):
+	for colone in range($"../Dodo".COLONE_JOUEUR, NB_COLONE):
 		load_colone_chunk(colone)
 		
 	$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
@@ -345,7 +344,6 @@ func on_halo():
 	emit_signal("halo")
 
 func _on_Dodo_halo():
-	print("_on_Dodo_halo")
 	$"../Dodo".is_halo = false
 	show_halo = false
 	$"../Halo".hide()
