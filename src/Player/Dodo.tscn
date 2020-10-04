@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player/Dodo.gd" type="Script" id=1]
 [ext_resource path="res://Player/dodoD.png" type="Texture" id=2]
@@ -8,27 +8,33 @@
 [ext_resource path="res://Player/Dodo_Saute2.png" type="Texture" id=6]
 [ext_resource path="res://Player/Dodo_Saute.png" type="Texture" id=7]
 [ext_resource path="res://Player/vole_dodo2.png" type="Texture" id=8]
+[ext_resource path="res://Player/dodo_a_mal.png" type="Texture" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "drop",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "planer",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "jump",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 2 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "walk",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "mal",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "drop",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "jump",
 "speed": 10.0
 } ]
 
@@ -37,6 +43,7 @@ extents = Vector2( 26.0329, 29.5982 )
 
 [node name="Dodo" type="Area2D"]
 position = Vector2( 67.1429, 60.0259 )
+z_index = 5
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -45,8 +52,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 1 )
-animation = "planer"
-frame = 1
+animation = "mal"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -54,4 +60,15 @@ shape = SubResource( 2 )
 
 [node name="TimerChangeAnimation" type="Timer" parent="."]
 wait_time = 0.1
+one_shot = true
+
+[node name="TimerMal" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerTombe" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="TimerHalo" type="Timer" parent="."]
+wait_time = 2.5
 one_shot = true
