@@ -4,7 +4,7 @@ extends Node2D
 # le LEVEL
 # 0 = rien
 # 1 = platforme
-# 2 = mure
+# 2 = mur
 # 3 = tunnel
 
 signal halo
@@ -198,6 +198,7 @@ func _on_Dodo_murHit():
 	load_chunk(actu_chunk, true)
 	$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
 	
+
 
 var actu_chunk = 0
 var chunk_position_colone = 0
