@@ -1,25 +1,75 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://UI/Assets/Feux.png" type="Texture" id=1]
 [ext_resource path="res://UI/GUI.gd" type="Script" id=2]
+[ext_resource path="res://UI/Assets/vert.png" type="Texture" id=3]
+[ext_resource path="res://UI/Assets/rouge.png" type="Texture" id=4]
+[ext_resource path="res://UI/Assets/orange.png" type="Texture" id=5]
+[ext_resource path="res://UI/Feux.gd" type="Script" id=6]
 
-[node name="GUI" type="MarginContainer"]
+[node name="GUI" type="Control"]
 anchor_right = 1.0
-margin_bottom = 64.0
-custom_constants/margin_right = 0
-custom_constants/margin_top = 0
-custom_constants/margin_left = 0
-custom_constants/margin_bottom = 0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 72.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 margin_right = 1024.0
-margin_bottom = 64.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Energy" type="HBoxContainer" parent="HBoxContainer"]
+[node name="Energy" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 64.0
+margin_bottom = 72.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
+
+[node name="Feux" type="TextureRect" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -61.9999
+margin_top = -110.0
+margin_right = -19.9999
+margin_bottom = -9.99994
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource( 1 )
+expand = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rouge" type="TextureRect" parent="Feux"]
+margin_left = 8.17865
+margin_top = 6.99197
+margin_right = 33.1786
+margin_bottom = 31.992
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Orange" type="TextureRect" parent="Feux"]
+margin_left = 8.10699
+margin_top = 37.1602
+margin_right = 33.107
+margin_bottom = 62.1602
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Vert" type="TextureRect" parent="Feux"]
+margin_left = 8.40771
+margin_top = 67.9779
+margin_right = 33.4077
+margin_bottom = 92.9779
+texture = ExtResource( 3 )
+expand = true
