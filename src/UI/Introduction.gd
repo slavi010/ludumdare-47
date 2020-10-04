@@ -7,34 +7,33 @@ var l = 3 #Nombre de lignes à présenter
 var textSpeed = 0
 #Tableau où se trouve les dialogues
 var dialogue : Array = []
-var line = ""
 
 #Ouverture d'un fichier
 func load_text(file):
 	var f = File.new()
+	var line = ""
+	var lines = ""
 	f.open(file, File.READ)
 	while not f.eof_reached():
 		line = f.get_line()
-		line += "\n"
-		print(line)
+		lines += line + "\n"
+	dialogue.append(lines)
 	f.close()
-	return line
-	#dialogue.append(line)
-
-
-func turoriel():
-	load_text("//res:intro1")
-	
-	
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	var _v = $Panel/PastqText.get_line_count()
-	$Panel/Box.start()
 
 func show_message(text):
 	$Panel/PastqText.text = text
 	$Panel/PastqText.show()
+
+#insérer tout les textes dan le tableau Dialogue
+func fill_dialogue():
+	pass
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	load_text("res://intro1.txt")
+	show_message(dialogue[0])
+	var _v = $Panel/PastqText.get_line_count()
+	$Panel/Box.start()
 
 
 func anim_text():
