@@ -13,6 +13,7 @@ func _ready():
 	#Instanciation du nombre d'energie par défaut
 	for i in range(nb_pasteque_total):
 		add_pasteque()
+	print(get_script().get_path().get_file())
 	$"../Dodo".connect("energyChange", self, "on_energy_change")
 
 #Création et ajout de la node energie dans l'arborescence

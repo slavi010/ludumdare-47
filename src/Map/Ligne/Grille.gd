@@ -285,6 +285,14 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 		# set background
 		$"../../ParallaxBackground/Background/Sprite".animation = str(options_chunk[0])
 	
+	# biome ville
+	if options_chunk[0] == 1:
+		$"../GUI/Feux".afficher()
+		$"../../".is_feux_on = true
+		$"../../".feux = 2
+	else:
+		$"../GUI/Feux".cacher()
+		$"../../".is_feux_on = false
 	
 	chunk_position_colone = 1
 	# précédant tunnel
