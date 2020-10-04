@@ -5,9 +5,27 @@ var n = true
 var l = 3 #Nombre de lignes à présenter
 
 var textSpeed = 0
+#Tableau où se trouve les dialogues
+var dialogue : Array = []
+var line = ""
+
+#Ouverture d'un fichier
+func load_text(file):
+	var f = File.new()
+	f.open(file, File.READ)
+	while not f.eof_reached():
+		line = f.get_line()
+		line += "\n"
+		print(line)
+	f.close()
+	return line
+	#dialogue.append(line)
 
 
-var dialogue = []
+func turoriel():
+	load_text("//res:intro1")
+	
+	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,7 +55,7 @@ func montre_dialogue():
 		textSpeed += 1
 		$Panel/PastqText.visible_characters = textSpeed
 
-func _process(_delta): #Montre les lignes une par une
+func _physics_process(_delta): #Montre les lignes une par une
 	$Panel/PastqText.set_max_lines_visible(3)
 	if Input.is_action_just_pressed("ui_select"):
 		$Panel/PastqText.hide()
