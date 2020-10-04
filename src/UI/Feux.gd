@@ -6,7 +6,9 @@ func _ready():
 	feux = [$Rouge,$Orange,$Vert]
 	hide_all()
 	feux[1].show()
-	supprimer()
+	cacher()
+	
+	$"../../../".connect("feuxChange", self, "on_color_change")
 
 func hide_all():
 	for feu in feux:
@@ -19,5 +21,5 @@ func on_color_change(color):
 func afficher():
 	show()
 
-func supprimer():
+func cacher():
 	hide()

@@ -6,10 +6,11 @@ extends Node2D
 # 1 = platforme
 # 2 = mur
 # 3 = tunnel
+# 4 = break wall
+# 5 = vent
 
 signal halo
 signal musique_charge(biome, is_monde_interieur)
-
 
 # l'index de la prochaine colone du level à afficher
 var level_index = 0
@@ -18,6 +19,7 @@ var Platforme = load("res://Map/Obstacle/Platforme.tscn")
 var Mur = load("res://Map/Obstacle/Mur.tscn")
 var Tunnel = load("res://Map/Obstacle/Tunnel.tscn")
 var BreakWall = load("res://Map/Obstacle/BreakWall.tscn")
+var Wind = load("res://Map/Obstacle/Wind.tscn")
 
 var SHADERS = [preload("res://Nuit.shader"), preload("res://Ville_nuit.shader"), preload("res://Ocean_nuit.shader")]
 
@@ -119,7 +121,7 @@ func add_mur(ligne: int, colone: int = -1, biome: int = 0):
 		mur.get_node("AnimatedSprite").material.shader = null
 
 # Ajoute un nouveau tunnel
-# la ligne de la tunnel et sa colone (-1 pour tout à droite)
+# la ligne du  tunnel et sa colone (-1 pour tout à droite)
 # si déjà objet, ne fait rien
 func add_tunnel(ligne: int, colone: int = -1):
 	if colone < 0:
@@ -134,7 +136,7 @@ func add_tunnel(ligne: int, colone: int = -1):
 	tunnel.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 	
 # Ajoute un nouveau break wall
-# la ligne de la tunnel et sa colone (-1 pour tout à droite)
+# la ligne du break wall et sa colone (-1 pour tout à droite)
 # si déjà objet, ne fait rien
 func add_break_wall(ligne: int, colone: int = -1):
 	if colone < 0:
@@ -147,6 +149,21 @@ func add_break_wall(ligne: int, colone: int = -1):
 	brealWall.set_patrol_node(lignes[ligne])
 	brealWall.monde_interieur = monde_interieur
 	brealWall.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
+	
+# Ajoute un nouveau wind
+# la ligne du wind et sa colone (-1 pour tout à droite)
+# si déjà objet, ne fait rien
+func add_break_wind(ligne: int, colone: int = -1):
+	if colone < 0:
+		colone = NB_COLONE + colone
+	
+	var wind = Wind.instance()
+	grille[ligne][colone] = wind
+	lignes[ligne].add_child(wind)
+	wind.SCALE_X = LARGEUR_PLATFORME_SCALE
+	wind.set_patrol_node(lignes[ligne])
+	wind.monde_interieur = monde_interieur
+	wind.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 
 func get_position_case_grille(ligne: int, colone: int):
 	return ((colone + 0.5)) #TODO
@@ -196,12 +213,17 @@ func get_colone_grille(colone: int):
 	
 
 func _on_Dodo_traversTunnel():
-	if not monde_interieur:
+	if not $"../Introduction".intro:
+		if not monde_interieur:
+			actu_chunk += 1
+			if actu_chunk >= len(all_chunk):
+				actu_chunk = 2
+		load_chunk(actu_chunk, false)
+		$"../Rythme".start()
+	else:
 		actu_chunk += 1
-		if actu_chunk >= len(all_chunk):
-			actu_chunk = 0
-	load_chunk(actu_chunk, false)
-	$"../Rythme".start()
+		load_chunk(actu_chunk, false)
+		$"../Rythme".start()
 
 func _on_Dodo_murHit():
 	$"../Rythme".start()
@@ -212,10 +234,50 @@ func _on_Dodo_murHit():
 	
 
 
-var actu_chunk = 0
+var actu_chunk = 2
 var chunk_position_colone = 0
 var monde_interieur: bool = false
 var all_chunk = [
+	[ # un chunk tutoriel
+		#Saut
+		[0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+	],
+	[ # un chunk tutoriel
+		#Planer
+		[0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+	],
 	[ # un chunk 
 		# options {biome}
 		[0],
@@ -224,7 +286,7 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 1, 0, 4],
 		[0, 0, 0, 0, 1],
@@ -288,7 +350,11 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	var options_chunk = chunk[0]
 	monde_interieur = is_monde_interieur
 	
-	emit_signal("musique_charge", options_chunk[0], monde_interieur)
+	if not $"../Introduction".intro:
+		emit_signal("musique_charge", options_chunk[0], monde_interieur)
+	else:
+		if index_chunk == 2:
+			$"../Introduction".intro = false
 	
 	# options
 	if is_monde_interieur:
@@ -298,6 +364,15 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 		# set background
 		$"../../ParallaxBackground/Background/Sprite".animation = str(options_chunk[0])
 	
+	# biome ville
+	if options_chunk[0] == 1:
+		$"../GUI/Feux".afficher()
+		$"../GUI/Feux".on_color_change(2)
+		$"../../".is_feux_on = true
+		$"../../".feux = 2
+	else:
+		$"../GUI/Feux".cacher()
+		$"../../".is_feux_on = false
 	
 	chunk_position_colone = 1
 	# précédant tunnel
@@ -331,6 +406,8 @@ func load_colone_chunk(colone: int):
 						add_tunnel(ligne, colone)
 					4: # breakWall
 						add_break_wall(ligne, colone)
+					5: # wind
+						add_break_wind(ligne, colone)
 	else:
 		# fin chunk
 		if not monde_interieur:
@@ -343,7 +420,7 @@ func load_colone_chunk(colone: int):
 			for ligne in range(4):
 				remove_item_grille(ligne, colone)
 			remove_item_grille(5-1, colone)
-			add_platforme(5-1, colone)
+			add_platforme(5-1, colone, all_chunk[actu_chunk][0][0])
 			
 			if not show_halo:
 				$"../Halo".position.x = 1500
@@ -361,6 +438,12 @@ func _on_Dodo_halo():
 	show_halo = false
 	$"../Halo".hide()
 	
-	load_chunk(actu_chunk, false)
-	$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
-	$"../Rythme".start()
+	if not $"../Introduction".intro:
+		load_chunk(actu_chunk, false)
+		$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
+		$"../Rythme".start()
+	else: #en cas de tutoriel
+		load_chunk(0, false)
+		$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
+		$"../Rythme".set_wait_time(1)
+		$"../Rythme".start()

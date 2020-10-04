@@ -1,7 +1,7 @@
 extends CanvasLayer
 signal intro
 
-var test = false
+var intro = true
 
 var anim = 0
 var n = true 
@@ -100,7 +100,9 @@ func _physics_process(_delta): #Montre les lignes une par une
 	
 	if Input.is_action_just_pressed("ui_down"):
 		emit_signal("intro")
+	
 	$Panel/PastqText.rect_size = $Panel.rect_size
+	
 	$Panel/PastqText.set_max_lines_visible(3)
 	if Input.is_action_just_pressed("ui_select"):
 		sprite_intro()
