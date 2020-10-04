@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/OCEAN_hard.ogg-06a219928b622a673848023a0b8f0f8b.oggstr"
+
+[deps]
+
+source_file="res://Music/OCEAN_hard.ogg"
+dest_files=[ "res://.import/OCEAN_hard.ogg-06a219928b622a673848023a0b8f0f8b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
