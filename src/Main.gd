@@ -99,13 +99,14 @@ func _on_Musique_change(biome: int, is_monde_interieur: bool):
 
 func _on_Introduction_intro():
 	$All/Rythme.stop()
-	musiquePlayers[actu_musique][0].stop()
-	actu_musique = -1
+	if actu_musique >= 0:
+		musiquePlayers[actu_musique][0].stop()
+		actu_musique = -1
 
 
 func _on_TimerFeuxRouge_timeout():
 	$All/Rythme.start()
-	emit_signal("feuxChange", 2)
+#	emit_signal("feuxChange", 2)
 	feux = 2
 	musiquePlayers[actu_musique][0].play(play_back_position)
 
