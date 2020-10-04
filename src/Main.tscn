@@ -24,14 +24,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 15 ) ],
+"frames": [ ExtResource( 11 ) ],
 "loop": true,
-"name": "2_nuit",
+"name": "0_nuit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "0",
+"name": "2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ) ],
@@ -44,14 +44,14 @@ animations = [ {
 "name": "2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "0_nuit",
+"name": "0",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ) ],
+"frames": [ ExtResource( 15 ) ],
 "loop": true,
-"name": "1_nuit",
+"name": "2_nuit",
 "speed": 5.0
 } ]
 
@@ -95,8 +95,8 @@ script = ExtResource( 5 )
 [node name="Introduction" parent="All" instance=ExtResource( 6 )]
 
 [node name="GUI" parent="All" instance=ExtResource( 7 )]
-margin_top = 0.8909
-margin_bottom = 64.8909
+margin_top = 1.0
+margin_bottom = -6.0
 
 [node name="Halo" parent="All" instance=ExtResource( 16 )]
 position = Vector2( 1479.43, 132.784 )

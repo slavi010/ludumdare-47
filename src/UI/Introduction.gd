@@ -5,11 +5,13 @@ var n = true
 var l = 3 #Nombre de lignes à présenter
 
 var sprite = 0 #Sprite accompagnant le texte
-
 var textSpeed = 0
 #Tableau où se trouve les dialogues
 var dialogue : Array = []
 
+func centrer():
+	pass
+	
 #Ouverture d'un fichier
 func load_text(file):
 	var f = File.new()
