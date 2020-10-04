@@ -15,4 +15,4 @@ They will help you moving up and down and avoiding obstacles BUT
 you can only move in rythm with the beautiful music that I will play now !
 Ohhh yeeeaah baby do you feel those funky beats ?
 Okay move your body and try to jump over this platform
-by pressing UpKey with the right timing !
+by pressing KeyUp with the right timing !

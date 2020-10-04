@@ -108,7 +108,7 @@ func _on_Main_beat():
 					is_action_done = true
 			3: 
 				if energy >= 0.5 and \
-				is_no_platforme(actu_col[position_ligne]) and \
+				is_no_platforme(next_col[position_ligne]) and \
 				is_no_mur(next_col[position_ligne]):
 					move_player(3)
 					is_action_done = true
@@ -127,8 +127,9 @@ func _on_Main_beat():
 	
 	next_col = $"../Grille".get_colone_grille(COLONE_JOUEUR + 1)
 	if is_tunnel(next_col[position_ligne]):
+		$"../Rythme".stop()
 		emit_signal("traversTunnel")
-			
+		
 #	if Input.is_action_pressed("ui_down"):
 
 
@@ -157,13 +158,21 @@ func move_player(action: int):
 				if not is_no_break_wall(next_col[position_ligne]):
 					mort()
 			else:
-				if is_no_mur(next_col[position_ligne]) and \
-				is_no_break_wall(next_col[position_ligne]):
-					energy = min(MAX_ENERGY, energy + 1)
-					emit_signal("energyChange", energy)
-					set_sprite_walk(true)
-				else:
+				if is_no_platforme(next_col[position_ligne]) and \
+				not is_tunnel(next_col[position_ligne]) and position_ligne == 5-1 :
+					for li in range(5):
+						for co in range($"../Grille".NB_COLONE):
+							if $"../Grille".grille[li][co] != null:
+								print($"../Grille".grille[li][co].get_script().get_path().get_file())
 					mort()
+				else:
+					if is_no_mur(next_col[position_ligne]) and \
+					is_no_break_wall(next_col[position_ligne]):
+						energy = min(MAX_ENERGY, energy + 1)
+						emit_signal("energyChange", energy)
+						set_sprite_walk(true)
+					else:
+						mort()
 		3:
 			energy -= 0.5
 			emit_signal("energyChange", energy)
@@ -171,17 +180,16 @@ func move_player(action: int):
 		4:
 			if not(is_no_mur(next_col[position_ligne])):
 				mort()
+				set_sprite_plane(true)
 			else:
 				if is_no_break_wall(next_col[position_ligne]):
-					set_sprite_dash(true)
+					set_sprite_dash(true, false)
 				else:
-					set_sprite_dash(true)
+					set_sprite_dash(false, false)
 
 				energy -= 1
 				emit_signal("energyChange", energy)
-
-
-			set_sprite_plane(true)
+			
 
 func mort():
 	$"../Rythme".stop()
@@ -282,8 +290,14 @@ func set_sprite_up(active_timer: bool):
 func set_sprite_plane(active_timer: bool):
 	change_animation("planer", active_timer)
 
-func set_sprite_dash(active_timer: bool):
-	change_animation("planer", active_timer)
+func set_sprite_dash(feuille: bool, active_timer: bool):
+	if feuille:
+		$AnimatedSprite.animation = "dash"
+	else:
+		$AnimatedSprite.animation = "dash_feuille"
+	if active_timer:
+		$TimerChangeAnimation.wait_time = $"../Rythme".wait_time/2
+		$TimerChangeAnimation.start()
 
 func set_sprite_drop(active_timer: bool):
 	change_animation("drop", active_timer)
