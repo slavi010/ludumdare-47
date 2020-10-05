@@ -1,7 +1,7 @@
 extends CanvasLayer
 signal intro
 
-var intro = true
+var intro = false
 
 var anim = 0
 var n = true 
