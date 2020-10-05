@@ -4,6 +4,8 @@ signal fin_premier_dialogue
 
 var intro = true
 
+var x = 1
+
 var anim = 0
 var n = true 
 var l = 3 #Nombre de lignes à présenter
@@ -15,11 +17,11 @@ var dialogue: Array = []
 var dialogue_index: int = -1
 var dialogue_sprite = [
 	[0],
-	[0, 5, 0, 4, 2, 3, 1],
+	[0, 0, 0, 5, 0, 1, 4, 3, 3],
+	[3],
 	[1],
-	[0],
-	[0],
-	[0],
+	[3],
+	[1],
 	[0],
 	[0],
 	[0],
@@ -87,6 +89,7 @@ func anim_text():
 #Montre petit à petit le dialogue
 func montre_dialogue():
 	var chatLimit = $Panel/PastqText.get_total_character_count()
+	$Panel/PastqText.set_max_lines_visible(3)
 	if textSpeed < chatLimit:
 		textSpeed += 1
 		$Panel/PastqText.visible_characters = textSpeed
@@ -116,19 +119,18 @@ func sprite_intro():
 func _physics_process(_delta): #Montre les lignes une par une
 	$Panel/PastqText.rect_size = $Panel.rect_size
 	
-	$Panel/PastqText.set_max_lines_visible(3)
 	if Input.is_action_just_pressed("ui_select"):
-		print("l=" + str(l) + ", " + str($Panel/PastqText.get_line_count()))
-		if l >= $Panel/PastqText.get_line_count() - 3 - 1:
+		if l >= $Panel/PastqText.get_line_count() - 3 - x:
+			x = 0
 			$Panel.hide()
 			$Pastq.hide()
 			if dialogue_index > 0:
 				$"../Rythme".start()
-				$"../..".actu_musique = -1
+#				$"../..".actu_musique = -1
 				
 			# fin premier dialogue -> affichage menu
 			if dialogue_index == 0:
-				emit_signal("fin_premier_dialogue")	
+				emit_signal("fin_premier_dialogue")
 			
 			dialogue_index = -1
 		else:

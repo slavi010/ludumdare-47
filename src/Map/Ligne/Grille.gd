@@ -33,7 +33,7 @@ var grille: Array = []
 var lignes: Array = []
 	
 # taille de l'écrant
-var TAILLE_ECRANT = get_viewport_rect().size
+var TAILLE_ECRANT = Vector2(1024, 600)
 
 # hauteur entre deux ligne en pixel
 var HAUTEUR_LIGNE = 65
@@ -53,7 +53,7 @@ var is_space: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	centre_planet = Vector2(get_viewport_rect().size.x/2, get_viewport_rect().size.y*10)
+	centre_planet = Vector2(1024/2, 600*10)
 	# NB_BLOCK_PAR_LIGNE = TODO
 	# HAUTEUR_LIGNE = TODO
 	# LARGEUR_LIGNE = TODO
@@ -205,7 +205,7 @@ func _on_Main_beat():
 					remove_item_grille(ligne, colone)
 					pass
 				else:
-					grille[ligne][colone - 1] = item
+					grille[ligne][colone - 1] = item  
 					item.move(colone - 1, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 				grille[ligne][colone] = null
 	# si dernière colone
@@ -273,12 +273,12 @@ var monde_interieur: bool = false
 var all_chunk = [
 	[ # un chunk tutoriel
 		#Saut
-		[0],
+		[2],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 6, 1],
+		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 1, 2],
@@ -315,27 +315,6 @@ var all_chunk = [
 	],
 	[ 
 		[0],
-			[ # un chunk SPACE
-		# options {biome, speed}
-		[0, 0.45],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 2],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 1, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 1, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 1, 0, 1],
-		[0, 0, 1, 0, 1],
-		[0, 0, 0, 0, 1],
-	],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
@@ -354,6 +333,22 @@ var all_chunk = [
 		[0, 0, 1, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 2],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 1, 0, 1],
+		[0, 0, 1, 0, 1],
 		[0, 0, 0, 0, 1],
 	],
 	[
@@ -449,10 +444,6 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-	],
-	[ # un chunk 
-		# options {biome}
-		[0],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
@@ -733,30 +724,6 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
 	],
 ]
 
@@ -786,10 +753,27 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	if not $"../Introduction".flag_passed_dialogue[4] and \
 	index_chunk == 1 and monde_interieur:
 		$"../Introduction".show_dialogue(4)
+	if not $"../Introduction".flag_passed_dialogue[4] and \
+	index_chunk == 1 and monde_interieur:
+		pass
+		#$"../Introduction".show_dialogue(4)
+	if not $"../Introduction".flag_passed_dialogue[4] and \
+	index_chunk == 1 and monde_interieur:
+		pass
+		#$"../Introduction".show_dialogue(4)
+	if not $"../Introduction".flag_passed_dialogue[4] and \
+	index_chunk == 1 and monde_interieur:
+		pass
+		#$"../Introduction".show_dialogue(4)
+	if not $"../Introduction".flag_passed_dialogue[4] and \
+	index_chunk == 1 and monde_interieur:
+		pass
+		#$"../Introduction".show_dialogue(4)
+	
 		
-	if not $"../Introduction".intro:
-		emit_signal("musique_charge", options_chunk[0], monde_interieur)
-	else:
+
+	emit_signal("musique_charge", options_chunk[0], monde_interieur)
+	if $"../Introduction".intro:
 		$"../Rythme".set_wait_time(1)
 	
 	# options
@@ -828,6 +812,10 @@ func load_colone_chunk(colone: int):
 	var biom = all_chunk[actu_chunk][0][0]
 	if is_space:
 		biom = randi() % 3
+	
+	$"../Dodo".is_halo = false
+	show_halo = false
+	$"../Halo".hide()
 	
 	if (chunk_position_colone < len(all_chunk[actu_chunk]) - 1):
 		var col = all_chunk[actu_chunk][chunk_position_colone]
