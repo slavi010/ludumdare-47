@@ -35,7 +35,6 @@ func _ready():
 	$"All/Rythme".stop()
 	
 	
-	
 
 func _on_Menu_start_game():
 	$"All/Grille".load_chunk(0, false)
@@ -140,6 +139,10 @@ func _on_TimerFeuxRouge_timeout():
 
 func _on_Dodo_fleure():
 	print("FLEEEEEEEEEEEEEEEEEEUUUUUUUUUUUUUUUUUUUUUUUUUUUURRRRRRRRRRRRRRRRRRRRRRRR")
+	$TransiSpace.join_space()
+	
+func launch_space():
+	$All.show()
 	$All/Grille.load_chunk(len($All/Grille.all_chunk) - 1, false)
 	$All/Grille.is_space = true
 	$All/Rythme.wait_time = 0.40

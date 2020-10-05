@@ -1,5 +1,7 @@
 extends Control
 
+#func _ready():
+#	join_space()
 
 func join_space():
 	$Avant.show()

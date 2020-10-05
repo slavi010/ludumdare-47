@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://UI/Assets/Sun.png" type="Texture" id=1]
 [ext_resource path="res://Player/dododod2.png" type="Texture" id=2]
@@ -42,6 +42,9 @@
 [ext_resource path="res://UI/Menu/Options_menu.tscn" type="PackedScene" id=40]
 [ext_resource path="res://Music/MENU_track.ogg" type="AudioStream" id=41]
 [ext_resource path="res://Player/dododog2.png" type="Texture" id=42]
+[ext_resource path="res://UI/Menu/CreditButton.gd" type="Script" id=43]
+[ext_resource path="res://image/plateformes/foret/grass_climax.png" type="Texture" id=44]
+[ext_resource path="res://UI/Menu/Crédits.gd" type="Script" id=45]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 15 )
@@ -1936,6 +1939,24 @@ bbcode_text = "Options"
 text = "Options"
 scroll_active = false
 script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditButton" type="RichTextLabel" parent="Control"]
+margin_left = 850.539
+margin_top = 534.273
+margin_right = 1049.54
+margin_bottom = 592.273
+custom_fonts/normal_font = ExtResource( 13 )
+bbcode_enabled = true
+bbcode_text = "Options"
+text = "Options"
+scroll_active = false
+script = ExtResource( 43 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SaintePasteque" type="TextureRect" parent="Control"]
 margin_left = 586.424
@@ -2207,7 +2228,94 @@ visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 41 )
+
+[node name="Crédits" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color( 0, 0, 0, 1 )
+margin_right = 1024.0
+margin_bottom = 598.0
+texture = ExtResource( 44 )
+expand = true
+script = ExtResource( 45 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Créateurs" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -144.0
+margin_top = -279.0
+margin_right = 144.0
+margin_bottom = -221.0
+custom_fonts/font = ExtResource( 13 )
+text = "Staff members :"
+align = 1
+valign = 1
+
+[node name="Créateurs liste" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -115.0
+margin_top = -199.0
+margin_right = 115.0
+margin_bottom = -83.0
+rect_pivot_offset = Vector2( 161.988, 186.512 )
+text = "Besnard Sviatoslav - Lead developer
+Boissiere Aurelien - Developer
+Borius Rémy - Head cook
+Boulai Aurelie - 2D Artist
+Duport Andgel - Game designer
+Gouraud Yvann - Developer
+"
+align = 1
+valign = 1
+
+[node name="Special thank" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -134.5
+margin_top = -74.0
+margin_right = 134.5
+margin_bottom = -16.0
+custom_fonts/font = ExtResource( 13 )
+text = "Special thank :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ST liste" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -151.0
+margin_top = 1.0
+margin_right = 151.0
+margin_bottom = 128.0
+rect_pivot_offset = Vector2( 161.988, 186.512 )
+text = "Andgel's roomates who have helped us
+ from time to time
+
+Rémy once again, whose dishes are still 
+unequalled by this day
+
+Andgel's cat, without whom the quota
+ of cuddles would not have been met"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="mouse_entered" from="Control/NewGameButton" to="Control/NewGameButton" method="_on_NewGameButton_mouse_entered"]
 [connection signal="mouse_exited" from="Control/NewGameButton" to="Control/NewGameButton" method="_on_NewGameButton_mouse_exited"]
 [connection signal="mouse_entered" from="Control/OptionsButton" to="Control/OptionsButton" method="_on_OptionsButton_mouse_entered"]
 [connection signal="mouse_exited" from="Control/OptionsButton" to="Control/OptionsButton" method="_on_OptionsButton_mouse_exited"]
+[connection signal="mouse_entered" from="Control/CreditButton" to="Control/CreditButton" method="_on_CreditButton_mouse_entered"]
+[connection signal="mouse_exited" from="Control/CreditButton" to="Control/CreditButton" method="_on_CreditButton_mouse_exited"]
