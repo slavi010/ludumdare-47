@@ -46,6 +46,8 @@ var centre_planet
 var show_halo: bool = false
 var index_deplacement_halo = 0
 
+var is_space: bool = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	centre_planet = Vector2(get_viewport_rect().size.x/2, get_viewport_rect().size.y*10)
@@ -153,7 +155,7 @@ func add_break_wall(ligne: int, colone: int = -1):
 # Ajoute un nouveau wind
 # la ligne du wind et sa colone (-1 pour tout à droite)
 # si déjà objet, ne fait rien
-func add_break_wind(ligne: int, colone: int = -1):
+func add_wind(ligne: int, colone: int = -1):
 	if colone < 0:
 		colone = NB_COLONE + colone
 	
@@ -216,7 +218,7 @@ func _on_Dodo_traversTunnel():
 	if not $"../Introduction".intro:
 		if not monde_interieur:
 			actu_chunk += 1
-			if actu_chunk >= len(all_chunk):
+			if actu_chunk >= len(all_chunk) - 1:
 				actu_chunk = 2
 		load_chunk(actu_chunk, false)
 		$"../Rythme".start()
@@ -344,6 +346,27 @@ var all_chunk = [
 		[0, 0, 1, 0, 1],
 		[0, 0, 0, 0, 1],
 	],
+	[ # un chunk SPACE
+		# options {biome, speed}
+		[0, 0.45],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 2],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 1, 0, 1],
+		[0, 0, 1, 0, 1],
+		[0, 0, 0, 0, 1],
+	],
 ]
 
 
@@ -357,7 +380,6 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	
 	if $"../Introduction".intro and index_chunk == 2:
 		$"../Introduction".intro = false
-		print("index_chunk == 2")
 	
 	
 			
@@ -412,6 +434,10 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	
 	
 func load_colone_chunk(colone: int):
+	var biom = all_chunk[actu_chunk][0][0]
+	if is_space:
+		biom = randi() % 3
+	
 	if (chunk_position_colone < len(all_chunk[actu_chunk]) - 1):
 		var col = all_chunk[actu_chunk][chunk_position_colone]
 		chunk_position_colone += 1
@@ -422,15 +448,15 @@ func load_colone_chunk(colone: int):
 					0: # vide
 						grille[ligne][colone] = null
 					1: # platforme
-						add_platforme(ligne, colone, all_chunk[actu_chunk][0][0])
+						add_platforme(ligne, colone, biom)
 					2: # platforme
-						add_mur(ligne, colone, all_chunk[actu_chunk][0][0])
+						add_mur(ligne, colone, biom)
 					3: # tunnel
 						add_tunnel(ligne, colone)
 					4: # breakWall
 						add_break_wall(ligne, colone)
 					5: # wind
-						add_break_wind(ligne, colone)
+						add_wind(ligne, colone)
 	else:
 		# fin chunk
 		if not monde_interieur:

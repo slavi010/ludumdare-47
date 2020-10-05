@@ -44,6 +44,7 @@ func _ready():
 	$TimerTombe.connect("timeout", self, "_on_TimerTombe_timeout")
 	$"../Grille".connect("halo", self, "_on_Grille_halo")
 	$TimerHalo.connect("timeout", self, "_on_TimerHalo_timeout")
+	$TimerTwerk.connect("timeout", self, "_on_TimerTwerk_timeout")
 	
 	position = $"../Grille".position
 	scale.x = $"../Grille".HAUTEUR_LIGNE/90.0
@@ -78,15 +79,19 @@ func _unhandled_input(event):
 		if event.pressed and event.scancode == KEY_UP: # aller vers le haut
 			pressed_action = 1
 			too_much_input()
-		if event.pressed and event.scancode == KEY_DOWN: # aller vers le bas
-			pressed_action = 2
-			too_much_input()
 		if event.pressed and event.scancode == KEY_RIGHT: # planer
 			pressed_action = 3
 			too_much_input()
 		if event.pressed and event.scancode == KEY_LEFT: # dash
 			pressed_action = 4
 			too_much_input()
+		if event.pressed and event.scancode == KEY_DOWN: # TWERK
+			if not $"../Rythme".is_stopped():
+				$"../Rythme".stop()
+				$TimerChangeAnimation.stop()
+				$AnimatedSprite.animation = "twerk"
+				$AnimatedSprite.scale = Vector2(0.5, 0.5)
+				$TimerTwerk.start()
 			
 
 func too_much_input(max_input: int = 1):
@@ -308,6 +313,11 @@ func _on_TimerTombe_timeout():
 func _on_TimerHalo_timeout():
 	print("_on_TimerHalo_timeout")
 	emit_signal("dodoHalo")
+	
+func _on_TimerTwerk_timeout():
+	$"../Rythme".start()
+	$AnimatedSprite.scale = Vector2(0.25, 0.25)
+	$AnimatedSprite.animation = "planer"
 
 func set_sprite_up(active_timer: bool):
 	change_animation("jump", active_timer)
