@@ -109,19 +109,19 @@ animations = [ {
 "name": "2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 32 ) ],
-"loop": true,
-"name": "2_nuit",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "0",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 109 ) ],
+"loop": true,
+"name": "1_nuit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 32 ) ],
+"loop": true,
+"name": "2_nuit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ) ],
@@ -129,27 +129,22 @@ animations = [ {
 "name": "0_nuit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 109 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "1_nuit",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 109 ) ],
-"loop": true,
-"name": "1_nuit",
+"name": "0",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "monde_break",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 65 ) ],
 "loop": true,
 "name": "monde_normal",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "monde_break",
 "speed": 5.0
 } ]
 
@@ -227,7 +222,7 @@ position = Vector2( 0, -2 )
 scale = Vector2( 0.55, 0.556229 )
 frames = SubResource( 1 )
 animation = "space"
-frame = 9
+frame = 25
 playing = true
 centered = false
 

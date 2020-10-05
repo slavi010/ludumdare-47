@@ -8,9 +8,11 @@ extends Node2D
 # 3 = tunnel
 # 4 = break wall
 # 5 = vent
+# 6 = fleure
 
 signal halo
 signal musique_charge(biome, is_monde_interieur)
+signal FIN
 
 # l'index de la prochaine colone du level à afficher
 var level_index = 0
@@ -18,6 +20,7 @@ var level_index = 0
 var Platforme = load("res://Map/Obstacle/Platforme.tscn")
 var Mur = load("res://Map/Obstacle/Mur.tscn")
 var Tunnel = load("res://Map/Obstacle/Tunnel.tscn")
+var Fleure = load("res://Map/Obstacle/Fleure.tscn")
 var BreakWall = load("res://Map/Obstacle/BreakWall.tscn")
 var Wind = load("res://Map/Obstacle/Wind.tscn")
 
@@ -136,6 +139,21 @@ func add_tunnel(ligne: int, colone: int = -1):
 	tunnel.set_patrol_node(lignes[ligne])
 	tunnel.monde_interieur = monde_interieur
 	tunnel.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
+
+# Ajoute une nouvelle fleure
+# la ligne du  tunnel et sa colone (-1 pour tout à droite)
+# si déjà objet, ne fait rien
+func add_fleure(ligne: int, colone: int = -1):
+	if colone < 0:
+		colone = NB_COLONE + colone
+	
+	var fleure = Fleure.instance()
+	grille[ligne][colone] = fleure
+	lignes[ligne].add_child(fleure)
+	fleure.SCALE_X = LARGEUR_PLATFORME_SCALE
+	fleure.set_patrol_node(lignes[ligne])
+	fleure.monde_interieur = monde_interieur
+	fleure.move(colone, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 	
 # Ajoute un nouveau break wall
 # la ligne du break wall et sa colone (-1 pour tout à droite)
@@ -231,12 +249,15 @@ func _on_Dodo_traversTunnel():
 #		$"../Rythme".start()
 
 func _on_Dodo_murHit():
-	$"../Rythme".start()
 	$"../Dodo".is_tombe = false
-	
-	load_chunk(actu_chunk, true)
-	$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
 
+	if not is_space:
+		$"../Rythme".start()
+		load_chunk(actu_chunk, true)
+		$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
+	else:
+		# FIN
+		emit_signal("FIN")
 
 # le LEVEL
 # 0 = rien
@@ -256,7 +277,7 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
+		[0, 0, 0, 6, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 1, 2],
@@ -618,13 +639,31 @@ func load_colone_chunk(colone: int):
 						add_break_wall(ligne, colone)
 					5: # wind
 						add_wind(ligne, colone)
+					6: # fleure
+						add_fleure(ligne, colone)
 	else:
 		# fin chunk
 		if not monde_interieur:
-			# si monde extèrieur : 
-			for ligne in range(5):
-				remove_item_grille(ligne, colone)
-				add_tunnel(ligne, colone)
+			if not is_space:
+				# si monde extèrieur : 
+				for ligne in range(5):
+					remove_item_grille(ligne, colone)
+					add_tunnel(ligne, colone)
+			else:
+				# space
+				for ligne in range(5):
+					remove_item_grille(ligne, colone)
+					var rand = randi() % 100
+					if rand < 70:# vide
+						grille[ligne][colone] = null
+					elif rand < 90: # platforme
+						add_platforme(ligne, colone, biom)
+					elif rand < 95: # mur
+						add_mur(ligne, colone, biom)
+					elif rand < 97: # breakWall
+						add_break_wall(ligne, colone)
+					else: # wind
+						add_wind(ligne, colone)
 		else:
 			# monde intèrieur
 			for ligne in range(4):
