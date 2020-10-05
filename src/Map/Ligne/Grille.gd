@@ -14,6 +14,7 @@ signal halo
 signal musique_charge(biome, is_monde_interieur)
 signal FIN
 
+var loop = 0
 # l'index de la prochaine colone du level à afficher
 var level_index = 0
 
@@ -238,6 +239,7 @@ func _on_Dodo_traversTunnel():
 			actu_chunk += 1
 			if actu_chunk >= len(all_chunk) - 1:
 				actu_chunk = 2
+				loop += 1
 		load_chunk(actu_chunk, false)
 		$"../Rythme".start()
 	else:
@@ -273,7 +275,7 @@ var monde_interieur: bool = false
 var all_chunk = [
 	[ # un chunk tutoriel
 		#Saut
-		[2],
+		[0],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
@@ -343,7 +345,7 @@ var all_chunk = [
 		[0, 1, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
+		[0, 0, 0, 6, 1],
 		[0, 0, 0, 0, 1],
 		[0, 1, 0, 0, 1],
 		[0, 0, 0, 0, 1],
@@ -753,24 +755,39 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	if not $"../Introduction".flag_passed_dialogue[4] and \
 	index_chunk == 1 and monde_interieur:
 		$"../Introduction".show_dialogue(4)
-	if not $"../Introduction".flag_passed_dialogue[4] and \
-	index_chunk == 1 and monde_interieur:
-		pass
-		#$"../Introduction".show_dialogue(4)
-	if not $"../Introduction".flag_passed_dialogue[4] and \
-	index_chunk == 1 and monde_interieur:
-		pass
-		#$"../Introduction".show_dialogue(4)
-	if not $"../Introduction".flag_passed_dialogue[4] and \
-	index_chunk == 1 and monde_interieur:
-		pass
-		#$"../Introduction".show_dialogue(4)
-	if not $"../Introduction".flag_passed_dialogue[4] and \
-	index_chunk == 1 and monde_interieur:
-		pass
-		#$"../Introduction".show_dialogue(4)
-	
-		
+	if not $"../Introduction".flag_passed_dialogue[5] and \
+	index_chunk == 2 and not monde_interieur:
+		$"../Introduction".show_dialogue(5)
+	if not $"../Introduction".flag_passed_dialogue[6] and \
+	index_chunk == 2 and monde_interieur:
+		$"../Introduction".show_dialogue(6)
+	if not $"../Introduction".flag_passed_dialogue[7] and \
+	index_chunk == 3 and not monde_interieur:
+		$"../Introduction".show_dialogue(7)
+	if not $"../Introduction".flag_passed_dialogue[8] and \
+	index_chunk == 7 and monde_interieur:
+		$"../Introduction".show_dialogue(8)
+	if not $"../Introduction".flag_passed_dialogue[9] and \
+	index_chunk == 11 and monde_interieur:
+		$"../Introduction".show_dialogue(9)
+	if not $"../Introduction".flag_passed_dialogue[10] and \
+	index_chunk == 13 and monde_interieur:
+		$"../Introduction".show_dialogue(10)
+	if not $"../Introduction".flag_passed_dialogue[11] and \
+	loop == 1:
+		$"../Introduction".show_dialogue(11)
+	if not $"../Introduction".flag_passed_dialogue[12] and \
+	loop == 2:
+		$"../Introduction".show_dialogue(12)
+	if not $"../Introduction".flag_passed_dialogue[13] and \
+	loop == 3:
+		$"../Introduction".show_dialogue(13)
+	if not $"../Introduction".flag_passed_dialogue[14] and \
+	loop == 4:
+		$"../Introduction".show_dialogue(14)
+	if not $"../Introduction".flag_passed_dialogue[15] and \
+	index_chunk == 14:
+		$"../Introduction".show_dialogue(15)
 
 	emit_signal("musique_charge", options_chunk[0], monde_interieur)
 	if $"../Introduction".intro:
