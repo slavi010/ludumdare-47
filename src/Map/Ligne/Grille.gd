@@ -733,30 +733,6 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
 	],
 ]
 
@@ -789,7 +765,8 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 		
 
 	emit_signal("musique_charge", options_chunk[0], monde_interieur)
-	$"../Rythme".set_wait_time(1)
+	if $"../Introduction".intro:
+		$"../Rythme".set_wait_time(1)
 	
 	# options
 	if is_monde_interieur:
@@ -827,6 +804,10 @@ func load_colone_chunk(colone: int):
 	var biom = all_chunk[actu_chunk][0][0]
 	if is_space:
 		biom = randi() % 3
+	
+	$"../Dodo".is_halo = false
+	show_halo = false
+	$"../Halo".hide()
 	
 	if (chunk_position_colone < len(all_chunk[actu_chunk]) - 1):
 		var col = all_chunk[actu_chunk][chunk_position_colone]

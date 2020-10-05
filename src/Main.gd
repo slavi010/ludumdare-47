@@ -51,6 +51,7 @@ func _on_Rythme_timeout(): #A chaque beat envoi un signal
 	emit_signal("beat")
 	$"All/BeatExt".pitch_scale = max(0.4, 0.4*PITCH_SCALE_AMPLIFICATION/$"All/Rythme".wait_time)
 	$"All/BeatExt".play()
+	print("actu_musique = " +str(actu_musique))
 	
 	# init musique players
 	musiquePlayers = [
