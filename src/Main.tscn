@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=2]
+[gd_scene load_steps=123 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Dodo.tscn" type="PackedScene" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://image/LD_BG_ocean2.png" type="Texture" id=12]
 [ext_resource path="res://image/City_jour.png" type="Texture" id=13]
 [ext_resource path="res://Music/OCEAN_easy.ogg" type="AudioStream" id=14]
-[ext_resource path="res://image/LD_BG_oceannuit2.png" type="Texture" id=15]
 [ext_resource path="res://Map/Obstacle/Halo.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Music/FOREST_easy.ogg" type="AudioStream" id=17]
 [ext_resource path="res://Music/City_easy.ogg" type="AudioStream" id=18]
@@ -130,33 +129,29 @@ animations = [ {
 "name": "space",
 "speed": 20.0
 }, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "2",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ) ],
-"loop": true,
-"name": "2_nuit",
 }, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "0_nuit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "0",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 109 ) ],
 "loop": true,
 "name": "1_nuit",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "1",
 "speed": 5.0
 } ]
 
