@@ -114,9 +114,9 @@ animations = [ {
 "name": "1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "0_nuit",
+"name": "0",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 109 ) ],
@@ -124,9 +124,9 @@ animations = [ {
 "name": "1_nuit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 11 ) ],
 "loop": true,
-"name": "0",
+"name": "0_nuit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 32 ) ],
@@ -137,14 +137,14 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 65 ) ],
-"loop": true,
-"name": "monde_normal",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "monde_break",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 65 ) ],
+"loop": true,
+"name": "monde_normal",
 "speed": 5.0
 } ]
 
@@ -221,8 +221,7 @@ motion_mirroring = Vector2( 2685, 0 )
 position = Vector2( 0, -2 )
 scale = Vector2( 0.55, 0.556229 )
 frames = SubResource( 1 )
-animation = "space"
-frame = 49
+animation = "monde_normal"
 playing = true
 centered = false
 
@@ -278,7 +277,6 @@ wait_time = 2.0
 one_shot = true
 
 [node name="world" type="AnimatedSprite" parent="."]
-visible = false
 position = Vector2( 503.234, 355.067 )
 scale = Vector2( 1.01304, 1.00521 )
 frames = SubResource( 2 )
