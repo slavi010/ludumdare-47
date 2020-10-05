@@ -118,17 +118,16 @@ func _physics_process(_delta): #Montre les lignes une par une
 	
 	$Panel/PastqText.set_max_lines_visible(3)
 	if Input.is_action_just_pressed("ui_select"):
-		print("l=" + str(l) + ", " + str($Panel/PastqText.get_line_count()))
 		if l >= $Panel/PastqText.get_line_count() - 3 - 1:
 			$Panel.hide()
 			$Pastq.hide()
 			if dialogue_index > 0:
 				$"../Rythme".start()
-				$"../..".actu_musique = -1
+#				$"../..".actu_musique = -1
 				
 			# fin premier dialogue -> affichage menu
 			if dialogue_index == 0:
-				emit_signal("fin_premier_dialogue")	
+				emit_signal("fin_premier_dialogue")
 			
 			dialogue_index = -1
 		else:

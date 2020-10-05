@@ -36,10 +36,8 @@ func _ready():
 	
 	
 	
-	
 
 func _on_Menu_start_game():
-	print("_on_Menu_start_game")
 	$"All/Grille".load_chunk(0, false)
 	$"All/TextureRect/Control".hide()
 	$"All/TextureRect/Options".hide()
@@ -47,6 +45,7 @@ func _on_Menu_start_game():
 	$"All/Dodo/".show()
 	$"All/Grille/".show()
 	$"All/Introduction".show_dialogue(1)
+	$"All/TextureRect/AudioStreamPlayer".stop()
 
 func _on_Rythme_timeout(): #A chaque beat envoi un signal
 	emit_signal("beat")
@@ -129,6 +128,7 @@ func _on_Introduction_intro():
 		
 func _on_Introduction_fin_premier_dialogue():
 	$"All/TextureRect/Control/".show()
+	$"All/TextureRect/AudioStreamPlayer".play()
 
 
 func _on_TimerFeuxRouge_timeout():

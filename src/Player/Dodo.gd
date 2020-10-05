@@ -8,7 +8,7 @@ signal dodoTombe
 signal dodoHalo
 signal FLEURE
 
-var TAILLE_ECRANT2 = get_viewport_rect().size
+var TAILLE_ECRANT2 = Vector2(1024, 600)
 var MAX_ENERGY = 5
 var energy: float = MAX_ENERGY #Le nombre de sp va de 0 à 3
 
@@ -322,7 +322,6 @@ func _on_TimerTombe_timeout():
 	emit_signal("dodoTombe")
 	
 func _on_TimerHalo_timeout():
-	print("_on_TimerHalo_timeout")
 	emit_signal("dodoHalo")
 	
 func _on_TimerTwerk_timeout():

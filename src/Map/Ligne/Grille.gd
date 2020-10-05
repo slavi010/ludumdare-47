@@ -33,7 +33,7 @@ var grille: Array = []
 var lignes: Array = []
 	
 # taille de l'écrant
-var TAILLE_ECRANT = get_viewport_rect().size
+var TAILLE_ECRANT = Vector2(1024, 600)
 
 # hauteur entre deux ligne en pixel
 var HAUTEUR_LIGNE = 65
@@ -53,7 +53,7 @@ var is_space: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	centre_planet = Vector2(get_viewport_rect().size.x/2, get_viewport_rect().size.y*10)
+	centre_planet = Vector2(1024/2, 600*10)
 	# NB_BLOCK_PAR_LIGNE = TODO
 	# HAUTEUR_LIGNE = TODO
 	# LARGEUR_LIGNE = TODO
@@ -205,7 +205,7 @@ func _on_Main_beat():
 					remove_item_grille(ligne, colone)
 					pass
 				else:
-					grille[ligne][colone - 1] = item
+					grille[ligne][colone - 1] = item  
 					item.move(colone - 1, NB_COLONE, LARGEUR_LIGNE, HAUTEUR_LIGNE)
 				grille[ligne][colone] = null
 	# si dernière colone
@@ -578,10 +578,9 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	index_chunk == 1 and monde_interieur:
 		$"../Introduction".show_dialogue(4)
 		
-	if not $"../Introduction".intro:
-		emit_signal("musique_charge", options_chunk[0], monde_interieur)
-	else:
-		$"../Rythme".set_wait_time(1)
+
+	emit_signal("musique_charge", options_chunk[0], monde_interieur)
+	$"../Rythme".set_wait_time(1)
 	
 	# options
 	if is_monde_interieur:
