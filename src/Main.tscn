@@ -22,7 +22,7 @@
 [ext_resource path="res://Music/City_Hard.ogg" type="AudioStream" id=20]
 [ext_resource path="res://Music/OCEAN_hard.ogg" type="AudioStream" id=21]
 [ext_resource path="res://image/LD_BG_oceannuit2.png" type="Texture" id=22]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_071_delay-0.1s.png" type="Texture" id=64]
+[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_000_delay-0.1s.png" type="Texture" id=64]
 [ext_resource path="res://image/Monde_du_dodo.png" type="Texture" id=65]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -30,16 +30,16 @@ animations = [ {
 "frames": [ ExtResource( 64 ) ],
 "loop": true,
 "name": "space",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "0",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "0_nuit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ) ],
@@ -47,14 +47,19 @@ animations = [ {
 "name": "1",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 109 ) ],
+"loop": true,
+"name": "1_nuit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "2_nuit",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "2",
 "speed": 5.0
 } ]
 
@@ -142,6 +147,9 @@ motion_mirroring = Vector2( 2685, 0 )
 
 [node name="Sprite" type="AnimatedSprite" parent="ParallaxBackground/Background"]
 scale = Vector2( 0.5354, 0.556229 )
+[node name="Sprite" type="AnimatedSprite" parent="ParallaxBackground/Background"]
+position = Vector2( 0, -2 )
+scale = Vector2( 0.55, 0.556229 )
 frames = SubResource( 1 )
 animation = "space"
 playing = true

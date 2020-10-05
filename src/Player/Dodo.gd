@@ -70,7 +70,7 @@ func _physics_process(delta):
 	
 func _unhandled_input(event):
 	if $"../../".is_feux_on and $"../../".feux == 0:
-		too_much_input(2)
+		too_much_input(3)
 		if faild_input:
 			$"../../TimerFeuxRouge".stop()
 			$"../../".feux = 2
@@ -112,9 +112,7 @@ func _on_Main_beat():
 		match pressed_action:
 			1:
 				if (position_ligne > 0) and energy > 0 and \
-				is_no_platforme(actu_col[position_ligne - 1]) and \
 				is_no_platforme(next_col[position_ligne - 1]) and \
-				is_no_mur(actu_col[position_ligne - 1]) and \
 				is_no_mur(next_col[position_ligne - 1]):
 					move_player(1)
 					is_action_done = true
@@ -165,9 +163,7 @@ func move_player(action: int):
 				set_sprite_up(true)
 		0:
 			if (position_ligne <  4) and \
-			is_no_platforme(actu_col[position_ligne]) and \
 			is_no_platforme(next_col[position_ligne]) and \
-			is_no_mur(actu_col[position_ligne + 1]) and \
 			is_no_mur(next_col[position_ligne + 1]):
 				position_ligne += 1
 				set_target_position(get_vecteur_position_ligne(position_ligne))
@@ -175,10 +171,6 @@ func move_player(action: int):
 				
 				if not is_no_break_wall(next_col[position_ligne]):
 					mort()
-					
-				if not is_no_wind(next_col[position_ligne]):
-					position_ligne -= 1
-					set_target_position(get_vecteur_position_ligne(position_ligne))
 			else:
 				if is_no_platforme(next_col[position_ligne]) and \
 				not is_tunnel(next_col[position_ligne]) and position_ligne == 5-1 :
@@ -191,6 +183,10 @@ func move_player(action: int):
 						set_sprite_walk(true)
 					else:
 						mort()
+			if (position_ligne > 0):
+				if not is_no_wind(next_col[position_ligne]):
+					position_ligne -= 1
+					set_target_position(get_vecteur_position_ligne(position_ligne))
 		3:
 			energy -= 0.5
 			emit_signal("energyChange", energy)

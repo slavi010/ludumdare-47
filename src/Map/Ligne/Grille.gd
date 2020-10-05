@@ -52,6 +52,7 @@ var index_deplacement_halo = 0
 
 var is_space: bool = false
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	centre_planet = Vector2(1024/2, 600*10)
@@ -741,6 +742,9 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	if $"../Introduction".intro and index_chunk == 2:
 		$"../Introduction".intro = false
 	
+	$"../Dodo".is_halo = false
+	show_halo = false
+	$"../Halo".hide()
 	
 			
 	if not $"../Introduction".flag_passed_dialogue[1] and \
@@ -791,7 +795,7 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 
 	emit_signal("musique_charge", options_chunk[0], monde_interieur)
 	if $"../Introduction".intro:
-		$"../Rythme".set_wait_time(1)
+		$"../Rythme".set_wait_time(0.8)
 	
 	# options
 	if is_monde_interieur:
@@ -829,10 +833,6 @@ func load_colone_chunk(colone: int):
 	var biom = all_chunk[actu_chunk][0][0]
 	if is_space:
 		biom = randi() % 3
-	
-	$"../Dodo".is_halo = false
-	show_halo = false
-	$"../Halo".hide()
 	
 	if (chunk_position_colone < len(all_chunk[actu_chunk]) - 1):
 		var col = all_chunk[actu_chunk][chunk_position_colone]
