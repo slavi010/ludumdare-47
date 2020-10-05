@@ -16,6 +16,7 @@ func _on_Transi_timeout():
 	hide()
 	$Apres.show()
 	$RetourJeu.start()
+	$"../".launch_space()
 
 
 func _on_RetourJeu_timeout():

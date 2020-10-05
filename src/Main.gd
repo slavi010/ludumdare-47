@@ -139,10 +139,15 @@ func _on_TimerFeuxRouge_timeout():
 
 func _on_Dodo_fleure():
 	print("FLEEEEEEEEEEEEEEEEEEUUUUUUUUUUUUUUUUUUUUUUUUUUUURRRRRRRRRRRRRRRRRRRRRRRR")
+	$"All/GUI/".hide()
+	$"All/Dodo/".hide()
+	$"All/Grille/".hide()
 	$TransiSpace.join_space()
 	
 func launch_space():
-	$All.show()
+	$"All/GUI/".show()
+	$"All/Dodo/".show()
+	$"All/Grille/".show()
 	$All/Grille.load_chunk(len($All/Grille.all_chunk) - 1, false)
 	$All/Grille.is_space = true
 	$All/Rythme.wait_time = 0.40

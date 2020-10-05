@@ -1,5 +1,5 @@
 
-[blush]Whoaa ! Nice jiggling belly for a player 1 !
+Whoaa ! Nice jiggling belly for a player 1 !
 
 
-[normal] Ok so now, let's try to glide ! Press ", glidekey," to reach new heights !
+Ok so now, let's try to glide ! Press KEY RIGHT to reach new heights !

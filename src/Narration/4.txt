@@ -1,5 +1,5 @@
 
-[surprised]Whoaa, This sure was painful.
+Whoaa, This sure was painful.
 
 
-[normal] Well let's try again, Press  to reach new heights !
+Well let's try again, Press KEY RIGHT to reach new heights !
