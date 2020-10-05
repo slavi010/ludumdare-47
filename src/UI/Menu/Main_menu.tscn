@@ -2231,7 +2231,6 @@ visible = false
 stream = ExtResource( 41 )
 
 [node name="Crédits" type="TextureRect" parent="."]
-visible = false
 self_modulate = Color( 0, 0, 0, 1 )
 margin_right = 1024.0
 margin_bottom = 598.0
@@ -2247,24 +2246,27 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -144.0
-margin_top = -279.0
-margin_right = 144.0
-margin_bottom = -221.0
+margin_left = -484.179
+margin_top = -271.44
+margin_right = -196.179
+margin_bottom = -213.44
 custom_fonts/font = ExtResource( 13 )
 text = "Staff members :"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Créateurs liste" type="Label" parent="Crédits"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -115.0
-margin_top = -199.0
-margin_right = 115.0
-margin_bottom = -83.0
+margin_left = -455.179
+margin_top = -191.44
+margin_right = -225.179
+margin_bottom = -75.4405
 rect_pivot_offset = Vector2( 161.988, 186.512 )
 text = "Besnard Sviatoslav - Lead developer
 Boissiere Aurelien - Developer
