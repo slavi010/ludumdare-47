@@ -1,0 +1,371 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://image/plateformes/foret/grass.png" type="Texture" id=1]
+[ext_resource path="res://Nuit.shader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+
+[node name="World" type="Node"]
+
+[node name="CameraHolder" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="CameraHolder"]
+current = true
+
+[node name="Sprites" type="Node" parent="."]
+
+[node name="Foret" type="Node" parent="Sprites"]
+
+[node name="Jour" type="Node" parent="Sprites/Foret"]
+
+[node name="Ground" type="Node2D" parent="Sprites/Foret/Jour"]
+
+[node name="Sprite" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+texture = ExtResource( 1 )
+
+[node name="Sprite2" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 55.9028, 5.7755 )
+rotation = 0.20944
+texture = ExtResource( 1 )
+
+[node name="Sprite3" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 111.326, 24.4484 )
+rotation = 0.418879
+scale = Vector2( 1, 0.996394 )
+texture = ExtResource( 1 )
+
+[node name="Sprite4" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 160.523, 54.9867 )
+rotation = 0.628319
+scale = Vector2( 1, 0.971484 )
+texture = ExtResource( 1 )
+
+[node name="Sprite5" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 200.625, 93.3762 )
+rotation = 0.837758
+scale = Vector2( 1, 0.954434 )
+texture = ExtResource( 1 )
+
+[node name="Sprite6" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 231.347, 138.234 )
+rotation = 1.0472
+scale = Vector2( 1, 0.935204 )
+texture = ExtResource( 1 )
+
+[node name="Sprite7" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 252.776, 189.023 )
+rotation = 1.25664
+scale = Vector2( 1, 0.935387 )
+texture = ExtResource( 1 )
+
+[node name="Sprite8" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 263.243, 242.978 )
+rotation = 1.46608
+scale = Vector2( 1, 0.937163 )
+texture = ExtResource( 1 )
+
+[node name="Sprite9" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 262.06, 296.838 )
+rotation = 1.67552
+scale = Vector2( 1, 0.934797 )
+texture = ExtResource( 1 )
+
+[node name="Sprite10" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 248.885, 349.757 )
+rotation = 1.88496
+scale = Vector2( 1, 0.918819 )
+texture = ExtResource( 1 )
+
+[node name="Sprite11" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 225.021, 399.925 )
+rotation = 2.0944
+scale = Vector2( 1, 0.894032 )
+texture = ExtResource( 1 )
+
+[node name="Sprite12" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 190.646, 445.032 )
+rotation = 2.30383
+scale = Vector2( 1, 0.866754 )
+texture = ExtResource( 1 )
+
+[node name="Sprite13" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 148.323, 480.879 )
+rotation = 2.51327
+scale = Vector2( 1, 0.848126 )
+texture = ExtResource( 1 )
+
+[node name="Sprite14" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 100.09, 507.899 )
+rotation = 2.72271
+scale = Vector2( 1, 0.826096 )
+texture = ExtResource( 1 )
+
+[node name="Sprite15" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( 47.8885, 523.95 )
+rotation = 2.93215
+scale = Vector2( 1, 0.800987 )
+texture = ExtResource( 1 )
+
+[node name="Sprite16" type="Sprite" parent="Sprites/Foret/Jour/Ground"]
+position = Vector2( -6.3362, 525.493 )
+rotation = -3.14159
+scale = Vector2( 1, 0.707607 )
+texture = ExtResource( 1 )
+
+[node name="Ground2" type="Node2D" parent="Sprites/Foret/Jour"]
+position = Vector2( -4.58627, 540.649 )
+rotation = 3.14159
+
+[node name="Sprite" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 0, 11.8484 )
+scale = Vector2( 1, 0.774316 )
+texture = ExtResource( 1 )
+
+[node name="Sprite2" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 53.1687, 18.6388 )
+rotation = 0.20944
+scale = Vector2( 1, 0.749511 )
+texture = ExtResource( 1 )
+
+[node name="Sprite3" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 106.637, 34.98 )
+rotation = 0.418879
+scale = Vector2( 1, 0.776808 )
+texture = ExtResource( 1 )
+
+[node name="Sprite4" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 154.999, 62.5896 )
+rotation = 0.628319
+scale = Vector2( 1, 0.79248 )
+texture = ExtResource( 1 )
+
+[node name="Sprite5" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 195.247, 98.2183 )
+rotation = 0.837758
+scale = Vector2( 1, 0.816597 )
+texture = ExtResource( 1 )
+
+[node name="Sprite6" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 227.179, 140.64 )
+rotation = 1.0472
+scale = Vector2( 1, 0.843538 )
+texture = ExtResource( 1 )
+
+[node name="Sprite7" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 249.529, 190.077 )
+rotation = 1.25664
+scale = Vector2( 1, 0.870371 )
+texture = ExtResource( 1 )
+
+[node name="Sprite8" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 261.549, 243.156 )
+rotation = 1.46608
+scale = Vector2( 1, 0.90472 )
+texture = ExtResource( 1 )
+
+[node name="Sprite9" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 261.89, 296.82 )
+rotation = 1.67552
+scale = Vector2( 1, 0.93154 )
+texture = ExtResource( 1 )
+
+[node name="Sprite10" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 250.666, 350.335 )
+rotation = 1.88496
+scale = Vector2( 1, 0.954476 )
+texture = ExtResource( 1 )
+
+[node name="Sprite11" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 228.954, 402.196 )
+rotation = 2.0944
+scale = Vector2( 1, 0.980538 )
+texture = ExtResource( 1 )
+
+[node name="Sprite12" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 195.845, 449.713 )
+rotation = 2.30383
+texture = ExtResource( 1 )
+
+[node name="Sprite13" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 153.009, 487.329 )
+rotation = 2.51327
+texture = ExtResource( 1 )
+
+[node name="Sprite14" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 103.804, 516.24 )
+rotation = 2.72271
+texture = ExtResource( 1 )
+
+[node name="Sprite15" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( 50.0608, 534.169 )
+rotation = 2.93215
+texture = ExtResource( 1 )
+
+[node name="Sprite16" type="Sprite" parent="Sprites/Foret/Jour/Ground2"]
+position = Vector2( -6.3362, 540.844 )
+rotation = -3.14159
+texture = ExtResource( 1 )
+
+[node name="Nuit" type="Node2D" parent="Sprites/Foret"]
+
+[node name="Ground" type="Node2D" parent="Sprites/Foret/Nuit"]
+
+[node name="Sprite" type="Sprite" parent="Sprites/Foret/Nuit/Ground"]
+material = SubResource( 1 )
+position = Vector2( 0.318491, 78.746 )
+rotation = 3.14159
+scale = Vector2( 1, 0.599977 )
+texture = ExtResource( 1 )
+
+[node name="Sprite2" type="Sprite" parent="Sprites/Foret/Nuit/Ground"]
+material = SubResource( 1 )
+position = Vector2( 56.4502, 89.6515 )
+rotation = 3.45575
+scale = Vector2( 1, 0.618452 )
+texture = ExtResource( 1 )
+
+[node name="Sprite3" type="Sprite" parent="Sprites/Foret/Nuit/Ground"]
+material = SubResource( 1 )
+position = Vector2( 106.471, 118.104 )
+rotation = 3.76991
+scale = Vector2( 1, 0.671544 )
+texture = ExtResource( 1 )
+
+[node name="Sprite4" type="Sprite" parent="Sprites/Foret/Nuit/Ground"]
+material = SubResource( 1 )
+position = Vector2( 143.218, 159.15 )
+rotation = 4.08407
+scale = Vector2( 1, 0.732747 )
+texture = ExtResource( 1 )
+
+[node name="Sprite5" type="Sprite" parent="Sprites/Foret/Nuit/Ground"]
+material = SubResource( 1 )
+position = Vector2( 167.593, 210.176 )
+rotation = 4.39823
+scale = Vector2( 1, 0.775372 )
+texture = ExtResource( 1 )
+
+[node name="Sprite6" type="Sprite" parent="Sprites/Foret/Nuit/Ground"]
+material = SubResource( 1 )
+position = Vector2( 174.399, 263.518 )
+rotation = 4.71239
+scale = Vector2( 1, 0.790476 )
+texture = ExtResource( 1 )
+
+[node name="Sprite7" type="Sprite" parent="Sprites/Foret/Nuit/Ground"]
+material = SubResource( 1 )
+position = Vector2( 164.613, 317.837 )
+rotation = 5.02655
+scale = Vector2( 1, 0.835604 )
+texture = ExtResource( 1 )
+
+[node name="Sprite8" type="Sprite" parent="Sprites/Foret/Nuit/Ground"]
+material = SubResource( 1 )
+position = Vector2( 138.813, 366.892 )
+rotation = 5.34071
+scale = Vector2( 1, 0.884426 )
+texture = ExtResource( 1 )
+
+[node name="Sprite9" type="Sprite" parent="Sprites/Foret/Nuit/Ground"]
+material = SubResource( 1 )
+position = Vector2( 100.038, 406.386 )
+rotation = 5.65487
+scale = Vector2( 1, 0.895949 )
+texture = ExtResource( 1 )
+
+[node name="Sprite10" type="Sprite" parent="Sprites/Foret/Nuit/Ground"]
+material = SubResource( 1 )
+position = Vector2( 52.4134, 430.51 )
+rotation = 5.96903
+scale = Vector2( 1, 0.92854 )
+texture = ExtResource( 1 )
+
+[node name="Sprite11" type="Sprite" parent="Sprites/Foret/Nuit/Ground"]
+material = SubResource( 1 )
+position = Vector2( -0.659752, 436.764 )
+rotation = 6.28319
+texture = ExtResource( 1 )
+
+[node name="Ground2" type="Node2D" parent="Sprites/Foret/Nuit"]
+position = Vector2( -5.80981, 536.396 )
+rotation = 3.14159
+
+[node name="Sprite" type="Sprite" parent="Sprites/Foret/Nuit/Ground2"]
+material = SubResource( 1 )
+position = Vector2( 0.318489, 99.7472 )
+rotation = 3.14159
+texture = ExtResource( 1 )
+
+[node name="Sprite2" type="Sprite" parent="Sprites/Foret/Nuit/Ground2"]
+material = SubResource( 1 )
+position = Vector2( 51.4401, 105.071 )
+rotation = 3.45575
+scale = Vector2( 1, 0.92727 )
+texture = ExtResource( 1 )
+
+[node name="Sprite3" type="Sprite" parent="Sprites/Foret/Nuit/Ground2"]
+material = SubResource( 1 )
+position = Vector2( 100.369, 126.502 )
+rotation = 3.76991
+scale = Vector2( 1, 0.869281 )
+texture = ExtResource( 1 )
+
+[node name="Sprite4" type="Sprite" parent="Sprites/Foret/Nuit/Ground2"]
+material = SubResource( 1 )
+position = Vector2( 139.609, 161.772 )
+rotation = 4.08407
+scale = Vector2( 1, 0.817727 )
+texture = ExtResource( 1 )
+
+[node name="Sprite5" type="Sprite" parent="Sprites/Foret/Nuit/Ground2"]
+material = SubResource( 1 )
+position = Vector2( 167.078, 210.343 )
+rotation = 4.39823
+scale = Vector2( 1, 0.785691 )
+texture = ExtResource( 1 )
+
+[node name="Sprite6" type="Sprite" parent="Sprites/Foret/Nuit/Ground2"]
+material = SubResource( 1 )
+position = Vector2( 176.826, 263.518 )
+rotation = 4.71239
+scale = Vector2( 1, 0.744241 )
+texture = ExtResource( 1 )
+
+[node name="Sprite7" type="Sprite" parent="Sprites/Foret/Nuit/Ground2"]
+material = SubResource( 1 )
+position = Vector2( 172.118, 320.276 )
+rotation = 5.02655
+scale = Vector2( 1, 0.68529 )
+texture = ExtResource( 1 )
+
+[node name="Sprite8" type="Sprite" parent="Sprites/Foret/Nuit/Ground2"]
+material = SubResource( 1 )
+position = Vector2( 148.342, 373.815 )
+rotation = 5.34071
+scale = Vector2( 1, 0.660082 )
+texture = ExtResource( 1 )
+
+[node name="Sprite9" type="Sprite" parent="Sprites/Foret/Nuit/Ground2"]
+material = SubResource( 1 )
+position = Vector2( 108.343, 417.817 )
+rotation = 5.65487
+scale = Vector2( 1, 0.626809 )
+texture = ExtResource( 1 )
+
+[node name="Sprite10" type="Sprite" parent="Sprites/Foret/Nuit/Ground2"]
+material = SubResource( 1 )
+position = Vector2( 57.695, 446.766 )
+rotation = 5.96903
+scale = Vector2( 1, 0.602984 )
+texture = ExtResource( 1 )
+
+[node name="Sprite11" type="Sprite" parent="Sprites/Foret/Nuit/Ground2"]
+material = SubResource( 1 )
+position = Vector2( -0.659756, 458.091 )
+rotation = 6.28319
+scale = Vector2( 1, 0.593776 )
+texture = ExtResource( 1 )

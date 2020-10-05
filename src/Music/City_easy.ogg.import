@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/City_easy.ogg-805906cda7075961df311d036065632a.oggstr"
+
+[deps]
+
+source_file="res://Music/City_easy.ogg"
+dest_files=[ "res://.import/City_easy.ogg-805906cda7075961df311d036065632a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

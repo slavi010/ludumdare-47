@@ -1,0 +1,188 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://UI/Assets/Menu.png" type="Texture" id=1]
+[ext_resource path="res://UI/Assets/arrowLeft.png" type="Texture" id=2]
+[ext_resource path="res://UI/Assets/arrowUp.png" type="Texture" id=3]
+[ext_resource path="res://UI/Assets/arrowRight.png" type="Texture" id=4]
+[ext_resource path="res://UI/Assets/arrowDown.png" type="Texture" id=5]
+[ext_resource path="res://UI/Assets/arial.tres" type="DynamicFont" id=6]
+[ext_resource path="res://UI/Options.gd" type="Script" id=7]
+[ext_resource path="res://UI/Menu/Resume.gd" type="Script" id=8]
+[ext_resource path="res://UI/Menu/HSlider.gd" type="Script" id=9]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://UI/Assets/Arialn.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+font_data = SubResource( 1 )
+
+[node name="Options" type="TextureRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -291.5
+margin_top = -193.5
+margin_right = 291.5
+margin_bottom = 193.5
+texture = ExtResource( 1 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -82.9072
+margin_top = 24.3077
+margin_right = 82.0928
+margin_bottom = 82.3077
+custom_fonts/font = ExtResource( 6 )
+text = "Volume :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HScrollBar" parent="."]
+margin_left = 189.768
+margin_top = 91.9326
+margin_right = 382.768
+margin_bottom = 109.933
+min_value = -24.0
+max_value = 0.0
+step = -1.0
+value = -12.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Touches" type="Control" parent="."]
+margin_left = 142.878
+margin_top = 132.286
+margin_right = 418.878
+margin_bottom = 288.286
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Touches"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 46.8961
+margin_top = -37.9944
+margin_right = 121.896
+margin_bottom = 37.0056
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Touches"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 95.7003
+margin_top = 64.2732
+margin_right = 171.7
+margin_bottom = 94.2732
+custom_fonts/font = SubResource( 2 )
+text = "Glide"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="Touches"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -36.7929
+margin_top = 4.94977
+margin_right = 38.2071
+margin_bottom = 79.9498
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Label3" type="Label" parent="Touches"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -37.8722
+margin_top = -10.512
+margin_right = 38.1278
+margin_bottom = 19.488
+custom_fonts/font = SubResource( 2 )
+text = "Jump"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="Touches"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -116.553
+margin_top = -36.7261
+margin_right = -41.5534
+margin_bottom = 38.2739
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Label4" type="Label" parent="Touches"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -158.503
+margin_top = 63.0997
+margin_right = -82.5029
+margin_bottom = 93.0997
+custom_fonts/font = SubResource( 2 )
+text = "Dash"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect4" type="TextureRect" parent="Touches"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -37.5
+margin_top = -84.0365
+margin_right = 37.5
+margin_bottom = -9.0365
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Label5" type="Label" parent="Touches"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -36.1376
+margin_top = 139.458
+margin_right = 39.8624
+margin_bottom = 169.458
+custom_fonts/font = SubResource( 2 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Label" parent="."]
+margin_left = 144.53
+margin_top = 304.286
+margin_right = 428.53
+margin_bottom = 362.286
+mouse_filter = 0
+custom_fonts/font = ExtResource( 6 )
+text = "Resume"
+align = 1
+valign = 1
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="value_changed" from="HSlider" to="HSlider" method="_on_HSlider_value_changed"]
+[connection signal="mouse_entered" from="Resume" to="Resume" method="_on_Resume_mouse_entered"]
+[connection signal="mouse_exited" from="Resume" to="Resume" method="_on_Resume_mouse_exited"]

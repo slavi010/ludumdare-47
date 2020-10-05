@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://image/plateformes/foret/bush.png" type="Texture" id=1]
+[ext_resource path="res://Map/Obstacle/BreakWall.gd" type="Script" id=2]
+[ext_resource path="res://UI/shader/BreakWall.shader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 3 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="BreakWall" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 2 )
+position = Vector2( 1.1225, -34.7963 )
+scale = Vector2( 0.399913, 0.907646 )
+frames = SubResource( 3 )

@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://UI/Introduction.gd" type="Script" id=1]
+[ext_resource path="res://image/Pastq_cool.png" type="Texture" id=2]
+[ext_resource path="res://image/Pastq.png" type="Texture" id=3]
+[ext_resource path="res://image/Pastq_noice.png" type="Texture" id=4]
+[ext_resource path="res://image/Pastq_blush.png" type="Texture" id=5]
+[ext_resource path="res://image/Pastq_surprised.png" type="Texture" id=6]
+[ext_resource path="res://textboxmelon.jpg" type="Texture" id=7]
+[ext_resource path="res://image/Pastq_mad.png" type="Texture" id=8]
+[ext_resource path="res://image/Pastq_pirate.png" type="Texture" id=9]
+[ext_resource path="res://image/Pastq_troll.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Theme" id=2]
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 1002, 282 )
+
+[node name="Introduction" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Pastq" type="KinematicBody2D" parent="."]
+visible = false
+position = Vector2( 44, 57 )
+z_index = 2
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Pastq"]
+position = Vector2( 112.107, 124.29 )
+scale = Vector2( 0.3, 0.3 )
+frames = SubResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchor_left = 0.255371
+anchor_top = 0.23
+anchor_right = 0.844239
+anchor_bottom = 0.393334
+theme = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="Button" type="Button" parent="Panel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -50.0
+margin_top = -20.0
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "Next"
+flat = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PastqText" type="Label" parent="Panel"]
+anchor_top = -1.16776e-07
+anchor_right = 0.995025
+anchor_bottom = 1.0204
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Char" type="Timer" parent="Panel/PastqText"]
+wait_time = 0.005
+autostart = true
+
+[node name="Box" type="Timer" parent="Panel"]
+wait_time = 0.5
+[connection signal="focus_entered" from="Panel/PastqText" to="." method="_on_PastqText_focus_entered"]
+[connection signal="timeout" from="Panel/PastqText/Char" to="." method="montre_dialogue"]
+[connection signal="timeout" from="Panel/Box" to="." method="anim_text"]

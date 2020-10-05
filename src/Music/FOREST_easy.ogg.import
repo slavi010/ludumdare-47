@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/FOREST_easy.ogg-f92fe787479174e64ee8e546da7b0133.oggstr"
+
+[deps]
+
+source_file="res://Music/FOREST_easy.ogg"
+dest_files=[ "res://.import/FOREST_easy.ogg-f92fe787479174e64ee8e546da7b0133.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

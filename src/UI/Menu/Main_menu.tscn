@@ -1,0 +1,2414 @@
+[gd_scene load_steps=53 format=2]
+
+[ext_resource path="res://UI/Assets/Sun.png" type="Texture" id=1]
+[ext_resource path="res://Player/dododod2.png" type="Texture" id=2]
+[ext_resource path="res://image/plateformes/foret/shroomRedAltLeft.png" type="Texture" id=3]
+[ext_resource path="res://UI/Assets/bg_nuit.png" type="Texture" id=4]
+[ext_resource path="res://image/Pastq.png" type="Texture" id=5]
+[ext_resource path="res://UI/Assets/bg_jour.png" type="Texture" id=6]
+[ext_resource path="res://image/plateformes/foret/shroomRedAltRight.png" type="Texture" id=7]
+[ext_resource path="res://image/plateformes/foret/grass.png" type="Texture" id=8]
+[ext_resource path="res://image/plateformes/foret/stemBase.png" type="Texture" id=9]
+[ext_resource path="res://image/plateformes/foret/shroomRedAltMid.png" type="Texture" id=10]
+[ext_resource path="res://UI/Menu/new_game_button.gd" type="Script" id=11]
+[ext_resource path="res://UI/Menu/OptionsButton.gd" type="Script" id=12]
+[ext_resource path="res://UI/Assets/arial.tres" type="DynamicFont" id=13]
+[ext_resource path="res://Ville_nuit.shader" type="Shader" id=14]
+[ext_resource path="res://Nuit.shader" type="Shader" id=15]
+[ext_resource path="res://Ocean_nuit.shader" type="Shader" id=16]
+[ext_resource path="res://image/moon.png" type="Texture" id=17]
+[ext_resource path="res://image/plateformes/ocean/water_top.png" type="Texture" id=18]
+[ext_resource path="res://image/etoiles.png" type="Texture" id=19]
+[ext_resource path="res://image/plateformes/nuage.png" type="Texture" id=20]
+[ext_resource path="res://image/plateformes/ocean/water.png" type="Texture" id=21]
+[ext_resource path="res://image/plateformes/foret/hill_smallAlt.png" type="Texture" id=22]
+[ext_resource path="res://image/plateformes/foret/sandCenter.png" type="Texture" id=23]
+[ext_resource path="res://image/plateformes/nuage2.png" type="Texture" id=24]
+[ext_resource path="res://image/plateformes/city/ground.png" type="Texture" id=25]
+[ext_resource path="res://image/plateformes/city/beam.png" type="Texture" id=26]
+[ext_resource path="res://image/plateformes/foret/shroomBrownLeft.png" type="Texture" id=27]
+[ext_resource path="res://image/plateformes/foret/stemCrown.png" type="Texture" id=28]
+[ext_resource path="res://image/plateformes/foret/shroomBrownMid.png" type="Texture" id=29]
+[ext_resource path="res://image/plateformes/foret/shroomBrownRight.png" type="Texture" id=30]
+[ext_resource path="res://image/plateformes/city/box.png" type="Texture" id=31]
+[ext_resource path="res://image/plateformes/city/boxEmpty.png" type="Texture" id=32]
+[ext_resource path="res://image/plateformes/city/city.png" type="Texture" id=33]
+[ext_resource path="res://image/plateformes/foret/bush.png" type="Texture" id=34]
+[ext_resource path="res://image/plateformes/foret/stemVine.png" type="Texture" id=35]
+[ext_resource path="res://image/plateformes/city/metalPlatform.png" type="Texture" id=36]
+[ext_resource path="res://image/plateformes/city/boxAlt.png" type="Texture" id=37]
+[ext_resource path="res://image/plateformes/city/metalPlatformWireAlt.png" type="Texture" id=38]
+[ext_resource path="res://image/plateformes/city/beamBolts.png" type="Texture" id=39]
+[ext_resource path="res://UI/Menu/Options_menu.tscn" type="PackedScene" id=40]
+[ext_resource path="res://Music/MENU_track.ogg" type="AudioStream" id=41]
+[ext_resource path="res://Player/dododog2.png" type="Texture" id=42]
+[ext_resource path="res://UI/Menu/CreditsButtons.gd" type="Script" id=43]
+[ext_resource path="res://image/plateformes/foret/grass_climax.png" type="Texture" id=44]
+[ext_resource path="res://UI/Menu/Crédits.gd" type="Script" id=45]
+[ext_resource path="res://UI/Assets/arial25px.tres" type="DynamicFont" id=46]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 15 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 15 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 14 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 14 )
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 16 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 42 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="TextureRect" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bg_jour" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 0, 300 )
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bg_nuit" type="TextureRect" parent="Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -300.0
+grow_vertical = 0
+rect_min_size = Vector2( 0, 300 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprites" type="Control" parent="Control"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -683.0
+margin_top = -150.0
+margin_bottom = 150.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Sprites"]
+margin_top = -17.858
+margin_right = 683.0
+margin_bottom = 282.142
+rect_min_size = Vector2( 683, 300 )
+custom_constants/separation = 40
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Foret" type="Control" parent="Control/Sprites/HBoxContainer"]
+margin_right = 201.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 201, 0 )
+
+[node name="Jour" type="Control" parent="Control/Sprites/HBoxContainer/Foret"]
+margin_top = -20.0
+margin_right = 40.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_top = 91.0
+margin_right = 40.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground2" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 40.0
+margin_top = 91.0
+margin_right = 80.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground3" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 80.0
+margin_top = 91.0
+margin_right = 120.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground4" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 120.0
+margin_top = 91.0
+margin_right = 160.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground5" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 160.0
+margin_top = 91.0
+margin_right = 200.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground6" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 40.0
+margin_top = 147.933
+margin_right = 80.0
+margin_bottom = 187.933
+texture = ExtResource( 23 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground7" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 80.0
+margin_top = 147.933
+margin_right = 120.0
+margin_bottom = 187.933
+texture = ExtResource( 23 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground8" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 120.0
+margin_top = 147.933
+margin_right = 160.0
+margin_bottom = 187.933
+texture = ExtResource( 23 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground9" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 160.0
+margin_top = 147.933
+margin_right = 200.0
+margin_bottom = 187.933
+texture = ExtResource( 23 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground10" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 0.00198364
+margin_top = 147.933
+margin_right = 40.002
+margin_bottom = 187.933
+texture = ExtResource( 23 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hill" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 18.7383
+margin_top = 44.5477
+margin_right = 58.7383
+margin_bottom = 144.548
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 22 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hill2" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 121.976
+margin_top = 42.0728
+margin_right = 161.976
+margin_bottom = 142.073
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 22 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hill3" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 121.622
+margin_top = 4.59618
+margin_right = 161.622
+margin_bottom = 104.596
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 22 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hill4" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 171.12
+margin_top = 41.6941
+margin_right = 211.12
+margin_bottom = 141.694
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 22 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hill5" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 171.494
+margin_top = 22.0633
+margin_right = 211.494
+margin_bottom = 122.063
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 22 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bush2" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 23.6865
+margin_top = 81.0065
+margin_right = 86.6865
+margin_bottom = 101.006
+texture = ExtResource( 34 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom1" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 95.3292
+margin_top = 89.4056
+margin_right = 115.329
+margin_bottom = 109.406
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom2" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 94.9545
+margin_top = 69.7403
+margin_right = 114.955
+margin_bottom = 89.7403
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom3" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 95.4947
+margin_top = 59.0572
+margin_right = 115.495
+margin_bottom = 79.0572
+texture = ExtResource( 29 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom4" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 75.4374
+margin_top = 58.7763
+margin_right = 95.4374
+margin_bottom = 78.7763
+texture = ExtResource( 27 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom5" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 114.921
+margin_top = 58.752
+margin_right = 134.921
+margin_bottom = 78.752
+texture = ExtResource( 30 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom10" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 154.726
+margin_top = 78.799
+margin_right = 174.726
+margin_bottom = 98.799
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom15" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 155.433
+margin_top = 60.358
+margin_right = 175.433
+margin_bottom = 80.358
+texture = ExtResource( 35 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom11" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 155.412
+margin_top = 46.4058
+margin_right = 175.412
+margin_bottom = 66.4058
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom12" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 154.538
+margin_top = 35.3691
+margin_right = 174.538
+margin_bottom = 55.3691
+texture = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom13" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 134.629
+margin_top = 35.0882
+margin_right = 154.629
+margin_bottom = 55.0882
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom14" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 173.964
+margin_top = 35.0639
+margin_right = 193.964
+margin_bottom = 55.0639
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom6" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 24.5253
+margin_top = 97.0025
+margin_right = 44.5253
+margin_bottom = 117.003
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom7" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 25.0623
+margin_top = 85.9776
+margin_right = 45.0623
+margin_bottom = 105.978
+texture = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom8" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 5.00491
+margin_top = 85.9776
+margin_right = 25.0049
+margin_bottom = 105.978
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom9" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 45.2376
+margin_top = 85.8597
+margin_right = 65.2376
+margin_bottom = 105.86
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bush" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Jour"]
+margin_left = 118.181
+margin_top = 101.795
+margin_right = 181.181
+margin_bottom = 121.795
+texture = ExtResource( 34 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nuit" type="Control" parent="Control/Sprites/HBoxContainer/Foret"]
+margin_left = 200.0
+margin_top = 356.0
+margin_right = 240.0
+margin_bottom = 396.0
+rect_rotation = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_top = 91.0
+margin_right = 40.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground2" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 40.0
+margin_top = 91.0
+margin_right = 80.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground3" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 80.0
+margin_top = 91.0
+margin_right = 120.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground4" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 120.0
+margin_top = 91.0
+margin_right = 160.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground5" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 160.0
+margin_top = 91.0
+margin_right = 200.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground11" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 2 )
+margin_left = 120.121
+margin_top = 148.347
+margin_right = 160.121
+margin_bottom = 188.347
+texture = ExtResource( 23 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground12" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 2 )
+margin_left = 80.1212
+margin_top = 148.347
+margin_right = 120.121
+margin_bottom = 188.347
+texture = ExtResource( 23 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground13" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 2 )
+margin_left = 40.1212
+margin_top = 148.347
+margin_right = 80.1212
+margin_bottom = 188.347
+texture = ExtResource( 23 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground14" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 2 )
+margin_left = 0.121246
+margin_top = 148.347
+margin_right = 40.1212
+margin_bottom = 188.347
+texture = ExtResource( 23 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground15" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 2 )
+margin_left = 160.119
+margin_top = 148.347
+margin_right = 200.119
+margin_bottom = 188.347
+texture = ExtResource( 23 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bush2" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 23.6865
+margin_top = 81.0065
+margin_right = 86.6865
+margin_bottom = 101.006
+texture = ExtResource( 34 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom1" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 95.3292
+margin_top = 89.4056
+margin_right = 115.329
+margin_bottom = 109.406
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom2" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 94.9545
+margin_top = 69.7403
+margin_right = 114.955
+margin_bottom = 89.7403
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom3" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 95.4947
+margin_top = 59.0572
+margin_right = 115.495
+margin_bottom = 79.0572
+texture = ExtResource( 29 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom4" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 75.4374
+margin_top = 58.7763
+margin_right = 95.4374
+margin_bottom = 78.7763
+texture = ExtResource( 27 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom5" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 114.921
+margin_top = 58.752
+margin_right = 134.921
+margin_bottom = 78.752
+texture = ExtResource( 30 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom10" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 19.7299
+margin_top = 87.7079
+margin_right = 39.7299
+margin_bottom = 107.708
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom15" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 20.0166
+margin_top = 69.2669
+margin_right = 40.0166
+margin_bottom = 89.2669
+texture = ExtResource( 35 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom11" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 19.9956
+margin_top = 55.3148
+margin_right = 39.9956
+margin_bottom = 75.3148
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom12" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 19.1215
+margin_top = 44.2781
+margin_right = 39.1215
+margin_bottom = 64.2781
+texture = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom13" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = -0.78717
+margin_top = 43.9972
+margin_right = 19.2128
+margin_bottom = 63.9972
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom14" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 38.5476
+margin_top = 43.9728
+margin_right = 58.5476
+margin_bottom = 63.9728
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom6" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 151.033
+margin_top = 91.2117
+margin_right = 171.033
+margin_bottom = 111.212
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom7" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 151.57
+margin_top = 80.1868
+margin_right = 171.57
+margin_bottom = 100.187
+texture = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom8" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 131.513
+margin_top = 80.1868
+margin_right = 151.513
+margin_bottom = 100.187
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mushroom9" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 171.745
+margin_top = 80.0688
+margin_right = 191.745
+margin_bottom = 100.069
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bush" type="TextureRect" parent="Control/Sprites/HBoxContainer/Foret/Nuit"]
+material = SubResource( 1 )
+margin_left = 118.181
+margin_top = 101.795
+margin_right = 181.181
+margin_bottom = 121.795
+texture = ExtResource( 34 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ville" type="Control" parent="Control/Sprites/HBoxContainer"]
+margin_left = 241.0
+margin_right = 442.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 201, 0 )
+
+[node name="Jour" type="Control" parent="Control/Sprites/HBoxContainer/Ville"]
+margin_top = -16.0
+margin_right = 40.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_top = 91.0
+margin_right = 40.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 33 )
+expand = true
+
+[node name="ground2" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 40.0
+margin_top = 91.0
+margin_right = 80.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 33 )
+expand = true
+
+[node name="ground3" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 80.0
+margin_top = 91.0
+margin_right = 120.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 33 )
+expand = true
+
+[node name="ground4" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 120.0
+margin_top = 91.0
+margin_right = 160.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 33 )
+expand = true
+
+[node name="ground5" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 160.0
+margin_top = 91.0
+margin_right = 200.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 33 )
+expand = true
+
+[node name="ground6" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_top = 143.82
+margin_right = 40.0
+margin_bottom = 183.82
+rect_min_size = Vector2( 40, 40 )
+texture = ExtResource( 25 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground7" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 40.0
+margin_top = 143.82
+margin_right = 80.0
+margin_bottom = 183.82
+rect_min_size = Vector2( 40, 40 )
+texture = ExtResource( 25 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground8" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 80.0
+margin_top = 143.82
+margin_right = 120.0
+margin_bottom = 183.82
+rect_min_size = Vector2( 40, 40 )
+texture = ExtResource( 25 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground9" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 120.0
+margin_top = 143.82
+margin_right = 160.0
+margin_bottom = 183.82
+rect_min_size = Vector2( 40, 40 )
+texture = ExtResource( 25 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground10" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 160.0
+margin_top = 143.82
+margin_right = 200.0
+margin_bottom = 183.82
+rect_min_size = Vector2( 40, 40 )
+texture = ExtResource( 25 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="beam" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 185.0
+margin_top = 75.0
+margin_right = 210.0
+margin_bottom = 100.0
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam2" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 185.0
+margin_top = 50.0
+margin_right = 210.0
+margin_bottom = 75.0
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam3" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 185.0
+margin_top = 25.0
+margin_right = 210.0
+margin_bottom = 50.0
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam4" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 185.0
+margin_right = 210.0
+margin_bottom = 25.0
+rect_rotation = 90.0
+texture = ExtResource( 39 )
+expand = true
+
+[node name="beam5" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 160.055
+margin_top = -6.23627
+margin_right = 185.055
+margin_bottom = 18.7637
+texture = ExtResource( 36 )
+expand = true
+
+[node name="beam6" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 135.0
+margin_top = -6.236
+margin_right = 160.0
+margin_bottom = 18.764
+texture = ExtResource( 36 )
+expand = true
+
+[node name="beam7" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 110.0
+margin_top = -6.236
+margin_right = 135.0
+margin_bottom = 18.764
+texture = ExtResource( 38 )
+expand = true
+
+[node name="beam8" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 85.0
+margin_top = -6.236
+margin_right = 110.0
+margin_bottom = 18.764
+texture = ExtResource( 36 )
+expand = true
+
+[node name="beam9" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 108.5
+margin_top = 81.0
+margin_right = 133.5
+margin_bottom = 106.0
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="beam10" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 108.5
+margin_top = 56.0
+margin_right = 133.5
+margin_bottom = 81.0
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam11" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 108.5
+margin_top = 31.0
+margin_right = 133.5
+margin_bottom = 56.0
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam12" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 35.7378
+margin_top = 81.3969
+margin_right = 60.7378
+margin_bottom = 106.397
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="beam13" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 35.7378
+margin_top = 56.3969
+margin_right = 60.7378
+margin_bottom = 81.3969
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam14" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 35.7378
+margin_top = 31.3969
+margin_right = 60.7378
+margin_bottom = 56.3969
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam15" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 83.6006
+margin_top = 24.512
+margin_right = 108.601
+margin_bottom = 49.512
+texture = ExtResource( 36 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="beam16" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 33.8913
+margin_top = 24.632
+margin_right = 58.8913
+margin_bottom = 49.632
+rect_pivot_offset = Vector2( -6.4444, 9.99791 )
+texture = ExtResource( 36 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="beam18" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 11.1467
+margin_top = 26.6822
+margin_right = 36.1467
+margin_bottom = 51.6822
+rect_pivot_offset = Vector2( -6.4444, 9.99791 )
+texture = ExtResource( 36 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="beam17" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 58.9047
+margin_top = 25.137
+margin_right = 83.9047
+margin_bottom = 50.137
+texture = ExtResource( 36 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 165.088
+margin_top = 108.281
+margin_right = 180.088
+margin_bottom = 123.281
+texture = ExtResource( 37 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box5" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 149.595
+margin_top = 107.927
+margin_right = 164.595
+margin_bottom = 122.927
+texture = ExtResource( 37 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box6" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 134.746
+margin_top = 107.927
+margin_right = 149.746
+margin_bottom = 122.927
+texture = ExtResource( 32 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box2" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 44.1543
+margin_top = 80.2169
+margin_right = 59.1543
+margin_bottom = 95.2169
+texture = ExtResource( 32 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box3" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 43.9531
+margin_top = 95.0878
+margin_right = 58.9531
+margin_bottom = 110.088
+texture = ExtResource( 31 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box4" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Jour"]
+margin_left = 28.7441
+margin_top = 94.9827
+margin_right = 43.7441
+margin_bottom = 109.983
+texture = ExtResource( 37 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nuit" type="Control" parent="Control/Sprites/HBoxContainer/Ville"]
+margin_left = 243.0
+margin_top = 369.0
+margin_right = 283.0
+margin_bottom = 409.0
+rect_rotation = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground6" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 42.8252
+margin_top = 108.159
+margin_right = 82.8252
+margin_bottom = 167.159
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 33 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground7" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 82.8252
+margin_top = 108.159
+margin_right = 122.825
+margin_bottom = 167.159
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 33 )
+expand = true
+
+[node name="ground8" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 122.825
+margin_top = 108.159
+margin_right = 162.825
+margin_bottom = 167.159
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 33 )
+expand = true
+
+[node name="ground9" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 162.825
+margin_top = 108.159
+margin_right = 202.825
+margin_bottom = 167.159
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 33 )
+expand = true
+
+[node name="ground10" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 202.825
+margin_top = 108.159
+margin_right = 242.825
+margin_bottom = 167.159
+rect_min_size = Vector2( 40, 59 )
+texture = ExtResource( 33 )
+expand = true
+
+[node name="ground11" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 4 )
+margin_left = 202.969
+margin_top = 161.375
+margin_right = 242.969
+margin_bottom = 201.375
+rect_min_size = Vector2( 40, 40 )
+texture = ExtResource( 25 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground12" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 4 )
+margin_left = 162.969
+margin_top = 161.375
+margin_right = 202.969
+margin_bottom = 201.375
+rect_min_size = Vector2( 40, 40 )
+texture = ExtResource( 25 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground13" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 4 )
+margin_left = 122.969
+margin_top = 161.375
+margin_right = 162.969
+margin_bottom = 201.375
+rect_min_size = Vector2( 40, 40 )
+texture = ExtResource( 25 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground14" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 4 )
+margin_left = 82.9692
+margin_top = 161.375
+margin_right = 122.969
+margin_bottom = 201.375
+rect_min_size = Vector2( 40, 40 )
+texture = ExtResource( 25 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ground15" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 4 )
+margin_left = 42.9692
+margin_top = 161.375
+margin_right = 82.9692
+margin_bottom = 201.375
+rect_min_size = Vector2( 40, 40 )
+texture = ExtResource( 25 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="beam19" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 227.825
+margin_top = 92.159
+margin_right = 252.825
+margin_bottom = 117.159
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam20" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 227.825
+margin_top = 67.159
+margin_right = 252.825
+margin_bottom = 92.159
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam21" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 227.825
+margin_top = 42.159
+margin_right = 252.825
+margin_bottom = 67.159
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam22" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 227.825
+margin_top = 17.159
+margin_right = 252.825
+margin_bottom = 42.159
+rect_rotation = 90.0
+texture = ExtResource( 39 )
+expand = true
+
+[node name="beam23" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 202.88
+margin_top = 10.9227
+margin_right = 227.88
+margin_bottom = 35.9227
+texture = ExtResource( 36 )
+expand = true
+
+[node name="beam24" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 177.825
+margin_top = 10.923
+margin_right = 202.825
+margin_bottom = 35.923
+texture = ExtResource( 36 )
+expand = true
+
+[node name="beam25" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 152.825
+margin_top = 10.923
+margin_right = 177.825
+margin_bottom = 35.923
+texture = ExtResource( 38 )
+expand = true
+
+[node name="beam26" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 127.825
+margin_top = 10.923
+margin_right = 152.825
+margin_bottom = 35.923
+texture = ExtResource( 36 )
+expand = true
+
+[node name="beam27" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 151.325
+margin_top = 98.159
+margin_right = 176.325
+margin_bottom = 123.159
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="beam28" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 151.325
+margin_top = 73.159
+margin_right = 176.325
+margin_bottom = 98.159
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam29" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 151.325
+margin_top = 48.159
+margin_right = 176.325
+margin_bottom = 73.159
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam30" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 78.563
+margin_top = 98.5559
+margin_right = 103.563
+margin_bottom = 123.556
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="beam31" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 78.563
+margin_top = 73.5559
+margin_right = 103.563
+margin_bottom = 98.5559
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam32" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 78.563
+margin_top = 48.5559
+margin_right = 103.563
+margin_bottom = 73.5559
+rect_rotation = 90.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="beam33" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 126.426
+margin_top = 41.671
+margin_right = 151.426
+margin_bottom = 66.671
+texture = ExtResource( 36 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="beam34" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 76.7165
+margin_top = 41.7911
+margin_right = 101.716
+margin_bottom = 66.7911
+rect_pivot_offset = Vector2( -6.4444, 9.99791 )
+texture = ExtResource( 36 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="beam35" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 53.9719
+margin_top = 41.7389
+margin_right = 78.9719
+margin_bottom = 66.7389
+rect_pivot_offset = Vector2( -6.4444, 9.99791 )
+texture = ExtResource( 36 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="beam36" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 101.73
+margin_top = 42.296
+margin_right = 126.73
+margin_bottom = 67.296
+texture = ExtResource( 36 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box7" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 206.856
+margin_top = 124.781
+margin_right = 221.856
+margin_bottom = 139.781
+texture = ExtResource( 37 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box8" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 192.421
+margin_top = 125.086
+margin_right = 207.421
+margin_bottom = 140.086
+texture = ExtResource( 37 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box9" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 177.571
+margin_top = 125.086
+margin_right = 192.571
+margin_bottom = 140.086
+texture = ExtResource( 32 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box10" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 86.9795
+margin_top = 97.3759
+margin_right = 101.979
+margin_bottom = 112.376
+texture = ExtResource( 32 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box11" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 86.7783
+margin_top = 112.247
+margin_right = 101.778
+margin_bottom = 127.247
+texture = ExtResource( 31 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box12" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ville/Nuit"]
+material = SubResource( 3 )
+margin_left = 71.5693
+margin_top = 112.142
+margin_right = 86.5693
+margin_bottom = 127.142
+texture = ExtResource( 37 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ocean" type="Control" parent="Control/Sprites/HBoxContainer"]
+margin_left = 482.0
+margin_right = 683.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 201, 0 )
+
+[node name="Jour" type="Control" parent="Control/Sprites/HBoxContainer/Ocean"]
+margin_left = 1.0
+margin_top = 8.0
+margin_right = 41.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ocean_top" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_top = 40.0
+margin_right = 40.0
+margin_bottom = 80.0
+texture = ExtResource( 18 )
+expand = true
+
+[node name="ocean_top2" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 80.0
+margin_bottom = 80.0
+texture = ExtResource( 18 )
+expand = true
+
+[node name="ocean_top3" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_left = 80.0
+margin_top = 40.0
+margin_right = 120.0
+margin_bottom = 80.0
+texture = ExtResource( 18 )
+expand = true
+
+[node name="ocean_top4" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_left = 120.0
+margin_top = 40.0
+margin_right = 160.0
+margin_bottom = 80.0
+texture = ExtResource( 18 )
+expand = true
+
+[node name="ocean_top5" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_left = 160.0
+margin_top = 40.0
+margin_right = 200.0
+margin_bottom = 80.0
+texture = ExtResource( 18 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_top = 79.537
+margin_right = 40.0
+margin_bottom = 119.537
+texture = ExtResource( 21 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_left = 40.0
+margin_top = 80.0
+margin_right = 80.0
+margin_bottom = 120.0
+texture = ExtResource( 21 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_left = 80.0
+margin_top = 80.0
+margin_right = 120.0
+margin_bottom = 120.0
+texture = ExtResource( 21 )
+expand = true
+
+[node name="TextureRect4" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_left = 120.0
+margin_top = 80.0
+margin_right = 160.0
+margin_bottom = 120.0
+texture = ExtResource( 21 )
+expand = true
+
+[node name="TextureRect5" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_left = 160.0
+margin_top = 80.0
+margin_right = 200.0
+margin_bottom = 120.0
+texture = ExtResource( 21 )
+expand = true
+
+[node name="TextureRect6" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_left = 0.140259
+margin_top = 120.239
+margin_right = 40.1403
+margin_bottom = 160.239
+texture = ExtResource( 21 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect7" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_left = 39.6639
+margin_top = 120.165
+margin_right = 79.6639
+margin_bottom = 160.165
+texture = ExtResource( 21 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect8" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_left = 79.6639
+margin_top = 120.165
+margin_right = 119.664
+margin_bottom = 160.165
+texture = ExtResource( 21 )
+expand = true
+
+[node name="TextureRect9" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_left = 119.664
+margin_top = 120.165
+margin_right = 159.664
+margin_bottom = 160.165
+texture = ExtResource( 21 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect10" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Jour"]
+margin_left = 159.664
+margin_top = 120.165
+margin_right = 199.664
+margin_bottom = 160.165
+texture = ExtResource( 21 )
+expand = true
+
+[node name="Nuit" type="Control" parent="Control/Sprites/HBoxContainer/Ocean"]
+margin_left = 249.0
+margin_top = 430.0
+margin_right = 289.0
+margin_bottom = 470.0
+rect_rotation = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ocean_top6" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 48.1376
+margin_top = 141.938
+margin_right = 88.1376
+margin_bottom = 181.938
+texture = ExtResource( 18 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ocean_top7" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 88.1376
+margin_top = 141.938
+margin_right = 128.138
+margin_bottom = 181.938
+texture = ExtResource( 18 )
+expand = true
+
+[node name="ocean_top8" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 128.138
+margin_top = 141.938
+margin_right = 168.138
+margin_bottom = 181.938
+texture = ExtResource( 18 )
+expand = true
+
+[node name="ocean_top9" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 168.138
+margin_top = 141.938
+margin_right = 208.138
+margin_bottom = 181.938
+texture = ExtResource( 18 )
+expand = true
+
+[node name="ocean_top10" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 208.138
+margin_top = 141.938
+margin_right = 248.138
+margin_bottom = 181.938
+texture = ExtResource( 18 )
+expand = true
+
+[node name="TextureRect6" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 48.1376
+margin_top = 181.938
+margin_right = 88.1376
+margin_bottom = 221.938
+rect_pivot_offset = Vector2( 27.4532, 25.7518 )
+texture = ExtResource( 21 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect7" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 88.1376
+margin_top = 181.938
+margin_right = 128.138
+margin_bottom = 221.938
+rect_pivot_offset = Vector2( -12.5468, 25.7518 )
+texture = ExtResource( 21 )
+expand = true
+
+[node name="TextureRect8" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 128.138
+margin_top = 181.938
+margin_right = 168.138
+margin_bottom = 221.938
+rect_pivot_offset = Vector2( -52.5468, 25.7518 )
+texture = ExtResource( 21 )
+expand = true
+
+[node name="TextureRect9" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 168.138
+margin_top = 181.938
+margin_right = 208.138
+margin_bottom = 221.938
+rect_pivot_offset = Vector2( -92.5468, 25.7518 )
+texture = ExtResource( 21 )
+expand = true
+
+[node name="TextureRect10" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 208.138
+margin_top = 181.938
+margin_right = 248.138
+margin_bottom = 221.938
+rect_pivot_offset = Vector2( -132.547, 25.7518 )
+texture = ExtResource( 21 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect11" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 47.6988
+margin_top = 221.906
+margin_right = 87.6988
+margin_bottom = 261.906
+rect_pivot_offset = Vector2( 27.4532, 25.7518 )
+texture = ExtResource( 21 )
+expand = true
+
+[node name="TextureRect12" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 87.6988
+margin_top = 221.906
+margin_right = 127.699
+margin_bottom = 261.906
+rect_pivot_offset = Vector2( -12.5468, 25.7518 )
+texture = ExtResource( 21 )
+expand = true
+
+[node name="TextureRect13" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 127.699
+margin_top = 221.906
+margin_right = 167.699
+margin_bottom = 261.906
+rect_pivot_offset = Vector2( -52.5468, 25.7518 )
+texture = ExtResource( 21 )
+expand = true
+
+[node name="TextureRect14" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 167.699
+margin_top = 221.906
+margin_right = 207.699
+margin_bottom = 261.906
+rect_pivot_offset = Vector2( -92.5468, 25.7518 )
+texture = ExtResource( 21 )
+expand = true
+
+[node name="TextureRect15" type="TextureRect" parent="Control/Sprites/HBoxContainer/Ocean/Nuit"]
+material = SubResource( 5 )
+margin_left = 207.699
+margin_top = 221.906
+margin_right = 247.699
+margin_bottom = 261.906
+rect_pivot_offset = Vector2( -132.547, 25.7518 )
+texture = ExtResource( 21 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sun" type="TextureRect" parent="Control"]
+margin_right = 138.0
+margin_bottom = 138.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Moon" type="TextureRect" parent="Control"]
+margin_left = 126.81
+margin_top = 565.972
+margin_right = 210.81
+margin_bottom = 681.972
+rect_rotation = 160.0
+texture = ExtResource( 17 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewGameButton" type="RichTextLabel" parent="Control"]
+margin_left = 45.0
+margin_top = 220.0
+margin_right = 244.0
+margin_bottom = 298.0
+custom_fonts/normal_font = ExtResource( 13 )
+bbcode_enabled = true
+bbcode_text = "New game"
+text = "New game"
+scroll_active = false
+script = ExtResource( 11 )
+
+[node name="OptionsButton" type="RichTextLabel" parent="Control"]
+margin_left = 45.449
+margin_top = 322.606
+margin_right = 244.449
+margin_bottom = 380.606
+custom_fonts/normal_font = ExtResource( 13 )
+bbcode_enabled = true
+bbcode_text = "Options"
+text = "Options"
+scroll_active = false
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsButtons" type="Label" parent="Control"]
+margin_left = 885.553
+margin_top = 539.885
+margin_right = 1016.55
+margin_bottom = 597.885
+mouse_filter = 0
+custom_fonts/font = ExtResource( 13 )
+text = "Credits"
+script = ExtResource( 43 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaintePasteque" type="TextureRect" parent="Control"]
+margin_left = 586.424
+margin_top = 2.1779
+margin_right = 735.424
+margin_bottom = 76.1779
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nuage" type="TextureRect" parent="Control"]
+margin_left = 220.729
+margin_top = 41.9837
+margin_right = 480.729
+margin_bottom = 101.984
+texture = ExtResource( 20 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nuage2" type="TextureRect" parent="Control"]
+margin_left = 841.104
+margin_top = 39.1187
+margin_right = 969.104
+margin_bottom = 110.119
+texture = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nuage3" type="TextureRect" parent="Control"]
+margin_left = 580.668
+margin_top = 11.7669
+margin_right = 708.668
+margin_bottom = 82.7669
+texture = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Control"]
+position = Vector2( 365.5, 179.5 )
+scale = Vector2( 0.383333, 0.35 )
+frames = SubResource( 6 )
+frame = 1
+playing = true
+
+[node name="Etoiles" type="Control" parent="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 241.081
+margin_top = 563.535
+margin_right = 258.081
+margin_bottom = 580.535
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 970.0
+margin_top = 491.0
+margin_right = 994.0
+margin_bottom = 515.0
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 443.439
+margin_top = 568.833
+margin_right = 460.439
+margin_bottom = 585.833
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect4" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 944.565
+margin_top = 561.416
+margin_right = 961.565
+margin_bottom = 578.416
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect5" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 152.0
+margin_top = 570.0
+margin_right = 172.0
+margin_bottom = 590.0
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect6" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 283.0
+margin_top = 526.0
+margin_right = 307.0
+margin_bottom = 550.0
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect7" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 509.0
+margin_top = 512.0
+margin_right = 521.0
+margin_bottom = 524.0
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect8" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 262.0
+margin_top = 351.0
+margin_right = 274.0
+margin_bottom = 363.0
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect9" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 900.067
+margin_top = 453.351
+margin_right = 917.067
+margin_bottom = 470.351
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect10" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 47.0
+margin_top = 361.0
+margin_right = 58.0
+margin_bottom = 372.0
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect11" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 731.0
+margin_top = 540.0
+margin_right = 745.0
+margin_bottom = 554.0
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect12" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 376.692
+margin_top = 469.243
+margin_right = 393.692
+margin_bottom = 486.243
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect13" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 183.87
+margin_top = 373.891
+margin_right = 200.87
+margin_bottom = 390.891
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect14" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 585.0
+margin_top = 549.0
+margin_right = 606.0
+margin_bottom = 570.0
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect15" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 823.0
+margin_top = 504.0
+margin_right = 845.0
+margin_bottom = 526.0
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect16" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 145.0
+margin_top = 499.0
+margin_right = 158.0
+margin_bottom = 512.0
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect17" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 372.455
+margin_top = 537.049
+margin_right = 389.455
+margin_bottom = 554.049
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect18" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 253.795
+margin_top = 451.232
+margin_right = 270.795
+margin_bottom = 468.232
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect19" type="TextureRect" parent="Control/Etoiles"]
+margin_left = 117.0
+margin_top = 400.0
+margin_right = 138.0
+margin_bottom = 421.0
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" parent="." instance=ExtResource( 40 )]
+visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 41 )
+
+[node name="Crédits" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color( 0, 0, 0, 1 )
+margin_right = 1024.0
+margin_bottom = 598.0
+texture = ExtResource( 44 )
+expand = true
+script = ExtResource( 45 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -200.5
+margin_top = 20.0
+margin_right = 200.5
+margin_bottom = 78.0
+custom_fonts/font = ExtResource( 13 )
+text = "A Cordon Bleu Game "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MadeBy" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -454.0
+margin_top = -186.858
+margin_right = -257.0
+margin_bottom = -148.858
+custom_fonts/font = ExtResource( 46 )
+text = "Made possible by :"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Créateurs liste" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -470.281
+margin_top = -142.359
+margin_right = -240.281
+margin_bottom = -9.35852
+rect_pivot_offset = Vector2( 130.281, 146.418 )
+text = "Besnard Sviatoslav - Lead developer
+Boissiere Aurelien - Developer
+Borius Rémy - Head cook
+Boulai Aurelie - 2D Artist
+Duport Andgel - Game designer
+Gouraud Yvann - Developer
+"
+align = 1
+valign = 1
+
+[node name="Special thank" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 249.684
+margin_top = -193.802
+margin_right = 387.684
+margin_bottom = -155.802
+custom_fonts/font = ExtResource( 46 )
+text = "Special thank :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resources" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -69.0
+margin_top = 26.0
+margin_right = 69.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 46 )
+text = "Resources :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -462.0
+margin_top = 101.0
+margin_right = -232.0
+margin_bottom = 234.0
+rect_pivot_offset = Vector2( 120.281, 104.591 )
+text = "Music:
+
+Eoun - Industrial rock
+Thaehan ft Bloon. - Warmer Lands
+Untold Journey - The pirate King
+Nomyn - The Journey
+Overwerk - Night Shift
+Bisou - Journey Of King"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -115.0
+margin_top = 101.0
+margin_right = 115.0
+margin_bottom = 183.0
+rect_pivot_offset = Vector2( 120.281, 104.591 )
+text = "Background :
+
+Jays (city)
+Game art Partners (forest)
+VectorStock (Ocean)"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Assets" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 201.0
+margin_top = 101.0
+margin_right = 431.0
+margin_bottom = 149.0
+rect_pivot_offset = Vector2( 120.281, 104.591 )
+text = "Assets :
+
+Kenney Game"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ST liste" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 165.002
+margin_top = -142.359
+margin_right = 469.002
+margin_bottom = -9.35852
+rect_pivot_offset = Vector2( 161.988, 186.512 )
+text = "Andgel's roomates :
+ Clément Kerloc'h and Romain Théry-Fruitier
+
+Rémy once again, whose dishes are still 
+unequalled by this day
+
+Andgel's cat, Tatooine, without whom the quota
+ of cuddles would not have been met"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="Control/NewGameButton" to="Control/NewGameButton" method="_on_NewGameButton_mouse_entered"]
+[connection signal="mouse_exited" from="Control/NewGameButton" to="Control/NewGameButton" method="_on_NewGameButton_mouse_exited"]
+[connection signal="mouse_entered" from="Control/OptionsButton" to="Control/OptionsButton" method="_on_OptionsButton_mouse_entered"]
+[connection signal="mouse_exited" from="Control/OptionsButton" to="Control/OptionsButton" method="_on_OptionsButton_mouse_exited"]
+[connection signal="mouse_entered" from="Control/CreditsButtons" to="Control/CreditsButtons" method="_on_CreditsButtons_mouse_entered"]
+[connection signal="mouse_exited" from="Control/CreditsButtons" to="Control/CreditsButtons" method="_on_CreditsButtons_mouse_exited"]
