@@ -48,14 +48,14 @@ animations = [ {
 "name": "1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "2_nuit",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "0",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 109 ) ],
+"loop": true,
+"name": "1_nuit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 109 ) ],
@@ -145,9 +145,6 @@ script = ExtResource( 10 )
 [node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.95, 1 )
 motion_mirroring = Vector2( 2685, 0 )
-
-[node name="Sprite" type="AnimatedSprite" parent="ParallaxBackground/Background"]
-scale = Vector2( 0.5354, 0.556229 )
 
 [node name="Sprite" type="AnimatedSprite" parent="ParallaxBackground/Background"]
 position = Vector2( 0, -2 )
