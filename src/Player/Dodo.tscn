@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Player/Dodo.gd" type="Script" id=1]
 [ext_resource path="res://Player/dodoD.png" type="Texture" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Player/dodo_a_mal.png" type="Texture" id=9]
 [ext_resource path="res://Player/dodo_buisson.png" type="Texture" id=10]
 [ext_resource path="res://Player/dodo_apres_buisson.png" type="Texture" id=11]
+[ext_resource path="res://Player/dododod2.png" type="Texture" id=12]
+[ext_resource path="res://Player/dododog2.png" type="Texture" id=13]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -24,19 +26,14 @@ animations = [ {
 "name": "dash_feuille",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "jump",
-"speed": 10.0
+"name": "drop",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
 "loop": false,
 "name": "dash",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "drop",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ) ],
@@ -48,6 +45,16 @@ animations = [ {
 "loop": true,
 "name": "planer",
 "speed": 15.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "jump",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "twerk",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -64,8 +71,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 1 )
-animation = "walk"
-frame = 1
+animation = "dash"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -84,4 +90,8 @@ one_shot = true
 
 [node name="TimerHalo" type="Timer" parent="."]
 wait_time = 2.5
+one_shot = true
+
+[node name="TimerTwerk" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
