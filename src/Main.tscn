@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=123 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Dodo.tscn" type="PackedScene" id=2]
@@ -44,14 +44,14 @@ animations = [ {
 "name": "0",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 109 ) ],
-"loop": true,
-"name": "1_nuit",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "0_nuit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 109 ) ],
+"loop": true,
+"name": "1_nuit",
 "speed": 5.0
 } ]
 

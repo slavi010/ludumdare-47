@@ -96,6 +96,8 @@ func add_platforme(ligne: int, colone: int = -1, biome: int = 0):
 	
 	if monde_interieur :
 		platforme.get_node("AnimatedSprite").material.shader = SHADERS[biome]
+	else:
+		platforme.get_node("AnimatedSprite").material.shader = null
 	
 # Ajoute un nouveau mur 
 # la ligne de la mur et sa colone (-1 pour tout à droite)
@@ -115,6 +117,8 @@ func add_mur(ligne: int, colone: int = -1, biome: int = 0):
 	
 	if monde_interieur :
 		mur.get_node("AnimatedSprite").material.shader = SHADERS[biome]
+	else:
+		mur.get_node("AnimatedSprite").material.shader = null
 
 # Ajoute un nouveau tunnel
 # la ligne du  tunnel et sa colone (-1 pour tout à droite)
@@ -217,9 +221,12 @@ func _on_Dodo_traversTunnel():
 		load_chunk(actu_chunk, false)
 		$"../Rythme".start()
 	else:
+		if not $"../Introduction".flag_passed_dialogue[5] and \
+			actu_chunk == 1 and not monde_interieur:
+			$"../Introduction".show_dialogue(5)
 		actu_chunk += 1
 		load_chunk(actu_chunk, false)
-		$"../Rythme".start()
+#		$"../Rythme".start()
 
 func _on_Dodo_murHit():
 	$"../Rythme".start()
@@ -227,7 +234,7 @@ func _on_Dodo_murHit():
 	
 	load_chunk(actu_chunk, true)
 	$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
-	
+
 
 # le LEVEL
 # 0 = rien
@@ -433,11 +440,31 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	var options_chunk = chunk[0]
 	monde_interieur = is_monde_interieur
 	
+	print("actu_chunk = " + str(actu_chunk))
+	
+	if $"../Introduction".intro and index_chunk == 2:
+		$"../Introduction".intro = false
+		print("index_chunk == 2")
+	
+	
+			
+	if not $"../Introduction".flag_passed_dialogue[1] and \
+	index_chunk == 0 and not monde_interieur:
+		$"../Introduction".show_dialogue(1)
+	if not $"../Introduction".flag_passed_dialogue[2] and \
+	index_chunk == 0 and monde_interieur:
+		$"../Introduction".show_dialogue(2)
+	if not $"../Introduction".flag_passed_dialogue[3] and \
+	index_chunk == 1 and not monde_interieur:
+		$"../Introduction".show_dialogue(3)
+	if not $"../Introduction".flag_passed_dialogue[4] and \
+	index_chunk == 1 and monde_interieur:
+		$"../Introduction".show_dialogue(4)
+		
 	if not $"../Introduction".intro:
 		emit_signal("musique_charge", options_chunk[0], monde_interieur)
 	else:
-		if index_chunk == 2:
-			$"../Introduction".intro = false
+		$"../Rythme".set_wait_time(1)
 	
 	# options
 	if is_monde_interieur:
@@ -526,7 +553,7 @@ func _on_Dodo_halo():
 		$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
 		$"../Rythme".start()
 	else: #en cas de tutoriel
-		load_chunk(0, false)
+		load_chunk(actu_chunk, false)
 		$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
-		$"../Rythme".set_wait_time(1)
+#		$"../Rythme".set_wait_time(1)
 		$"../Rythme".start()

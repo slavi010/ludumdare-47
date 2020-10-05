@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SPACE_track.ogg-5519672f715bbc1cdd051d2225c502e5.oggstr"
+
+[deps]
+
+source_file="res://Music/SPACE_track.ogg"
+dest_files=[ "res://.import/SPACE_track.ogg-5519672f715bbc1cdd051d2225c502e5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
