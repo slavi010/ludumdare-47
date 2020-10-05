@@ -163,7 +163,6 @@ margin_top = 139.458
 margin_right = 39.8624
 margin_bottom = 169.458
 custom_fonts/font = SubResource( 2 )
-text = "TWERK"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
