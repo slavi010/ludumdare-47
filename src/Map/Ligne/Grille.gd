@@ -278,7 +278,7 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 6, 1],
+		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 1, 2],
@@ -315,27 +315,6 @@ var all_chunk = [
 	],
 	[ 
 		[0],
-			[ # un chunk SPACE
-		# options {biome, speed}
-		[0, 0.45],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 2],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 1, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 1, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 0, 1, 0, 1],
-		[0, 0, 1, 0, 1],
-		[0, 0, 0, 0, 1],
-	],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
@@ -354,6 +333,22 @@ var all_chunk = [
 		[0, 0, 1, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 2],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 1, 0, 1],
+		[0, 0, 1, 0, 1],
 		[0, 0, 0, 0, 1],
 	],
 	[
@@ -449,10 +444,6 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-	],
-	[ # un chunk 
-		# options {biome}
-		[0],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
@@ -786,6 +777,23 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	if not $"../Introduction".flag_passed_dialogue[4] and \
 	index_chunk == 1 and monde_interieur:
 		$"../Introduction".show_dialogue(4)
+	if not $"../Introduction".flag_passed_dialogue[4] and \
+	index_chunk == 1 and monde_interieur:
+		pass
+		#$"../Introduction".show_dialogue(4)
+	if not $"../Introduction".flag_passed_dialogue[4] and \
+	index_chunk == 1 and monde_interieur:
+		pass
+		#$"../Introduction".show_dialogue(4)
+	if not $"../Introduction".flag_passed_dialogue[4] and \
+	index_chunk == 1 and monde_interieur:
+		pass
+		#$"../Introduction".show_dialogue(4)
+	if not $"../Introduction".flag_passed_dialogue[4] and \
+	index_chunk == 1 and monde_interieur:
+		pass
+		#$"../Introduction".show_dialogue(4)
+	
 		
 	if not $"../Introduction".intro:
 		emit_signal("musique_charge", options_chunk[0], monde_interieur)
