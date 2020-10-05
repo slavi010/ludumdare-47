@@ -2,7 +2,7 @@ extends CanvasLayer
 signal intro
 signal fin_premier_dialogue
 
-var intro = true
+var intro = false
 
 var anim = 0
 var n = true 
