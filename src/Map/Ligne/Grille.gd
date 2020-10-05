@@ -273,7 +273,7 @@ var monde_interieur: bool = false
 var all_chunk = [
 	[ # un chunk tutoriel
 		#Saut
-		[0],
+		[2],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
