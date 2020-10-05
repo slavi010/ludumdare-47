@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Dodo.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Music/City_Hard.ogg" type="AudioStream" id=20]
 [ext_resource path="res://Music/OCEAN_hard.ogg" type="AudioStream" id=21]
 [ext_resource path="res://UI/TransiSpace.tscn" type="PackedScene" id=22]
+[ext_resource path="res://image/LD_BG_oceannuit2.png" type="Texture" id=23]
 [ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_000_delay-0.1s.png" type="Texture" id=64]
 [ext_resource path="res://image/Monde_du_dodo.png" type="Texture" id=65]
 [ext_resource path="res://image/City_nuit.png" type="Texture" id=109]
@@ -38,14 +39,19 @@ animations = [ {
 "name": "0_nuit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "0",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 109 ) ],
+"loop": true,
+"name": "1_nuit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ) ],
@@ -53,22 +59,22 @@ animations = [ {
 "name": "1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 109 ) ],
+"frames": [ ExtResource( 23 ) ],
 "loop": true,
-"name": "1_nuit",
+"name": "2_nuit",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "monde_break",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 65 ) ],
 "loop": true,
 "name": "monde_normal",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "monde_break",
 "speed": 5.0
 } ]
 
@@ -211,4 +217,5 @@ animation = "monde_normal"
 anims/break = SubResource( 3 )
 
 [node name="TransiSpace" parent="." instance=ExtResource( 22 )]
+visible = false
 [connection signal="intro" from="All/Introduction" to="." method="_on_Introduction_intro"]
