@@ -46,6 +46,8 @@ var centre_planet
 var show_halo: bool = false
 var index_deplacement_halo = 0
 
+var is_space: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	centre_planet = Vector2(get_viewport_rect().size.x/2, get_viewport_rect().size.y*10)
@@ -153,7 +155,7 @@ func add_break_wall(ligne: int, colone: int = -1):
 # Ajoute un nouveau wind
 # la ligne du wind et sa colone (-1 pour tout à droite)
 # si déjà objet, ne fait rien
-func add_break_wind(ligne: int, colone: int = -1):
+func add_wind(ligne: int, colone: int = -1):
 	if colone < 0:
 		colone = NB_COLONE + colone
 	
@@ -216,14 +218,17 @@ func _on_Dodo_traversTunnel():
 	if not $"../Introduction".intro:
 		if not monde_interieur:
 			actu_chunk += 1
-			if actu_chunk >= len(all_chunk):
+			if actu_chunk >= len(all_chunk) - 1:
 				actu_chunk = 2
 		load_chunk(actu_chunk, false)
 		$"../Rythme".start()
 	else:
+		if not $"../Introduction".flag_passed_dialogue[5] and \
+			actu_chunk == 1 and not monde_interieur:
+			$"../Introduction".show_dialogue(5)
 		actu_chunk += 1
 		load_chunk(actu_chunk, false)
-		$"../Rythme".start()
+#		$"../Rythme".start()
 
 func _on_Dodo_murHit():
 	$"../Rythme".start()
@@ -231,15 +236,21 @@ func _on_Dodo_murHit():
 	
 	load_chunk(actu_chunk, true)
 	$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
-	
 
+
+# le LEVEL
+# 0 = rien
+# 1 = platforme
+# 2 = mur
+# 3 = tunnel
+# 4 = break wall
+# 5 = vent
 
 var actu_chunk = 2
 var chunk_position_colone = 0
 var monde_interieur: bool = false
 var all_chunk = [
 	[ # un chunk tutoriel
-		#Saut
 		[0],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
@@ -247,10 +258,12 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 1, 2],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 1, 0],
+		[0, 0, 0, 1, 2],
+		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
@@ -265,15 +278,168 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
 		[0, 0, 0, 1, 0],
 		[0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0],
 		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
+	],
+	[ 
+		[0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 1, 1],
+		[0, 0, 0, 1, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 1, 2, 0],
+		[0, 0, 1, 2, 0],
+		[0, 0, 0, 0, 0],
+		[2, 2, 2, 0, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[1, 2, 1, 0, 1],
+		[0, 0, 1, 0, 1],
+		[0, 0, 1, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+	],
+	[
+		[0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 1, 2],
+		[0, 0, 0, 0, 0],
+		[0, 0, 1, 0, 0],
+		[0, 0, 1, 0, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 4],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 0],
+		[0, 0, 1, 0, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 1, 2, 2],
+		[0, 0, 0, 0, 1],
+		[0, 1, 2, 2, 2],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 1],
+	],
+	[ 
+		[0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 0],
+		[0, 0, 1, 0, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 1, 2, 2],
+		[0, 0, 0, 0, 1],
+		[0, 1, 2, 2, 2],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 4],
+		[0, 0, 0, 0, 4],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 1, 2, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0],
+		[2, 2, 2, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+	],
+	[ 
+		[0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+	],
+	[ 
+		[0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 1, 1],
+		[0, 0, 0, 1, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 1, 2, 0],
+		[0, 0, 1, 2, 0],
+		[0, 0, 0, 0, 0],
+		[2, 2, 2, 0, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 2, 2, 1, 1],
+		[0, 0, 0, 1, 1],
+		[0, 0, 0, 1, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
@@ -288,15 +454,15 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 1, 0, 4],
+		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 0],
+		[0, 0, 4, 1, 0],
+		[0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
-		[0, 0, 0, 0, 1],
-		[0, 1, 0, 1, 2],
-		[0, 0, 0, 0, 1],
-		[0, 0, 1, 0, 1],
-		[0, 0, 1, 0, 1],
 		[0, 0, 0, 0, 1],
 	],
 	[ # un chunk 
@@ -341,6 +507,27 @@ var all_chunk = [
 		[0, 0, 1, 0, 1],
 		[0, 0, 0, 0, 1],
 	],
+	[ # un chunk SPACE
+		# options {biome, speed}
+		[0, 0.45],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 2],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 1, 0, 1],
+		[0, 0, 1, 0, 1],
+		[0, 0, 0, 0, 1],
+	],
 ]
 
 
@@ -350,11 +537,30 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	var options_chunk = chunk[0]
 	monde_interieur = is_monde_interieur
 	
+	print("actu_chunk = " + str(actu_chunk))
+	
+	if $"../Introduction".intro and index_chunk == 2:
+		$"../Introduction".intro = false
+	
+	
+			
+	if not $"../Introduction".flag_passed_dialogue[1] and \
+	index_chunk == 0 and not monde_interieur:
+		$"../Introduction".show_dialogue(1)
+	if not $"../Introduction".flag_passed_dialogue[2] and \
+	index_chunk == 0 and monde_interieur:
+		$"../Introduction".show_dialogue(2)
+	if not $"../Introduction".flag_passed_dialogue[3] and \
+	index_chunk == 1 and not monde_interieur:
+		$"../Introduction".show_dialogue(3)
+	if not $"../Introduction".flag_passed_dialogue[4] and \
+	index_chunk == 1 and monde_interieur:
+		$"../Introduction".show_dialogue(4)
+		
 	if not $"../Introduction".intro:
 		emit_signal("musique_charge", options_chunk[0], monde_interieur)
 	else:
-		if index_chunk == 2:
-			$"../Introduction".intro = false
+		$"../Rythme".set_wait_time(1)
 	
 	# options
 	if is_monde_interieur:
@@ -389,6 +595,10 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	
 	
 func load_colone_chunk(colone: int):
+	var biom = all_chunk[actu_chunk][0][0]
+	if is_space:
+		biom = randi() % 3
+	
 	if (chunk_position_colone < len(all_chunk[actu_chunk]) - 1):
 		var col = all_chunk[actu_chunk][chunk_position_colone]
 		chunk_position_colone += 1
@@ -399,15 +609,15 @@ func load_colone_chunk(colone: int):
 					0: # vide
 						grille[ligne][colone] = null
 					1: # platforme
-						add_platforme(ligne, colone, all_chunk[actu_chunk][0][0])
+						add_platforme(ligne, colone, biom)
 					2: # platforme
-						add_mur(ligne, colone, all_chunk[actu_chunk][0][0])
+						add_mur(ligne, colone, biom)
 					3: # tunnel
 						add_tunnel(ligne, colone)
 					4: # breakWall
 						add_break_wall(ligne, colone)
 					5: # wind
-						add_break_wind(ligne, colone)
+						add_wind(ligne, colone)
 	else:
 		# fin chunk
 		if not monde_interieur:
@@ -443,7 +653,7 @@ func _on_Dodo_halo():
 		$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
 		$"../Rythme".start()
 	else: #en cas de tutoriel
-		load_chunk(0, false)
+		load_chunk(actu_chunk, false)
 		$"../Dodo".position = $"../Dodo".get_vecteur_position_ligne($"../Dodo".position_ligne)
-		$"../Rythme".set_wait_time(1)
+#		$"../Rythme".set_wait_time(1)
 		$"../Rythme".start()

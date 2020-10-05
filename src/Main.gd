@@ -19,10 +19,32 @@ var play_back_position: float
 func _ready():
 	$"All/Rythme".connect("timeout", self, "_on_Rythme_timeout")
 	$"All/Grille".connect("musique_charge", self, "_on_Musique_change")
+	$"All/Introduction".connect("fin_premier_dialogue", self, "_on_Introduction_fin_premier_dialogue")
 	$TimerFeuxRouge.connect("timeout", self, "_on_TimerFeuxRouge_timeout")
 	
-	$"All/Grille".load_chunk(0, false)
+	# ICCCCCCCCCCCCCCCCIIIIIIIIIIIIIIIIIIIIIIIIIII
+#	$world/AnimationPlayer.play("break")
+	$"All/Introduction".show_dialogue(0)
+	
+	$"All/TextureRect/Control/NewGameButton".connect("start_game", self, "_on_Menu_start_game")
+	$"All/TextureRect/Control/".hide()
+	$"All/GUI/".hide()
+	$"All/Dodo/".hide()
+	$"All/Rythme".stop()
+	
+	
+	
+	
 
+func _on_Menu_start_game():
+	print("_on_Menu_start_game")
+	$"All/Grille".load_chunk(0, false)
+	$"All/TextureRect/Control".hide()
+	$"All/TextureRect/Options".hide()
+	$"All/GUI/".show()
+	$"All/Dodo/".show()
+	$"All/Grille/".show()
+	$"All/Introduction".show_dialogue(1)
 
 func _on_Rythme_timeout(): #A chaque beat envoi un signal
 	emit_signal("beat")
@@ -99,13 +121,17 @@ func _on_Musique_change(biome: int, is_monde_interieur: bool):
 
 func _on_Introduction_intro():
 	$All/Rythme.stop()
-	musiquePlayers[actu_musique][0].stop()
-	actu_musique = -1
+	if actu_musique >= 0 and len(musiquePlayers) > 0:
+		musiquePlayers[actu_musique][0].stop()
+		actu_musique = -1
+		
+func _on_Introduction_fin_premier_dialogue():
+	$"All/TextureRect/Control/".show()
 
 
 func _on_TimerFeuxRouge_timeout():
 	$All/Rythme.start()
-	emit_signal("feuxChange", 2)
+#	emit_signal("feuxChange", 2)
 	feux = 2
 	musiquePlayers[actu_musique][0].play(play_back_position)
 

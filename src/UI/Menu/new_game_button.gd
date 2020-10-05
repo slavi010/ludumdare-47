@@ -2,10 +2,11 @@ extends RichTextLabel
 
 var is_mouse_in : bool = false
 
+signal start_game
+
 func _input(event):
 	if event is InputEventMouseButton and event.is_pressed() and is_mouse_in:
-		print("Ajouter le code pour lancer le jeu")
-
+		emit_signal("start_game")
 
 func _on_NewGameButton_mouse_entered():
 	bbcode_text = "[wave amp=100 freq=3]New game[/wave]"

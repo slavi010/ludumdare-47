@@ -1,5 +1,6 @@
 extends CanvasLayer
 signal intro
+signal fin_premier_dialogue
 
 var intro = true
 
@@ -10,7 +11,21 @@ var l = 3 #Nombre de lignes à présenter
 var sprite = 0 #Sprite accompagnant le texte
 var textSpeed = 0
 #Tableau où se trouve les dialogues
-var dialogue : Array = []
+var dialogue: Array = []
+var dialogue_index: int = -1
+var dialogue_sprite = [
+	[0],
+	[0, 5, 0, 4, 2, 3, 1],
+	[1],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+]
+
+var flag_passed_dialogue: Array = []
 
 #Ouverture d'un fichier
 func load_text(file):
@@ -54,8 +69,9 @@ func _ready():
 	remplir_dialogue()
 	var _v = $Panel/PastqText.get_line_count()
 	$Panel/Box.start()
-	$Panel/PastqText.text = dialogue[1]
-
+	
+	for i in range(len(dialogue)):
+		flag_passed_dialogue.append(false)
 
 func anim_text():
 	if n :
@@ -76,41 +92,70 @@ func montre_dialogue():
 		$Panel/PastqText.visible_characters = textSpeed
 
 #S'occupe des sprites de la Pastq
-func  sprite_intro():
-	match sprite:
-		2: #Sprite Normal
-			$Pastq/AnimatedSprite.set_frame(0)
-		6: #Sprite Blush
-			$Pastq/AnimatedSprite.set_frame(1)
-		4: #Sprite Cool
-			$Pastq/AnimatedSprite.set_frame(2)
-			$"../Rythme".set_wait_time(1)
-			$"../Rythme".start()
-			$"../..".actu_musique = -1
-		5: #Sprite Surprised
-			$Pastq/AnimatedSprite.set_frame(3)
-		3: #Sprite Noice
-			$Pastq/AnimatedSprite.set_frame(4)
-		1: #Sprite Mad
-			$Pastq/AnimatedSprite.set_frame(5)
-		
-	sprite += 1
+func sprite_intro():
+#	match sprite:
+#		2: #Sprite Normal
+#			$Pastq/AnimatedSprite.set_frame(0)
+#		6: #Sprite Blush
+#			$Pastq/AnimatedSprite.set_frame(1)
+#		4: #Sprite Cool
+#			$Pastq/AnimatedSprite.set_frame(2)
+#			$"../Rythme".set_wait_time(1)
+#			$"../Rythme".start()
+#			$"../..".actu_musique = -1
+#		5: #Sprite Surprised
+#			$Pastq/AnimatedSprite.set_frame(3)
+#		3: #Sprite Noice
+#			$Pastq/AnimatedSprite.set_frame(4)
+#		1: #Sprite Mad
+#			$Pastq/AnimatedSprite.set_frame(5)
+	if sprite < len(dialogue_sprite[dialogue_index]):
+		$Pastq/AnimatedSprite.set_frame(dialogue_sprite[dialogue_index][sprite])		
+		sprite += 1
 
 func _physics_process(_delta): #Montre les lignes une par une
-	
-	if Input.is_action_just_pressed("ui_down"):
-		emit_signal("intro")
-	
 	$Panel/PastqText.rect_size = $Panel.rect_size
 	
 	$Panel/PastqText.set_max_lines_visible(3)
 	if Input.is_action_just_pressed("ui_select"):
-		sprite_intro()
-		$Panel/PastqText.hide()
-		$Panel/PastqText.set_lines_skipped(l)
-		textSpeed = 0
-		$Panel/PastqText.show()
-		l += 3
-	if l > $Panel/PastqText.get_line_count():
-		$Panel.hide()
-		$Pastq.hide()
+		print("l=" + str(l) + ", " + str($Panel/PastqText.get_line_count()))
+		if l >= $Panel/PastqText.get_line_count() - 3 - 1:
+			$Panel.hide()
+			$Pastq.hide()
+			if dialogue_index > 0:
+				$"../Rythme".start()
+				$"../..".actu_musique = -1
+				
+			# fin premier dialogue -> affichage menu
+			if dialogue_index == 0:
+				emit_signal("fin_premier_dialogue")	
+			
+			dialogue_index = -1
+		else:
+			$Panel.show()
+			$Pastq.show()
+			sprite_intro()
+			$Panel/PastqText.hide()
+			$Panel/PastqText.set_lines_skipped(l)
+			textSpeed = 0
+			$Panel/PastqText.show()
+			l += 3
+	
+	
+
+func show_dialogue(index: int):
+	$Panel/PastqText.text = dialogue[index]
+	emit_signal("intro")
+	flag_passed_dialogue[index] = true
+	dialogue_index = index
+	l = 0
+	sprite = 0
+	$Panel.show()
+	$Pastq.show()
+	sprite_intro()
+	$Panel/PastqText.show()
+	$Panel/PastqText.set_lines_skipped(l)
+	
+
+
+
