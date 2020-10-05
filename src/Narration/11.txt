@@ -1,6 +1,6 @@
-[pirate] Yarr Gr.. I mean, Good job player 1 ! You've reached your first loop !
+Yarr Gr.. I mean, Good job player 1 ! You've reached your first loop !
 And humm let me get rid of this hat.
 
-[Normal] Here, much better ! So you think you are done with me ? WRONG !
+Here, much better ! So you think you are done with me ? WRONG !
 There is still one more thing for you to find ! What could it be ? 
 Mystery... See you next loop !
