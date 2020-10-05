@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Dodo.tscn" type="PackedScene" id=2]
@@ -21,97 +21,21 @@
 [ext_resource path="res://Music/FOREST_hard.ogg" type="AudioStream" id=19]
 [ext_resource path="res://Music/City_Hard.ogg" type="AudioStream" id=20]
 [ext_resource path="res://Music/OCEAN_hard.ogg" type="AudioStream" id=21]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_010_delay-0.1s.png" type="Texture" id=22]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_011_delay-0.1s.png" type="Texture" id=23]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_003_delay-0.1s.png" type="Texture" id=24]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_004_delay-0.1s.png" type="Texture" id=25]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_005_delay-0.1s.png" type="Texture" id=26]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_000_delay-0.1s.png" type="Texture" id=27]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_001_delay-0.1s.png" type="Texture" id=28]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_002_delay-0.1s.png" type="Texture" id=29]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_066_delay-0.1s.png" type="Texture" id=30]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_061_delay-0.1s.png" type="Texture" id=31]
-[ext_resource path="res://image/ocean_nuit.png" type="Texture" id=32]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_018_delay-0.1s.png" type="Texture" id=33]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_040_delay-0.1s.png" type="Texture" id=34]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_030_delay-0.1s.png" type="Texture" id=35]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_044_delay-0.1s.png" type="Texture" id=36]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_017_delay-0.1s.png" type="Texture" id=37]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_021_delay-0.1s.png" type="Texture" id=38]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_013_delay-0.1s.png" type="Texture" id=39]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_045_delay-0.1s.png" type="Texture" id=40]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_046_delay-0.1s.png" type="Texture" id=41]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_047_delay-0.1s.png" type="Texture" id=42]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_060_delay-0.1s.png" type="Texture" id=43]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_065_delay-0.1s.png" type="Texture" id=44]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_049_delay-0.1s.png" type="Texture" id=45]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_051_delay-0.1s.png" type="Texture" id=46]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_055_delay-0.1s.png" type="Texture" id=47]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_038_delay-0.1s.png" type="Texture" id=48]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_068_delay-0.1s.png" type="Texture" id=49]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_070_delay-0.1s.png" type="Texture" id=50]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_023_delay-0.1s.png" type="Texture" id=51]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_027_delay-0.1s.png" type="Texture" id=52]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_028_delay-0.1s.png" type="Texture" id=53]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_019_delay-0.1s.png" type="Texture" id=54]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_034_delay-0.1s.png" type="Texture" id=55]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_050_delay-0.1s.png" type="Texture" id=56]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_054_delay-0.1s.png" type="Texture" id=57]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_022_delay-0.1s.png" type="Texture" id=58]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_064_delay-0.1s.png" type="Texture" id=59]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_035_delay-0.1s.png" type="Texture" id=60]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_053_delay-0.1s.png" type="Texture" id=61]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_067_delay-0.1s.png" type="Texture" id=62]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_062_delay-0.1s.png" type="Texture" id=63]
+[ext_resource path="res://image/LD_BG_oceannuit2.png" type="Texture" id=22]
 [ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_071_delay-0.1s.png" type="Texture" id=64]
 [ext_resource path="res://image/Monde_du_dodo.png" type="Texture" id=65]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_056_delay-0.1s.png" type="Texture" id=66]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_036_delay-0.1s.png" type="Texture" id=67]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_020_delay-0.1s.png" type="Texture" id=68]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_057_delay-0.1s.png" type="Texture" id=69]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_063_delay-0.1s.png" type="Texture" id=70]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_024_delay-0.1s.png" type="Texture" id=71]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_031_delay-0.1s.png" type="Texture" id=72]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_015_delay-0.1s.png" type="Texture" id=73]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_025_delay-0.1s.png" type="Texture" id=74]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_039_delay-0.1s.png" type="Texture" id=75]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_042_delay-0.1s.png" type="Texture" id=76]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_014_delay-0.1s.png" type="Texture" id=77]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_016_delay-0.1s.png" type="Texture" id=78]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_012_delay-0.1s.png" type="Texture" id=79]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_033_delay-0.1s.png" type="Texture" id=80]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_029_delay-0.1s.png" type="Texture" id=81]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_041_delay-0.1s.png" type="Texture" id=82]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_048_delay-0.1s.png" type="Texture" id=83]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_052_delay-0.1s.png" type="Texture" id=84]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_059_delay-0.1s.png" type="Texture" id=85]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_043_delay-0.1s.png" type="Texture" id=86]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_058_delay-0.1s.png" type="Texture" id=87]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_037_delay-0.1s.png" type="Texture" id=88]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_069_delay-0.1s.png" type="Texture" id=89]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_026_delay-0.1s.png" type="Texture" id=92]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_032_delay-0.1s.png" type="Texture" id=93]
 [ext_resource path="res://image/City_nuit.png" type="Texture" id=109]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_006_delay-0.1s.png" type="Texture" id=119]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_007_delay-0.1s.png" type="Texture" id=120]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_008_delay-0.1s.png" type="Texture" id=121]
-[ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_009_delay-0.1s.png" type="Texture" id=122]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 28 ), ExtResource( 27 ), ExtResource( 29 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 119 ), ExtResource( 120 ), ExtResource( 121 ), ExtResource( 122 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 79 ), ExtResource( 39 ), ExtResource( 77 ), ExtResource( 73 ), ExtResource( 78 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 54 ), ExtResource( 68 ), ExtResource( 38 ), ExtResource( 58 ), ExtResource( 51 ), ExtResource( 71 ), ExtResource( 74 ), ExtResource( 92 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 81 ), ExtResource( 35 ), ExtResource( 72 ), ExtResource( 93 ), ExtResource( 80 ), ExtResource( 55 ), ExtResource( 60 ), ExtResource( 67 ), ExtResource( 88 ), ExtResource( 48 ), ExtResource( 75 ), ExtResource( 34 ), ExtResource( 82 ), ExtResource( 76 ), ExtResource( 86 ), ExtResource( 36 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 83 ), ExtResource( 45 ), ExtResource( 56 ), ExtResource( 46 ), ExtResource( 84 ), ExtResource( 61 ), ExtResource( 57 ), ExtResource( 47 ), ExtResource( 66 ), ExtResource( 69 ), ExtResource( 87 ), ExtResource( 85 ), ExtResource( 43 ), ExtResource( 31 ), ExtResource( 63 ), ExtResource( 70 ), ExtResource( 59 ), ExtResource( 44 ), ExtResource( 30 ), ExtResource( 62 ), ExtResource( 49 ), ExtResource( 89 ), ExtResource( 50 ), ExtResource( 64 ) ],
+"frames": [ ExtResource( 64 ) ],
 "loop": true,
 "name": "space",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 12 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "2",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "1",
+"name": "0",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ) ],
@@ -119,19 +43,24 @@ animations = [ {
 "name": "0",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 32 ) ],
+"frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "2_nuit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 109 ) ],
+"frames": [ ExtResource( 13 ) ],
 "loop": true,
-"name": "1_nuit",
+"name": "1",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "0_nuit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "2",
 "speed": 5.0
 } ]
 
@@ -221,7 +150,6 @@ motion_mirroring = Vector2( 2685, 0 )
 scale = Vector2( 0.5354, 0.556229 )
 frames = SubResource( 1 )
 animation = "space"
-frame = 17
 playing = true
 centered = false
 

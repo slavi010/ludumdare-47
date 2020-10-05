@@ -53,6 +53,7 @@ margin_bottom = 109.933
 min_value = -24.0
 max_value = 0.0
 step = -1.0
+value = -12.0
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -83,10 +84,10 @@ __meta__ = {
 [node name="Label2" type="Label" parent="Touches"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -157.315
-margin_top = 58.9278
-margin_right = -81.3153
-margin_bottom = 88.9278
+margin_left = 95.7003
+margin_top = 64.2732
+margin_right = 171.7
+margin_bottom = 94.2732
 custom_fonts/font = SubResource( 2 )
 text = "Glide"
 __meta__ = {
@@ -132,9 +133,9 @@ expand = true
 [node name="Label4" type="Label" parent="Touches"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 88.2762
+margin_left = -158.503
 margin_top = 63.0997
-margin_right = 164.276
+margin_right = -82.5029
 margin_bottom = 93.0997
 custom_fonts/font = SubResource( 2 )
 text = "Dash"
