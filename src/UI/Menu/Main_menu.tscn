@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://UI/Assets/Sun.png" type="Texture" id=1]
 [ext_resource path="res://Player/dododod2.png" type="Texture" id=2]
@@ -42,9 +42,10 @@
 [ext_resource path="res://UI/Menu/Options_menu.tscn" type="PackedScene" id=40]
 [ext_resource path="res://Music/MENU_track.ogg" type="AudioStream" id=41]
 [ext_resource path="res://Player/dododog2.png" type="Texture" id=42]
-[ext_resource path="res://UI/Menu/CreditButton.gd" type="Script" id=43]
+[ext_resource path="res://UI/Menu/CreditsButtons.gd" type="Script" id=43]
 [ext_resource path="res://image/plateformes/foret/grass_climax.png" type="Texture" id=44]
 [ext_resource path="res://UI/Menu/Crédits.gd" type="Script" id=45]
+[ext_resource path="res://UI/Assets/arial25px.tres" type="DynamicFont" id=46]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 15 )
@@ -1929,7 +1930,6 @@ scroll_active = false
 script = ExtResource( 11 )
 
 [node name="OptionsButton" type="RichTextLabel" parent="Control"]
-visible = false
 margin_left = 45.449
 margin_top = 322.606
 margin_right = 244.449
@@ -1944,16 +1944,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CreditButton" type="RichTextLabel" parent="Control"]
-margin_left = 850.539
-margin_top = 534.273
-margin_right = 1049.54
-margin_bottom = 592.273
-custom_fonts/normal_font = ExtResource( 13 )
-bbcode_enabled = true
-bbcode_text = "Options"
-text = "Options"
-scroll_active = false
+[node name="CreditsButtons" type="Label" parent="Control"]
+margin_left = 885.553
+margin_top = 539.885
+margin_right = 1016.55
+margin_bottom = 597.885
+mouse_filter = 0
+custom_fonts/font = ExtResource( 13 )
+text = "Credits"
 script = ExtResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2231,6 +2229,7 @@ visible = false
 stream = ExtResource( 41 )
 
 [node name="Crédits" type="TextureRect" parent="."]
+visible = false
 self_modulate = Color( 0, 0, 0, 1 )
 margin_right = 1024.0
 margin_bottom = 598.0
@@ -2241,17 +2240,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Créateurs" type="Label" parent="Crédits"]
+[node name="Title" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -200.5
+margin_top = 20.0
+margin_right = 200.5
+margin_bottom = 78.0
+custom_fonts/font = ExtResource( 13 )
+text = "A Cordon Bleu Game "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MadeBy" type="Label" parent="Crédits"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -484.179
-margin_top = -271.44
-margin_right = -196.179
-margin_bottom = -213.44
-custom_fonts/font = ExtResource( 13 )
-text = "Staff members :"
+margin_left = -454.0
+margin_top = -186.858
+margin_right = -257.0
+margin_bottom = -148.858
+custom_fonts/font = ExtResource( 46 )
+text = "Made possible by :"
 align = 1
 valign = 1
 __meta__ = {
@@ -2263,11 +2277,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -455.179
-margin_top = -191.44
-margin_right = -225.179
-margin_bottom = -75.4405
-rect_pivot_offset = Vector2( 161.988, 186.512 )
+margin_left = -470.281
+margin_top = -142.359
+margin_right = -240.281
+margin_bottom = -9.35852
+rect_pivot_offset = Vector2( 130.281, 146.418 )
 text = "Besnard Sviatoslav - Lead developer
 Boissiere Aurelien - Developer
 Borius Rémy - Head cook
@@ -2283,12 +2297,88 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -134.5
-margin_top = -74.0
-margin_right = 134.5
-margin_bottom = -16.0
-custom_fonts/font = ExtResource( 13 )
+margin_left = 249.684
+margin_top = -193.802
+margin_right = 387.684
+margin_bottom = -155.802
+custom_fonts/font = ExtResource( 46 )
 text = "Special thank :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resources" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -69.0
+margin_top = 26.0
+margin_right = 69.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 46 )
+text = "Resources :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -462.0
+margin_top = 101.0
+margin_right = -232.0
+margin_bottom = 234.0
+rect_pivot_offset = Vector2( 120.281, 104.591 )
+text = "Music:
+
+Eoun - Industrial rock
+Thaehan ft Bloon. - Warmer Lands
+Untold Journey - The pirate King
+Nomyn - The Journey
+Overwerk - Night Shift
+Bisou - Journey Of King"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -115.0
+margin_top = 101.0
+margin_right = 115.0
+margin_bottom = 183.0
+rect_pivot_offset = Vector2( 120.281, 104.591 )
+text = "Background :
+
+Jays (city)
+Game art Partners (forest)
+VectorStock (Ocean)"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Assets" type="Label" parent="Crédits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 201.0
+margin_top = 101.0
+margin_right = 431.0
+margin_bottom = 149.0
+rect_pivot_offset = Vector2( 120.281, 104.591 )
+text = "Assets :
+
+Kenney Game"
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2298,18 +2388,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -151.0
-margin_top = 1.0
-margin_right = 151.0
-margin_bottom = 128.0
+margin_left = 165.002
+margin_top = -142.359
+margin_right = 469.002
+margin_bottom = -9.35852
 rect_pivot_offset = Vector2( 161.988, 186.512 )
-text = "Andgel's roomates who have helped us
- from time to time
+text = "Andgel's roomates :
+ Clément Kerloc'h and Romain Théry-Fruitier
 
 Rémy once again, whose dishes are still 
 unequalled by this day
 
-Andgel's cat, without whom the quota
+Andgel's cat, Tatooine, without whom the quota
  of cuddles would not have been met"
 align = 1
 valign = 1
@@ -2320,5 +2410,5 @@ __meta__ = {
 [connection signal="mouse_exited" from="Control/NewGameButton" to="Control/NewGameButton" method="_on_NewGameButton_mouse_exited"]
 [connection signal="mouse_entered" from="Control/OptionsButton" to="Control/OptionsButton" method="_on_OptionsButton_mouse_entered"]
 [connection signal="mouse_exited" from="Control/OptionsButton" to="Control/OptionsButton" method="_on_OptionsButton_mouse_exited"]
-[connection signal="mouse_entered" from="Control/CreditButton" to="Control/CreditButton" method="_on_CreditButton_mouse_entered"]
-[connection signal="mouse_exited" from="Control/CreditButton" to="Control/CreditButton" method="_on_CreditButton_mouse_exited"]
+[connection signal="mouse_entered" from="Control/CreditsButtons" to="Control/CreditsButtons" method="_on_CreditsButtons_mouse_entered"]
+[connection signal="mouse_exited" from="Control/CreditsButtons" to="Control/CreditsButtons" method="_on_CreditsButtons_mouse_exited"]
