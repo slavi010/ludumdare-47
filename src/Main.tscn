@@ -119,11 +119,6 @@ animations = [ {
 "name": "0",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 109 ) ],
-"loop": true,
-"name": "1_nuit",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "0_nuit",
@@ -132,6 +127,11 @@ animations = [ {
 "frames": [ ExtResource( 32 ) ],
 "loop": true,
 "name": "2_nuit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 109 ) ],
+"loop": true,
+"name": "1_nuit",
 "speed": 5.0
 } ]
 
@@ -221,7 +221,6 @@ motion_mirroring = Vector2( 2685, 0 )
 position = Vector2( 0, -2 )
 scale = Vector2( 0.55, 0.556229 )
 frames = SubResource( 1 )
-animation = "monde_normal"
 playing = true
 centered = false
 
