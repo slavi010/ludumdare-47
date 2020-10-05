@@ -23,6 +23,22 @@ var dialogue_sprite = [
 	[0],
 	[0],
 	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
+	[0],
 ]
 
 var flag_passed_dialogue: Array = []
@@ -61,8 +77,10 @@ func dir_number():
 func remplir_dialogue():
 	var d: int = dir_number()
 	for i in range(d):
-		var text = "res://Narration/intro" + str(i) + ".txt" 
+		print(dialogue)	
+		var text = "res://Narration/" + str(i) + ".txt" 
 		load_text(text)
+		
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -1927,6 +1927,7 @@ scroll_active = false
 script = ExtResource( 11 )
 
 [node name="OptionsButton" type="RichTextLabel" parent="Control"]
+visible = false
 margin_left = 45.449
 margin_top = 322.606
 margin_right = 244.449
