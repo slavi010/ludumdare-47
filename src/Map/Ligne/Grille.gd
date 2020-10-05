@@ -46,7 +46,7 @@ var centre_planet
 var show_halo: bool = false
 var index_deplacement_halo = 0
 
-var is_space: bool = true
+var is_space: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
