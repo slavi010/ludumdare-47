@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=101 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Dodo.tscn" type="PackedScene" id=2]
@@ -89,6 +89,7 @@
 [ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_058_delay-0.1s.png" type="Texture" id=87]
 [ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_037_delay-0.1s.png" type="Texture" id=88]
 [ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_069_delay-0.1s.png" type="Texture" id=89]
+[ext_resource path="res://UI/TransiSpace.tscn" type="PackedScene" id=90]
 [ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_026_delay-0.1s.png" type="Texture" id=92]
 [ext_resource path="res://image/ezgif-3-8d1dee07e98c-gif-png/frame_032_delay-0.1s.png" type="Texture" id=93]
 [ext_resource path="res://image/City_nuit.png" type="Texture" id=109]
@@ -104,9 +105,14 @@ animations = [ {
 "name": "space",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 12 ) ],
+"frames": [ ExtResource( 32 ) ],
 "loop": true,
-"name": "2",
+"name": "2_nuit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "0",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ) ],
@@ -119,37 +125,27 @@ animations = [ {
 "name": "1_nuit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 32 ) ],
-"loop": true,
-"name": "2_nuit",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "0_nuit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "0",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 32 ) ],
-"loop": true,
-"name": "2_nuit",
+"name": "2",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 65 ) ],
-"loop": true,
-"name": "monde_normal",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "monde_break",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 65 ) ],
+"loop": true,
+"name": "monde_normal",
 "speed": 5.0
 } ]
 
@@ -227,7 +223,7 @@ position = Vector2( 0, -2 )
 scale = Vector2( 0.55, 0.556229 )
 frames = SubResource( 1 )
 animation = "space"
-frame = 25
+frame = 7
 playing = true
 centered = false
 
@@ -278,14 +274,16 @@ stream = ExtResource( 14 )
 
 [node name="TextureRect" parent="All" instance=ExtResource( 15 )]
 
+[node name="TransiSpace" parent="All" instance=ExtResource( 90 )]
+
 [node name="TimerFeuxRouge" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
 [node name="world" type="AnimatedSprite" parent="."]
 visible = false
-position = Vector2( 503.234, 355.067 )
-scale = Vector2( 1.01304, 1.00521 )
+position = Vector2( 505.904, 520 )
+scale = Vector2( 10, 10 )
 frames = SubResource( 2 )
 animation = "monde_normal"
 
