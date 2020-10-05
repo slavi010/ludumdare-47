@@ -6,6 +6,7 @@ signal energyChange(nb_energy_left)
 signal traversTunnel
 signal dodoTombe
 signal dodoHalo
+signal FLEURE
 
 var TAILLE_ECRANT2 = get_viewport_rect().size
 var MAX_ENERGY = 5
@@ -212,6 +213,10 @@ func move_player(action: int):
 
 				energy -= 1
 				emit_signal("energyChange", energy)
+				
+				if is_fleure(next_col[position_ligne]):
+					$"../Rythme".stop()
+					emit_signal("FLEURE")
 			
 
 func mort():
@@ -250,6 +255,12 @@ func is_no_wind(obj):
 func is_tunnel(obj):
 	if obj != null:
 		if obj.get_script().get_path().get_file() == "Tunnel.gd":
+			return true
+	return false
+	
+func is_fleure(obj):
+	if obj != null:
+		if obj.get_script().get_path().get_file() == "Fleure.gd":
 			return true
 	return false
 

@@ -21,6 +21,8 @@ func _ready():
 	$"All/Grille".connect("musique_charge", self, "_on_Musique_change")
 	$"All/Introduction".connect("fin_premier_dialogue", self, "_on_Introduction_fin_premier_dialogue")
 	$TimerFeuxRouge.connect("timeout", self, "_on_TimerFeuxRouge_timeout")
+	$All/Dodo.connect("FLEURE", self, "_on_Dodo_fleure")
+	$All/Grille.connect("FIN", self, "_on_Grille_fin")
 	
 	# ICCCCCCCCCCCCCCCCIIIIIIIIIIIIIIIIIIIIIIIIIII
 #	$world/AnimationPlayer.play("break")
@@ -94,7 +96,7 @@ var scroll_x = 0
 
 func _process(delta):	
 	# Scroll background
-	if $All/BeatExt.playing:
+	if $All/BeatExt.playing and not $All/Grille.is_space:
 		scroll_x -= 50 * delta
 		$ParallaxBackground.scroll_offset.x = scroll_x
 		
@@ -135,3 +137,19 @@ func _on_TimerFeuxRouge_timeout():
 	feux = 2
 	musiquePlayers[actu_musique][0].play(play_back_position)
 
+func _on_Dodo_fleure():
+	print("FLEEEEEEEEEEEEEEEEEEUUUUUUUUUUUUUUUUUUUUUUUUUUUURRRRRRRRRRRRRRRRRRRRRRRR")
+	$All/Grille.load_chunk(len($All/Grille.all_chunk) - 1, false)
+	$All/Grille.is_space = true
+	$All/Rythme.wait_time = 0.40
+	$All/Rythme.start()
+	$ParallaxBackground/Background/Sprite.animation = "space"
+
+func _on_Grille_fin():
+	$"All/TextureRect/Control/".show()
+	$"All/GUI/".hide()
+	$"All/Dodo/".hide()
+	$"All/Rythme".stop()
+	
+	$"All/Grille".actu_chunk = -1
+	$"All/Grille".is_space = false
