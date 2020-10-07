@@ -70,7 +70,7 @@ func _on_Rythme_timeout(): #A chaque beat envoi un signal
 				$All/Rythme.stop()
 				emit_signal("feuxChange", 0)
 				play_back_position = musiquePlayers[actu_musique][0].get_playback_position()
-				musiquePlayers[actu_musique][0].stop()
+				musiquePlayers[actu_musique][0].pause()
 			2:
 				if (randi() % 30) == 1:
 					feux = 1
@@ -122,6 +122,7 @@ func _on_Musique_change(biome: int, is_monde_interieur: bool):
 
 func _on_Introduction_intro():
 	$All/Rythme.stop()
+	print("STOP")
 	if actu_musique >= 0 and len(musiquePlayers) > 0:
 		musiquePlayers[actu_musique][0].stop()
 		actu_musique = -1
@@ -136,6 +137,9 @@ func _on_TimerFeuxRouge_timeout():
 #	emit_signal("feuxChange", 2)
 	feux = 2
 	musiquePlayers[actu_musique][0].play(play_back_position)
+	emit_signal("feuxChange", 0)
+	emit_signal("feuxChange", 0)
+	emit_signal("feuxChange", 0)
 
 func _on_Dodo_fleure():
 	print("FLEEEEEEEEEEEEEEEEEEUUUUUUUUUUUUUUUUUUUUUUUUUUUURRRRRRRRRRRRRRRRRRRRRRRR")
@@ -153,6 +157,8 @@ func launch_space():
 	$All/Rythme.wait_time = 0.40
 	$All/Rythme.start()
 	$ParallaxBackground/Background/Sprite.animation = "space"
+	scroll_x = 0
+	$ParallaxBackground.scroll_offset.x = scroll_x
 
 func _on_Grille_fin():
 	$"All/TextureRect/Control/".show()
@@ -160,5 +166,5 @@ func _on_Grille_fin():
 	$"All/Dodo/".hide()
 	$"All/Rythme".stop()
 	
-	$"All/Grille".actu_chunk = -1
+	$"All/Grille".actu_chunk = 2
 	$"All/Grille".is_space = false

@@ -17,4 +17,7 @@ func _ready():
 
 
 func _on_HSlider_value_changed(value):
+	print(value)
+	if value < -23:
+		value = -60
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)

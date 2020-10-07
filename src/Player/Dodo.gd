@@ -59,13 +59,25 @@ func _physics_process(delta):
 	var velocite = target_position - position
 	position += velocite*delta*SPEED_ANIMATION/($"../Rythme".wait_time/2)
 	
-	
 	# animation player tombe
 	if is_tombe:
 		 target_position.y += delta*TOMBE_SPEED
 	if is_halo:
 		 target_position += Vector2(delta*HALO_SPEED, -delta*HALO_SPEED)
-	
+
+	if Input.is_action_just_pressed("ui_up"): # aller vers le haut
+		pressed_action = 1
+	if Input.is_action_just_pressed("ui_right"): # planer
+		pressed_action = 3
+	if Input.is_action_just_pressed("ui_left"): # dash
+		pressed_action = 4
+	if Input.is_action_just_pressed("ui_down"): # TWERK
+		if not $"../Rythme".is_stopped():
+			$"../Rythme".stop()
+			$TimerChangeAnimation.stop()
+			$AnimatedSprite.animation = "twerk"
+			$AnimatedSprite.scale = Vector2(0.5, 0.5)
+			$TimerTwerk.start()
 	
 	
 func _unhandled_input(event):
@@ -75,24 +87,6 @@ func _unhandled_input(event):
 			$"../../TimerFeuxRouge".stop()
 			$"../../".feux = 2
 			mort()
-	
-	if event is InputEventKey:
-		if event.pressed and event.scancode == KEY_UP: # aller vers le haut
-			pressed_action = 1
-			too_much_input()
-		if event.pressed and event.scancode == KEY_RIGHT: # planer
-			pressed_action = 3
-			too_much_input()
-		if event.pressed and event.scancode == KEY_LEFT: # dash
-			pressed_action = 4
-			too_much_input()
-		if event.pressed and event.scancode == KEY_DOWN: # TWERK
-			if not $"../Rythme".is_stopped():
-				$"../Rythme".stop()
-				$TimerChangeAnimation.stop()
-				$AnimatedSprite.animation = "twerk"
-				$AnimatedSprite.scale = Vector2(0.5, 0.5)
-				$TimerTwerk.start()
 			
 
 func too_much_input(max_input: int = 1):
@@ -153,8 +147,11 @@ func move_player(action: int):
 				position_ligne -= 1
 				set_target_position(get_vecteur_position_ligne(position_ligne))
 				
-				if position_ligne > 0 and \
-				not is_no_wind(next_col[position_ligne]):
+				while position_ligne > 0 and \
+				not is_no_wind(next_col[position_ligne]) and \
+				is_no_platforme(next_col[position_ligne - 1]) and \
+				is_no_mur(next_col[position_ligne - 1]) and \
+				is_no_break_wall(next_col[position_ligne - 1]):
 					position_ligne -= 1
 					set_target_position(get_vecteur_position_ligne(position_ligne))
 				
@@ -162,6 +159,8 @@ func move_player(action: int):
 				emit_signal("energyChange", energy)
 				set_sprite_up(true)
 		0:
+			print("TOMBER")
+			
 			if (position_ligne <  4) and \
 			is_no_platforme(next_col[position_ligne]) and \
 			is_no_mur(next_col[position_ligne + 1]):
@@ -183,20 +182,32 @@ func move_player(action: int):
 						set_sprite_walk(true)
 					else:
 						mort()
-			if (position_ligne > 0):
-				if not is_no_wind(next_col[position_ligne]):
+				while position_ligne > 0 and \
+				not is_no_wind(next_col[position_ligne]) and \
+				is_no_platforme(next_col[position_ligne - 1]) and \
+				is_no_mur(next_col[position_ligne - 1]) and \
+				is_no_break_wall(next_col[position_ligne - 1]):
 					position_ligne -= 1
 					set_target_position(get_vecteur_position_ligne(position_ligne))
 		3:
+			print("PLANER")
 			energy -= 0.5
 			emit_signal("energyChange", energy)
 			set_sprite_plane(true)
 			
+			if is_no_mur(next_col[position_ligne]) and \
+			is_no_break_wall(next_col[position_ligne]):
+				pass
+			else:
+				mort()
 							
-			if position_ligne > 0 and \
-			not is_no_wind(next_col[position_ligne]):
-				position_ligne -= 1
-				set_target_position(get_vecteur_position_ligne(position_ligne))
+			while position_ligne > 0 and \
+				not is_no_wind(next_col[position_ligne]) and \
+				is_no_platforme(next_col[position_ligne - 1]) and \
+				is_no_mur(next_col[position_ligne - 1]) and \
+				is_no_break_wall(next_col[position_ligne - 1]):
+					position_ligne -= 1
+					set_target_position(get_vecteur_position_ligne(position_ligne))
 		4:
 			if not(is_no_mur(next_col[position_ligne])):
 				mort()

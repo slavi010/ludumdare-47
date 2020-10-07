@@ -27,7 +27,7 @@ var dialogue_sprite = [
 	[2], #8
 	[4, 4, 3, 0, 2], #9
 	[6], #10
-	[6, 6,0], #11
+	[6, 6, 0, 5], #11
 	[4], #12
 	[0], #13
 	[1], #14
@@ -73,7 +73,6 @@ func dir_number():
 func remplir_dialogue():
 	var d: int = dir_number()
 	for i in range(d):
-		print(dialogue)	
 		var text = "res://Narration/" + str(i) + ".txt" 
 		load_text(text)
 		
@@ -130,8 +129,8 @@ func sprite_intro():
 
 func _physics_process(_delta): #Montre les lignes une par une
 	$Panel/PastqText.rect_size = $Panel.rect_size
-	
-	if Input.is_action_just_pressed("ui_select"):
+	if Input.is_action_just_pressed("ui_accept"):
+		print (l, $Panel/PastqText.get_line_count() - 3 - x)
 		if l >= $Panel/PastqText.get_line_count() - 3 - x:
 			x = 0
 			$Panel.hide()
@@ -159,7 +158,9 @@ func _physics_process(_delta): #Montre les lignes une par une
 
 func show_dialogue(index: int):
 	$Panel/PastqText.text = dialogue[index]
+	print()
 	emit_signal("intro")
+	print("shwo dialogue", index)
 	flag_passed_dialogue[index] = true
 	dialogue_index = index
 	l = 0
@@ -169,6 +170,7 @@ func show_dialogue(index: int):
 	sprite_intro()
 	$Panel/PastqText.show()
 	$Panel/PastqText.set_lines_skipped(l)
+	l += 3
 	
 
 

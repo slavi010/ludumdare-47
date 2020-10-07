@@ -241,12 +241,9 @@ func _on_Dodo_traversTunnel():
 			if actu_chunk >= len(all_chunk) - 1:
 				actu_chunk = 2
 				loop += 1
-		load_chunk(actu_chunk, false)
 		$"../Rythme".start()
+		load_chunk(actu_chunk, false)
 	else:
-		if not $"../Introduction".flag_passed_dialogue[5] and \
-			actu_chunk == 1 and not monde_interieur:
-			$"../Introduction".show_dialogue(5)
 		actu_chunk += 1
 		load_chunk(actu_chunk, false)
 #		$"../Rythme".start()
@@ -431,6 +428,8 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
 		[0, 0, 0, 1, 1],
 		[0, 0, 0, 1, 1],
 		[0, 0, 0, 0, 1],
@@ -490,6 +489,8 @@ var all_chunk = [
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
 		[0, 0, 0, 0, 2],
 		[0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0],
@@ -529,15 +530,18 @@ var all_chunk = [
 	],
 		[ 
 		[1, 0.45],
-		[0, 1, 0, 1, 0],
-		[0, 1, 0, 1, 0],
-		[0, 1, 0, 1, 0],
+		[0, 1, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 1, 0, 0, 1],
+		[0, 1, 0, 0, 1],
 		[0, 0, 0, 0, 0],
-		[0, 0, 2, 2, 2],
-		[0, 0, 0, 0, 0],
+		[0, 0, 2, 0, 2],
 		[0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0],
 		[0, 0, 1, 0, 0],
+		[0, 0, 0, 1, 0],
 		[0, 0, 1, 0, 0],
 		[0, 0, 1, 0, 0],
 		[0, 0, 0, 0, 0],
@@ -572,6 +576,8 @@ var all_chunk = [
 	],
 		[ 
 		[1, 0.45],
+		[0, 0, 1, 0, 1],
+		[0, 0, 1, 0, 1],
 		[0, 0, 1, 0, 1],
 		[0, 0, 1, 0, 1],
 		[0, 0, 1, 0, 1],
@@ -613,10 +619,12 @@ var all_chunk = [
 	],
 	[ 
 		[2, 0.45],
-		[0, 0, 0, 1, 0],
-		[0, 0, 0, 1, 0],
-		[0, 0, 0, 1, 0],
-		[0, 0, 0, 1, 0],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
 		[0, 0, 0, 1, 0],
 		[0, 0, 5, 0, 0],
 		[0, 0, 1, 0, 0],
@@ -663,11 +671,14 @@ var all_chunk = [
 	],
 	[ 
 		[2,0.45],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
+		[0, 0, 0, 0, 1],
 		[0, 0, 0, 1, 0],
 		[0, 0, 0, 1, 0],
-		[0, 0, 0, 1, 0],
-		[0, 0, 0, 1, 0],
-		[0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0],
 		[0, 2, 2, 2, 2],
 		[0, 0, 0, 0, 0],
@@ -771,18 +782,23 @@ func load_chunk(index_chunk: int, is_monde_interieur: bool):
 	if not $"../Introduction".flag_passed_dialogue[8] and \
 	index_chunk == 3 and not monde_interieur:
 		$"../Introduction".show_dialogue(8)
+		print("Grille intro", 8)
 	if not $"../Introduction".flag_passed_dialogue[9] and \
 	index_chunk == 6 and not monde_interieur:
 		$"../Introduction".show_dialogue(9)
+		print("Grille intro", 9)
 	if not $"../Introduction".flag_passed_dialogue[10] and \
 	index_chunk == 10 and not monde_interieur:
 		$"../Introduction".show_dialogue(10)
+		print("Grille intro", 10)
 	if not $"../Introduction".flag_passed_dialogue[11] and \
 	index_chunk == 1 and loop == 1:
 		$"../Introduction".show_dialogue(11)
+		print("Grille intro", 11)
 	if not $"../Introduction".flag_passed_dialogue[12] and \
 	loop == 1:
 		$"../Introduction".show_dialogue(12)
+		print("Grille intro", 12)
 	if not $"../Introduction".flag_passed_dialogue[13] and \
 	loop == 2:
 		$"../Introduction".show_dialogue(13)

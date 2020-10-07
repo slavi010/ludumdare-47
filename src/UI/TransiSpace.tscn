@@ -86,12 +86,7 @@ margin_bottom = 563.0
 texture = ExtResource( 3 )
 expand = true
 
-[node name="Transi" type="Timer" parent="."]
-wait_time = 15.0
-one_shot = true
-
 [node name="RetourJeu" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
-[connection signal="timeout" from="Transi" to="." method="_on_Transi_timeout"]
 [connection signal="timeout" from="RetourJeu" to="." method="_on_RetourJeu_timeout"]
